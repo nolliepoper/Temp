@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 
 public class BallManager extends Manager
 {
@@ -17,15 +18,15 @@ public class BallManager extends Manager
     {
         super.logic();
         
-        if(frame.getMouse().isDown(1))
+        if(Mouse.isPressesd(MouseEvent.BUTTON1))
         {
-            add(new Ball(Util.randomColor(), new Point(frame.getMouse().getClick())));
-            frame.getMouse().release(1);
+            add(new Ball(Util.randomColor(), Mouse.getClick(MouseEvent.BUTTON1)));
+            Mouse.release(MouseEvent.BUTTON1);
         }
-        if(frame.getKeyboard().isDown(32))
+        if(KeyBoard.isPressed(KeyEvent.VK_SPACE))
         {
             remove(getRandom());
-            frame.getKeyboard().release(32);
+            KeyBoard.release(KeyEvent.VK_SPACE);
         }
     }
 }

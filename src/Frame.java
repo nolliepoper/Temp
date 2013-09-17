@@ -7,9 +7,6 @@ import javax.swing.*;
 public class Frame extends JFrame
 {
     private final Content manager;
-    private final Mouse mouse;
-    private final KeyBoard keyboard;
-    //private final JPanel panel;
     
     public Frame()
     {
@@ -19,22 +16,11 @@ public class Frame extends JFrame
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         addWindowListener(new Exit());
         
-        /*
-        panel = new JPanel();
-        panel.setSize(200, 150);
-        panel.setLocation(100, 75);
-        panel.setBackground(Color.BLUE);
-        add(panel);
-        */
-        
         manager = new Content(this);
         add(manager);
-            
-        mouse = new Mouse();
-        addMouseListener(mouse);
         
-        keyboard = new KeyBoard(manager);
-        addKeyListener(keyboard);
+        addKeyListener(new KeyBoard());
+        addMouseListener(new Mouse());
         
         setVisible(true);
     }
@@ -42,18 +28,11 @@ public class Frame extends JFrame
     {
         return manager;
     }
-    public KeyBoard getKeyboard()
-    {
-        return keyboard;
-    }
-    public Mouse getMouse()
-    {
-        return mouse;
-    }
+    // Private inner class because no other classes should determine termination.
     private class Exit extends WindowAdapter
     {
         @Override
-        public void windowClosed(WindowEvent we)
+        public void windowClosed(WindowEvent eIn)
         {
             // Do exiting logic.
             System.out.println("Exiting.");

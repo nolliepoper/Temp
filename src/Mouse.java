@@ -4,29 +4,31 @@ import java.util.*;
 
 public class Mouse implements MouseListener, MouseMotionListener
 {
-    private HashMap<Integer, Boolean> map;
-    private Point point;
-    private Point click;
+    private static final HashMap<Integer, Boolean> map = new HashMap<>();
+    private static final HashMap<Integer, Point> click = new HashMap<>();
+    private static final Point point = new Point();
     
-    public Mouse()
+    public static Point getClick(int cIn)
     {
-        map = new HashMap<>();
-        point = new Point();
-        click = new Point();
+        Point p = click.get(cIn);
+        if(p == null)
+            return null;
+        return click.get(cIn);
     }
-    public Point getClick()
+    public static Point getPoint()
     {
-        return click;
+        return point;
     }
-    public boolean isDown(int k)
+    public static boolean isPressesd(int cIn)
     {
-        if(map.get(k) == null)
+        Boolean b = map.get(cIn);
+        if(b == null)
             return false;
-        return map.get(k);
+        return b;
     }
-    public void release(int k)
+    public static void release(int kIn)
     {
-        map.put(k, false);
+        map.put(kIn, Boolean.FALSE);
     }
     @Override
     public void mouseClicked(MouseEvent eIn)
@@ -36,37 +38,35 @@ public class Mouse implements MouseListener, MouseMotionListener
     public void mousePressed(MouseEvent eIn)
     {
         int c = eIn.getButton();
-        click.x = eIn.getX();
-        click.y = eIn.getY();
         
-        map.put(c, true);
-        //Util.sleep(10);
-        //map.put(c, false);
+        click.put(c, eIn.getPoint());
+        map.put(c, Boolean.TRUE);
         
-        
-        System.out.println(c);
+        String s = MouseEvent.getMouseModifiersText(MouseEvent.getMaskForButton(c)); //Not important, only helps get mouse button string.
+        System.out.println(c+"="+s); // Not important.
     }
     @Override
     public void mouseReleased(MouseEvent eIn)
     {
         int c = eIn.getButton();
-        map.put(c, false);
+        map.put(c, Boolean.FALSE);
     }
     @Override
     public void mouseEntered(MouseEvent eIn)
     {
-        System.out.println("HAS ENTERED!");
     }
     @Override
     public void mouseExited(MouseEvent eIn)
     {
     }
     @Override
-    public void mouseDragged(MouseEvent me)
+    public void mouseDragged(MouseEvent eIn)
     {
     }
     @Override
-    public void mouseMoved(MouseEvent me)
+    public void mouseMoved(MouseEvent eIn)
     {
+        point.x = eIn.getX();
+        point.y = eIn.getY();
     }
 }

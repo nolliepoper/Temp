@@ -4,44 +4,35 @@ import java.awt.event.*;
 
 public class KeyBoard implements KeyListener
 {
-    private final HashMap<Integer, Boolean> map;
-    private final Content manager;
+    private static final HashMap<Integer, Boolean> map = new HashMap<>();
     
-    public KeyBoard(Content mIn)
+    public static boolean isPressed(int kIn)
     {
-        manager = mIn;
-        map = new HashMap<>();
-    }
-    public boolean isDown(int k)
-    {
-        if(map.get(k) == null)
+        if(map.get(kIn) == null)
             return false;
-        return map.get(k);
+        return map.get(kIn);
     }
-    public void release(int k)
+    public static void release(int kIn)
     {
-        map.put(k, false);
+        map.put(kIn, Boolean.FALSE); // Use static variable from Boolean class so it won't make a new Boolean object inside the map.
     }
     @Override
-    public void keyPressed(KeyEvent e)
+    public void keyPressed(KeyEvent eIn)
     {
-        int c = e.getKeyCode();
-        map.put(c, true);
-        //Util.sleep(10);
-        //map.put(c, false);
+        int k = eIn.getKeyCode();
+        map.put(k, Boolean.TRUE);
         
-        String s = KeyEvent.getKeyText(c); // Not important.
-        System.out.println(c+"="+s); // Not important.
+        String s = KeyEvent.getKeyText(k); // Not important.
+        System.out.println(k+"="+s); // Not important.
     }
     @Override
-    public void keyTyped(KeyEvent e)
+    public void keyTyped(KeyEvent eIn)
     {
-        
     }
     @Override
-    public void keyReleased(KeyEvent e)
+    public void keyReleased(KeyEvent eIn)
     {
-        int c = e.getKeyCode();
-        map.put(c, false);
+        int k = eIn.getKeyCode();
+        map.put(k, Boolean.FALSE);
     }
 }

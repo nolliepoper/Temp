@@ -3,17 +3,19 @@ import javax.swing.*;
 
 public class Ball extends Entity
 {
-    private int a;
+    private int a; // How many pixels to move.
     
     public Ball(Color cIn, Point pIn)
     {
         super(cIn, pIn);
         //a = (int)(Math.random() * 50);
         a = 1;
+        
     }
     public Ball(Color cIn, int xIn, int yIn)
     {
         super(cIn, xIn, yIn);
+        a = 1;
     }
     @Override
     public void logic()

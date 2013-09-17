@@ -23,7 +23,7 @@ public class Content extends JPanel
     public void remove(Entity eIn)
     {
         eIn.dispose();
-        list.remove(eIn);
+            list.remove(eIn);
     }
     public void logic()
     {
