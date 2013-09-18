@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 import java.awt.event.*;
 
-public class KeyBoard implements KeyListener
+public class Keyboard implements KeyListener
 {
     private static final HashMap<Integer, Boolean> map = new HashMap<>();
     

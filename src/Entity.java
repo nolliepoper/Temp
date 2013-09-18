@@ -5,16 +5,13 @@ public abstract class Entity
 {
     protected final Point point;
     protected final Color color;
+    public final Point size;
     
-    public Entity(Color cIn, Point pIn)
+    public Entity(Color cIn, Point pIn, Point sIn)
     {
         color = cIn;
         point = pIn;
-    }
-    public Entity(Color cIn, int xIn, int yIn)
-    {
-        color = cIn;
-        point = new Point(xIn, yIn);
+        size = sIn;
     }
     public abstract void logic();
     public abstract void paint(Graphics2D gIn);

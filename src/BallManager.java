@@ -23,10 +23,10 @@ public class BallManager extends Manager
             add(new Ball(Util.randomColor(), Mouse.getClick(MouseEvent.BUTTON1)));
             Mouse.release(MouseEvent.BUTTON1);
         }
-        if(KeyBoard.isPressed(KeyEvent.VK_SPACE))
+        if(Keyboard.isPressed(KeyEvent.VK_BACK_SPACE))
         {
             remove(getRandom());
-            KeyBoard.release(KeyEvent.VK_SPACE);
+            Keyboard.release(KeyEvent.VK_BACK_SPACE);
         }
     }
 }

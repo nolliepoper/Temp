@@ -7,15 +7,10 @@ public class Ball extends Entity
     
     public Ball(Color cIn, Point pIn)
     {
-        super(cIn, pIn);
+        super(cIn, pIn, new Point(50, 50));
         //a = (int)(Math.random() * 50);
         a = 1;
         
-    }
-    public Ball(Color cIn, int xIn, int yIn)
-    {
-        super(cIn, xIn, yIn);
-        a = 1;
     }
     @Override
     public void logic()
@@ -27,7 +22,7 @@ public class Ball extends Entity
     public void paint(Graphics2D gIn)
     {
         gIn.setColor(color);
-        gIn.fillOval(point.x, point.y, 50, 50);
+        gIn.fillOval(point.x, point.y, size.x, size.y);
     }
     @Override
     public void dispose()

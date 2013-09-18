@@ -15,6 +15,7 @@ public class Content extends JPanel
         setBackground(Color.WHITE);
         
         add(new BallManager(frame, this));
+        add(new PlayerManager(frame, this));
     }
     public void add(Manager eIn)
     {
