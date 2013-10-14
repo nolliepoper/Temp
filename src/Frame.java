@@ -16,10 +16,10 @@ public class Frame extends JFrame
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         addWindowListener(new Exit());
         
-        new Collision(this);
-        
         manager = new Content(this);
         add(manager);
+        
+        new Collision(this, manager);
         
         addKeyListener(new Keyboard());
         addMouseListener(new Mouse());

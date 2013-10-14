@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 import java.util.concurrent.*;
 
@@ -8,15 +10,22 @@ public class Content extends JPanel
 {
     private final Frame frame;
     private final CopyOnWriteArrayList<Manager> list;
+    private final Manager block;
+    private boolean run;
     
     public Content(Frame fIn)
     {
         frame = fIn;
         list = new CopyOnWriteArrayList<>();
+        run = true;
         
         setBackground(Color.WHITE);
         
         add(new BallManager(frame, this));
+        
+        block = new Manager(frame, this);
+        add(block);
+        
         add(new Manager(frame, this));
         getLast().add(new Player(Color.BLUE, new Point(100, 100)));
     }
@@ -37,8 +46,21 @@ public class Content extends JPanel
     }
     public void logic()
     {
-        for(Manager m: list)
-            m.logic();
+        if(Keyboard.isPressed(KeyEvent.VK_P))
+        {
+            run = !run;
+            Keyboard.release(KeyEvent.VK_P);
+        }
+        if(run)
+        {
+            if(Mouse.isPressesd(MouseEvent.BUTTON1))
+            {
+                block.add(new Block(Util.randomSolidColor(), Mouse.getClick(MouseEvent.BUTTON1), new Point(50, 50)));
+                Mouse.release(MouseEvent.BUTTON1);
+            }
+            for(Manager m: list)
+                m.logic();
+        }
     }
     @Override
     public void paint(Graphics gIn)

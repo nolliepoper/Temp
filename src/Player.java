@@ -16,11 +16,11 @@ public class Player extends Entity
     public void logic()
     {
         if(Keyboard.isPressed(KeyEvent.VK_W))
-            vel.dy += -1;
+            ;//vel.dy += -1;
         if(Keyboard.isPressed(KeyEvent.VK_A))
             vel.dx += -1;
         if(Keyboard.isPressed(KeyEvent.VK_S))
-            vel.dy += 1;
+            ;//vel.dy += 1;
         if(Keyboard.isPressed(KeyEvent.VK_D))
             vel.dx += 1;
         if(Keyboard.isPressed(KeyEvent.VK_SPACE))

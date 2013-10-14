@@ -5,17 +5,17 @@ import java.util.concurrent.*;
 public class Collision
 {
     private static Frame frame;
-    private static CopyOnWriteArrayList<Entity> list;
+    private static Content manager;
     
-    public Collision(Frame fIn)
+    public Collision(Frame fIn, Content mIn)
     {
         frame = fIn;
-        list = new CopyOnWriteArrayList<>();
+        manager = mIn;
     }
-    public static void add(Entity eIn)
-    {
-        list.add(eIn);
-    }
+//    public static void add(Entity eIn)
+//    {
+//        list.add(eIn);
+//    }
     public static boolean wallLeft(Entity eIn)
     {
         return eIn.dest.x >= 0;
