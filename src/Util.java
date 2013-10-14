@@ -14,7 +14,11 @@ public class Util
             e.printStackTrace();
         }
     }
-    public static Color randomColor()
+    public static Color randomSolidColor()
+    {
+        return new Color((float)Math.random(), (float)Math.random(), (float)Math.random(), 1);
+    }
+    public static Color randomTransColor()
     {
         return new Color((float)Math.random(), (float)Math.random(), (float)Math.random(), (float)Math.random());
     }

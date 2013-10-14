@@ -7,10 +7,10 @@ public class Main
     {
         System.out.println("Main begin");
         
-        Frame met = new Frame();
+        Frame frame = new Frame();
         
-        Thread logic = new Thread(new Logic(met, met.getManager()));
-        Thread paint = new Thread(new Paint(met, met.getManager()));
+        Thread logic = new Thread(new Logic(frame, frame.getManager()));
+        Thread paint = new Thread(new Paint(frame, frame.getManager()));
         
         logic.start();
         paint.start();
@@ -18,4 +18,3 @@ public class Main
         System.out.println("Main end");
     }
 }
-

@@ -1,19 +1,43 @@
 
 import java.awt.*;
+import java.util.concurrent.*;
 
 public class Collision
 {
-    public static Frame frame;
+    private static Frame frame;
+    private static CopyOnWriteArrayList<Entity> list;
+    
     public Collision(Frame fIn)
     {
         frame = fIn;
+        list = new CopyOnWriteArrayList<>();
     }
-    public static boolean canMoveX(Entity eIn, double xIn)
+    public static void add(Entity eIn)
     {
-        return eIn.point.x + xIn >= 0 && eIn.point.x + xIn + eIn.size.x < frame.getWidth() - 15; // Contants are for the sides.
+        list.add(eIn);
     }
-    public static boolean canMoveY(Entity eIn, double yIn)
+    public static boolean wallLeft(Entity eIn)
     {
-        return eIn.point.y + yIn >= 0 && eIn.point.y + yIn + eIn.size.y < frame.getHeight() - 35;
+        return eIn.dest.x >= 0;
+    }
+    public static boolean wallRight(Entity eIn)
+    {
+        return eIn.dest.x <= frame.getWidth() - eIn.size.x - 15; // 15 to make up for right of window frame.
+    }
+    public static boolean wallX(Entity eIn)
+    {
+        return wallLeft(eIn) && wallRight(eIn);
+    }
+    public static boolean wallUp(Entity eIn)
+    {
+        return eIn.dest.y >= 0;
+    }
+    public static boolean wallDown(Entity eIn)
+    {
+        return eIn.dest.y <= frame.getHeight() - eIn.size.y - 35; // 35 to make up for bottom of window frame.
+    }
+    public static boolean wallY(Entity eIn)
+    {
+        return wallUp(eIn) && wallDown(eIn);
     }
 }

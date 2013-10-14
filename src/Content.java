@@ -2,6 +2,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.concurrent.*;
 
+// This class is the master content manager, it has a list of managers.
+// Also, this class may manange a few list of entities on it's own.
 public class Content extends JPanel
 {
     private final Frame frame;
@@ -15,21 +17,28 @@ public class Content extends JPanel
         setBackground(Color.WHITE);
         
         add(new BallManager(frame, this));
-        add(new PlayerManager(frame, this));
+        add(new Manager(frame, this));
+        getLast().add(new Player(Color.BLUE, new Point(100, 100)));
     }
-    public void add(Manager eIn)
+    public void add(Manager mIn)
     {
-        list.add(eIn);
+        list.add(mIn);
     }
-    public void remove(Entity eIn)
+    public Manager getLast()
     {
-        eIn.dispose();
-            list.remove(eIn);
+        if(list.isEmpty())
+            return null;
+        return list.get(list.size() - 1);
+    }
+    public void remove(Manager mIn)
+    {
+        mIn.dispose();
+        list.remove(mIn);
     }
     public void logic()
     {
-        for(Manager eIn: list)
-            eIn.logic();
+        for(Manager m: list)
+            m.logic();
     }
     @Override
     public void paint(Graphics gIn)

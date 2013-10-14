@@ -25,14 +25,16 @@ public class Player extends Entity
             vel.dx += 1;
         if(Keyboard.isPressed(KeyEvent.VK_SPACE))
         {
-            vel.dy += -50;
+            vel.dy += -50; // Jump.
             Keyboard.release(KeyEvent.VK_SPACE);
         }
         vel.logic();
-        if(Collision.canMoveX(this, vel.dx))
-            point.x += vel.dx;
-        if(Collision.canMoveY(this, vel.dy))
-            point.y += vel.dy;
+        dest.x = point.x + (int)vel.dx;
+        if(Collision.wallX(this))
+            point.x = dest.x;
+        dest.y = point.y + (int)vel.dy;
+        if(Collision.wallY(this))
+            point.y = dest.y;
     }
     @Override
     public void paint(Graphics2D gIn)

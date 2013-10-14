@@ -10,9 +10,6 @@ public class Mouse implements MouseListener, MouseMotionListener
     
     public static Point getClick(int cIn)
     {
-        Point p = click.get(cIn);
-        if(p == null)
-            return null;
         return click.get(cIn);
     }
     public static Point getPoint()

@@ -11,8 +11,8 @@ public class Velocity
     }
     public void logic()
     {
+        dx /= 1.1; // Friction.
         dy += GRAVITY;
-        dy /= 1.1; // Friction.
-        dx /= 1.1;
+        dy /= 1.1;
     }
 }
