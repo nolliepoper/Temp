@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import java.util.concurrent.*;
 
@@ -18,6 +19,10 @@ public class Manager<T extends Entity>
     public void add(T eIn)
     {
         list.add(eIn);
+    }
+	public void addAll(ArrayList<T> eIn)
+    {
+        list.addAll(eIn);
     }
     public void remove(T eIn)
     {

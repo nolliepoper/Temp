@@ -22,7 +22,7 @@ public class Collision
     }
     public static boolean wallRight(Entity eIn)
     {
-        return eIn.dest.x <= frame.getWidth() - eIn.size.x - 15; // 15 to make up for right of window frame.
+        return eIn.dest.x <= frame.getWidth() - eIn.getSize().x - 15; // 15 to make up for right of window frame.
     }
     public static boolean wallX(Entity eIn)
     {
@@ -34,7 +34,7 @@ public class Collision
     }
     public static boolean wallDown(Entity eIn)
     {
-        return eIn.dest.y <= frame.getHeight() - eIn.size.y - 35; // 35 to make up for bottom of window frame.
+        return eIn.dest.y <= frame.getHeight() - eIn.getSize().y - 35; // 35 to make up for bottom of window frame.
     }
     public static boolean wallY(Entity eIn)
     {

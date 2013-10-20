@@ -1,0 +1,9 @@
+{
+  "background" : "fullBackground.jpg",
+  "tiled" : false,
+  "platforms" : [ {"type" : "Platform", "start" : {"x" : 50, "y" : 50}, "width" : 200, "height" : 25},
+  {"type" : "Platform", "start" : {"x" : 50, "y" : 50}, "width" : 200, "height" : 80}],
+  "enemies" : [{"type" : "Enemy", "name" : "Crawler"},
+				{"type" : "Enemy", "name" : "Flyer"},
+				{"type" : "Enemy", "name" : "Shooter"}]
+}

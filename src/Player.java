@@ -7,9 +7,9 @@ public class Player extends Entity
 {
     private final Velocity vel;
     
-    public Player(Color cIn, Point pIn)
+    public Player(Point pIn)
     {
-        super(cIn, pIn, new Point(50, 50));
+        super(pIn, 25, 25);
         vel = new Velocity();
     }
     @Override
@@ -29,18 +29,19 @@ public class Player extends Entity
             Keyboard.release(KeyEvent.VK_SPACE);
         }
         vel.logic();
-        dest.x = point.x + (int)vel.dx;
+        dest.x = getStart().x + (int)vel.dx;
         if(Collision.wallX(this))
-            point.x = dest.x;
-        dest.y = point.y + (int)vel.dy;
+            getStart().x = dest.x;
+        dest.y = getStart().y + (int)vel.dy;
         if(Collision.wallY(this))
-            point.y = dest.y;
+            getStart().y = dest.y;
     }
     @Override
     public void paint(Graphics2D gIn)
     {
-        gIn.setColor(color);
-        gIn.fillRect(point.x, point.y, size.x, size.y);
+		Point strt = getStart();
+        gIn.setColor(Color.blue);
+        gIn.fillRect(strt.x, strt.y, getSize().x, getSize().y);
     }
     @Override
     public void dispose()
