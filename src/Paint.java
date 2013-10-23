@@ -17,7 +17,7 @@ public class Paint implements Runnable
         {
             frame.repaint();
             //manager.repaint();
-            Util.sleep(10);
+            Util.sleep(33);
         }
     }
 }

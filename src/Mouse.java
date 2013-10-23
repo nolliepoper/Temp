@@ -16,6 +16,14 @@ public class Mouse implements MouseListener, MouseMotionListener
     {
         return point;
     }
+    public static int X()
+    {
+        return point.x;
+    }
+    public static int Y()
+    {
+        return point.y;
+    }
     public static boolean isPressesd(int cIn)
     {
         Boolean b = map.get(cIn);

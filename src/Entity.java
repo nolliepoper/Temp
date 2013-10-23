@@ -9,6 +9,7 @@ public abstract class Entity
     public final Color color;
     public final Point size;
     public final ArrayList<Class> list; // For collisions, needs implementation.
+	public SpriteSheet sprites;
     
     public Entity(Color cIn, Point pIn, Point sIn)
     {

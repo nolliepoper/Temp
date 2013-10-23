@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
@@ -11,6 +10,7 @@ public class Player extends Entity
     {
         super(cIn, pIn, new Point(50, 50));
         vel = new Velocity();
+		sprites = new SpriteSheet("player");
     }
     @Override
     public void logic()
@@ -39,8 +39,12 @@ public class Player extends Entity
     @Override
     public void paint(Graphics2D gIn)
     {
-        gIn.setColor(color);
-        gIn.fillRect(point.x, point.y, size.x, size.y);
+		double angle = Math.round(Math.toDegrees(Math.atan2(Mouse.Y() - point.y, Mouse.X() - point.x )));
+		sprites.drawFrame(gIn, point, 0, 0);
+		sprites.drawFrame(gIn, point, 2, 0);
+		Point shoulder = new Point(point.x - 3, point.y - 9);
+		sprites.drawFrame(gIn, shoulder, 1, 0, angle, 1, 1);
+		gIn.fillRect(point.x, point.y, 4, 4);
     }
     @Override
     public void dispose()
