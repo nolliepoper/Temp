@@ -5,14 +5,14 @@ import java.util.*;
 public class Mouse implements MouseListener, MouseMotionListener
 {
     private static final HashMap<Integer, Boolean> map = new HashMap<>();
-    private static final HashMap<Integer, Point> click = new HashMap<>();
-    private static final Point point = new Point();
+    private static final HashMap<Integer, Vector> click = new HashMap<>();
+    private static final Vector point = new Vector(0, 0);
     
-    public static Point getClick(int cIn)
+    public static Vector getClick(int cIn)
     {
         return click.get(cIn);
     }
-    public static Point getPoint()
+    public static Vector getPoint()
     {
         return point;
     }
@@ -36,7 +36,7 @@ public class Mouse implements MouseListener, MouseMotionListener
     {
         int c = eIn.getButton();
         
-        click.put(c, eIn.getPoint());
+        click.put(c, new Vector(eIn.getPoint().x, eIn.getPoint().y));
         map.put(c, Boolean.TRUE);
         
         String s = MouseEvent.getMouseModifiersText(MouseEvent.getMaskForButton(c)); //Not important, only helps get mouse button string.

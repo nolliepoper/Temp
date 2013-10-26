@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
 import java.util.concurrent.*;
 
@@ -16,13 +15,16 @@ public class Manager<T extends Entity>
         manager = mIn;
         list = new CopyOnWriteArrayList<>();
     }
+    public String getType()
+    {
+        if(list.isEmpty())
+            return null;
+        //System.out.println(list.get(0).getClass().getName());
+        return list.get(0).getClass().getName();
+    }
     public void add(T eIn)
     {
         list.add(eIn);
-    }
-	public void addAll(ArrayList<T> eIn)
-    {
-        list.addAll(eIn);
     }
     public void remove(T eIn)
     {
