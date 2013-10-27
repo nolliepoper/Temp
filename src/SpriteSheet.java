@@ -53,16 +53,23 @@ public class SpriteSheet
 		}
 	}
 	
+	public int numFrames(int animationNum)
+	{
+		return frames[animationNum].length;
+	}
+	
+	public int numAnimations(int animationNum)
+	{
+		return frames.length;
+	}
+	
 	public void drawFrame(Graphics2D gIn, Point point, int animationNum, int frameNum, double rotation, double xScale, double yScale)
 	{
 		AffineTransform trans = new AffineTransform();
-		int centerX = anchorsX[animationNum][frameNum];
-		int centerY = anchorsY[animationNum][frameNum];
+		int centerX = (int)Math.round(anchorsX[animationNum][frameNum] * xScale);
+		int centerY = (int)Math.round(anchorsY[animationNum][frameNum] * yScale);
 		trans.rotate(Math.toRadians(rotation), centerX, centerY);
 		trans.scale(xScale, yScale);
-		
-		centerX *= xScale;
-		centerY *= yScale;
 		
 		gIn.drawImage(frames[animationNum][frameNum], new AffineTransformOp(trans, AffineTransformOp.TYPE_NEAREST_NEIGHBOR), 
 				point.x - centerX, point.y - centerY);

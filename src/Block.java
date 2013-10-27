@@ -6,7 +6,7 @@ public class Block extends Entity
 {
     public Block(Color cIn, Point pIn, Point sIn)
     {
-        super(cIn, pIn, sIn);
+        super(pIn, sIn);
     }
     @Override
     public void logic()
@@ -16,7 +16,7 @@ public class Block extends Entity
     @Override
     public void paint(Graphics2D gIn)
     {
-        gIn.setColor(color);
+        gIn.setColor(Color.BLUE);
         gIn.fillRect(point.x, point.y, size.x, size.y);
     }
     @Override

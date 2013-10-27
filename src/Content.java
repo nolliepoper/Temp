@@ -27,7 +27,7 @@ public class Content extends JPanel
         add(block);
         
         add(new Manager(frame, this));
-        getLast().add(new Player(Color.BLUE, new Point(100, 100)));
+        getLast().add(new Player(new Point(100, 100)));
     }
     public void add(Manager mIn)
     {

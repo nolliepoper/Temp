@@ -5,12 +5,17 @@ import javax.swing.*;
 public class Player extends Entity
 {
     private final Velocity vel;
-    
-    public Player(Color cIn, Point pIn)
+    Sprite legs;
+	Sprite arm;
+	
+    public Player(Point pIn)
     {
-        super(cIn, pIn, new Point(50, 50));
+        super(pIn, new Point(50, 50));
         vel = new Velocity();
-		sprites = new SpriteSheet("player");
+		SpriteSheet sprites = new SpriteSheet("player");
+		sprite = new Sprite(sprites, 0);
+		legs = new Sprite(sprites, 2);
+		arm = new Sprite(sprites, 1);
     }
     @Override
     public void logic()
@@ -25,7 +30,7 @@ public class Player extends Entity
             vel.dx += 1;
         if(Keyboard.isPressed(KeyEvent.VK_SPACE))
         {
-            vel.dy += -50; // Jump.
+            vel.dy += -30; // Jump.
             Keyboard.release(KeyEvent.VK_SPACE);
         }
         vel.logic();
@@ -35,16 +40,38 @@ public class Player extends Entity
         dest.y = point.y + (int)vel.dy;
         if(Collision.wallY(this))
             point.y = dest.y;
+		
+		arm.rotation = Math.round(Math.toDegrees(Math.atan2(Mouse.Y() - point.y, Mouse.X() - point.x )));
+		vel.dx = Math.min(Math.max(-5d, vel.dx), 5d);
+		
+		if(vel.dx == 0)
+			legs.animation = 2;
+		else
+		{
+			legs.animation = 3;
+			legs.frame += vel.dx/20 * (int)sprite.xScale;
+		}
+		if(point.x <= Mouse.X())
+		{
+			sprite.xScale = 1;
+			arm.yScale = 1;
+			legs.xScale = 1;
+		}
+		else
+		{
+			sprite.xScale = -1;
+			arm.yScale = -1;
+			legs.xScale = -1;
+		}
+		
     }
     @Override
     public void paint(Graphics2D gIn)
     {
-		double angle = Math.round(Math.toDegrees(Math.atan2(Mouse.Y() - point.y, Mouse.X() - point.x )));
-		sprites.drawFrame(gIn, point, 0, 0);
-		sprites.drawFrame(gIn, point, 2, 0);
-		Point shoulder = new Point(point.x - 3, point.y - 9);
-		sprites.drawFrame(gIn, shoulder, 1, 0, angle, 1, 1);
-		gIn.fillRect(point.x, point.y, 4, 4);
+		sprite.draw(gIn, point);
+		legs.draw(gIn, point);
+		Point shoulder = new Point(point.x - 3 * (int)sprite.xScale, point.y - 9);
+		arm.draw(gIn, shoulder);
     }
     @Override
     public void dispose()
