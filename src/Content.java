@@ -10,8 +10,11 @@ public class Content extends JPanel
 {
     private final Frame frame;
     private final CopyOnWriteArrayList<Manager> list;
-    private final Manager block;
+    private final Manager pltfrmMng;
+	//private final Manager block;
     private boolean run;
+	
+	private Room currRoom;
     
     public Content(Frame fIn)
     {
@@ -20,19 +23,25 @@ public class Content extends JPanel
         run = true;
         
         setBackground(Color.WHITE);
+		
+		pltfrmMng = new Manager(frame, this);
+        add(pltfrmMng);
+		
+		/*block = new Manager(frame, this);
+        add(block);*/
+		
+        currRoom = new Room("start.json", frame);
         
-        add(new BallManager(frame, this));
-        
-        block = new Manager(frame, this);
-        add(block);
-        
+		pltfrmMng.addAll(currRoom.getPlatforms());
+		
         add(new Manager(frame, this));
-        getLast().add(new Player(Color.BLUE, new Vector(100, 100)));
+        getLast().add(new Player(new Vector(100, 100)));
     }
     public void add(Manager mIn)
     {
         list.add(mIn);
     }
+
     public Manager getLast()
     {
         if(list.isEmpty())
@@ -63,11 +72,11 @@ public class Content extends JPanel
         }
         if(run)
         {
-            if(Mouse.isPressesd(MouseEvent.BUTTON1))
+            /*if(Mouse.isPressesd(MouseEvent.BUTTON1))
             {
-                block.add(new Block(Util.randomSolidColor(), Mouse.getClick(MouseEvent.BUTTON1), new Vector(50, 50)));
+                block.add(new Block(Mouse.getClick(MouseEvent.BUTTON1), new Vector(50, 50)));
                 Mouse.release(MouseEvent.BUTTON1);
-            }
+            }*/
             for(Manager m: list)
                 m.logic();
         }
@@ -77,6 +86,8 @@ public class Content extends JPanel
     {
         super.paint(gIn);
         Graphics2D g = (Graphics2D)gIn;
+		
+		currRoom.paint(g);
         for(Manager m: list)
             m.paint(g);
     }

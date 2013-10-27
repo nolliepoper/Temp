@@ -13,15 +13,15 @@ public class Collision
     }
     private static boolean collideX(Entity eIn, Entity oIn)
     {
-        if(Math.abs(eIn.point.y - oIn.point.y) < eIn.size.y/2 + oIn.size.y/2)
-            if(Math.abs(eIn.dest.x - oIn.point.x) < eIn.size.x/2 + oIn.size.x/2)
+        if(Math.abs(eIn.getCenter().y - oIn.getCenter().y) < eIn.getHeight()/2 + oIn.getHeight()/2)
+            if(Math.abs(eIn.getDest().x - oIn.getCenter().x) < eIn.getWidth()/2 + oIn.getWidth()/2)
                 return true;
         return false;
     }
     private static boolean collideY(Entity eIn, Entity oIn)
     {
-        if(Math.abs(eIn.point.x - oIn.point.x) < eIn.size.x/2 + oIn.size.x/2)
-            if(Math.abs(eIn.dest.y - oIn.point.y) < eIn.size.y/2 + oIn.size.y/2)
+        if(Math.abs(eIn.getCenter().x - oIn.getCenter().x) < eIn.getWidth()/2 + oIn.getWidth()/2)
+            if(Math.abs(eIn.getDest().y - oIn.getCenter().y) < eIn.getHeight()/2 + oIn.getHeight()/2)
                 return true;
         return false;
     }
@@ -51,11 +51,11 @@ public class Collision
     }
     public static boolean wallLeft(Entity eIn)
     {
-        return eIn.dest.x - eIn.size.x/2 < 0;
+        return eIn.getDest().x - eIn.getWidth()/2 < 0;
     }
     public static boolean wallRight(Entity eIn)
     {
-        return eIn.dest.x + eIn.size.x/2 > frame.getWidth() - 15; // 15 to make up for right of window frame.
+        return eIn.getDest().x + eIn.getWidth()/2 > frame.getWidth() - 15; // 15 to make up for right of window frame.
     }
     public static boolean wallX(Entity eIn)
     {
@@ -63,11 +63,11 @@ public class Collision
     }
     public static boolean wallUp(Entity eIn)
     {
-        return eIn.dest.y - eIn.size.y/2 < 0;
+        return eIn.getDest().y - eIn.getHeight()/2 < 0;
     }
     public static boolean wallDown(Entity eIn)
     {
-        return eIn.dest.y + eIn.size.y/2 > frame.getHeight() - 35; // 35 to make up for bottom of window frame.
+        return eIn.getDest().y + eIn.getHeight()/2 > frame.getHeight() - 35; // 35 to make up for bottom of window frame.
     }
     public static boolean wallY(Entity eIn)
     {

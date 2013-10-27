@@ -3,7 +3,17 @@ import java.math.*;
 public class Vector
 {
     int x, y;
-    
+    public Vector() {}
+	
+	public void setX(int xIn)
+	{
+		x = xIn;
+	}
+	public void setY(int yIn)
+	{
+		y = yIn;
+	}
+	
     public Vector(int xIn, int yIn)
     {
         x = xIn;

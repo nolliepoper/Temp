@@ -1,0 +1,10 @@
+{
+  "roomName" : "start.json",
+  "background" : "fullBackground.jpg",
+  "tiled" : false,
+  "platforms" : [ {"type" : "Platform", "center" : {"x" : 50, "y" : 50}, "width" : 200, "height" : 25},
+  {"type" : "Platform", "center" : {"x" : 600, "y" : 400}, "width" : 200, "height" : 80}],
+  "enemies" : [{"type" : "Enemy", "name" : "Crawler"},
+				{"type" : "Enemy", "name" : "Flyer"},
+				{"type" : "Enemy", "name" : "Shooter"}]
+}
