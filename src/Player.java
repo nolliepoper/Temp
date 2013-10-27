@@ -24,6 +24,7 @@ public class Player extends Entity
         new Vector(getCenter().x + getWidth(), getCenter().y + getHeight())};
         vel = new Velocity();
         list.add("Block");
+        list.add("Platform");
     }
     public void move()
     {
