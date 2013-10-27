@@ -9,19 +9,19 @@ public class Player extends Entity
     private final Vector[] vec;
     private final Vector[] des;
     
-    public Player(Color cIn, Vector vIn)
+    public Player(Vector vIn)
     {
-        super(cIn, vIn, new Vector(50, 50));
+        super(vIn, 50, 50);
         vec = new Vector[]
-        {new Vector(point.x, point.y),
-        new Vector(point.x + size.x, point.y),
-        new Vector(point.x, point.y + size.y),
-        new Vector(point.x + size.x, point.y + size.y)};
+        {new Vector(getCenter().x, getCenter().y),
+        new Vector(getCenter().x + getWidth(), getCenter().y),
+        new Vector(getCenter().x, getCenter().y + getHeight()),
+        new Vector(getCenter().x + getWidth(), getCenter().y + getHeight())};
         des = new Vector[]
-        {new Vector(point.x, point.y),
-        new Vector(point.x + size.x, point.y),
-        new Vector(point.x, point.y + size.y),
-        new Vector(point.x + size.x, point.y + size.y)};
+        {new Vector(getCenter().x, getCenter().y),
+        new Vector(getCenter().x + getWidth(), getCenter().y),
+        new Vector(getCenter().x, getCenter().y + getHeight()),
+        new Vector(getCenter().x + getWidth(), getCenter().y + getHeight())};
         vel = new Velocity();
         list.add("Block");
     }
@@ -51,35 +51,35 @@ public class Player extends Entity
         }
         
         vel.logic();
-        dest.x = point.x + (int)vel.dx;
-        dest.y = point.y + (int)vel.dy;
+        getDest().x = getCenter().x + (int)vel.dx;
+        getDest().y = getCenter().y + (int)vel.dy;
         
         
         // Here is where you can handle the response to a collision with another Entity.
         if(Collision.collisionX(this) != null)
         {
-            dest.x = point.x;
+            getDest().x = getCenter().x;
         }
         // Wall collisions can be handled later, when we have walls composed of blocks.
         else if(Collision.wallX(this))
-            dest.x = point.x;
+            getDest().x = getCenter().x;
         else
-            point.x = dest.x;
+            getCenter().x = getDest().x;
         
         if(Collision.collisionY(this) != null)
         {
-            dest.y = point.y;
+            getDest().y = getCenter().y;
         }
         else if(Collision.wallY(this))
-            dest.y = point.y;
+            getDest().y = getCenter().y;
         else
-            point.y = dest.y;
+            getCenter().y = getDest().y;
     }
     @Override
     public void paint(Graphics2D gIn)
     {
-        gIn.setColor(color);
-        gIn.fillRect(point.x - size.x/2, point.y - size.y/2, size.x, size.y);
+        gIn.setColor(Color.blue);
+        gIn.fillRect(getCenter().x - getWidth()/2, getCenter().y - getHeight()/2, getWidth(), getHeight());
     }
     @Override
     public void dispose()

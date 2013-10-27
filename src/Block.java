@@ -5,9 +5,9 @@ import java.awt.event.MouseEvent;
 
 public class Block extends Entity
 {
-    public Block(Color cIn, Vector vIn, Vector sIn)
+    public Block(Vector vIn, Vector sIn)
     {
-        super(cIn, vIn, sIn);
+        super(vIn, sIn);
     }
     @Override
     public void logic()
@@ -17,8 +17,8 @@ public class Block extends Entity
     @Override
     public void paint(Graphics2D gIn)
     {
-        gIn.setColor(color);
-        gIn.fillRect(point.x - size.x/2, point.y - size.y/2, size.x, size.y);
+        gIn.setColor(Color.red);
+        gIn.fillRect(getCenter().x - getWidth()/2, getCenter().y - getHeight()/2, getWidth(), getHeight());
     }
     @Override
     public void dispose()
