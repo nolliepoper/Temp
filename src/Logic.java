@@ -16,7 +16,7 @@ public class Logic implements Runnable
         for(;;)
         {
             manager.logic();
-            Util.sleep(10);
+            Util.sleep(17);
         }
     }
 }

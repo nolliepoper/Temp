@@ -16,6 +16,7 @@ public abstract class Entity
     private Vector dest;
 	private int width;	
 	private int height;
+	Sprite sprite;
 	
     public final ArrayList<String> list;   
 	
