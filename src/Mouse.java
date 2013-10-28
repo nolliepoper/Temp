@@ -69,4 +69,13 @@ public class Mouse implements MouseListener, MouseMotionListener
         point.x = eIn.getX();
         point.y = eIn.getY();
     }
+	
+	public static int X()//Just to make because typing Mouse.point.x gets annoying after a while
+	{
+		return point.x;
+	}
+	public static int Y()
+	{
+		return point.y;
+	}
 }

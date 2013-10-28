@@ -19,6 +19,7 @@ public abstract class Entity
     private int width;
     private int height;
     public final ArrayList<String> list;
+	protected Sprite sprite;
     
     //Default constructor for the parser
     public Entity()

@@ -24,7 +24,9 @@ public class Frame extends JFrame
         new Collision(this, manager);
 
         addKeyListener(new Keyboard());
-        addMouseListener(new Mouse());
+		Mouse m = new Mouse();
+        addMouseListener(m);
+		addMouseMotionListener(m);
 
         setVisible(true);
     }

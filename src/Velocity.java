@@ -10,8 +10,10 @@ public class Velocity
     }
     public void logic()
     {
-        dx /= 1.2; // Friction.
+        dx = Math.max(Math.min(dx+0.2d, 0), dx-0.2d); // Friction.
         dy += GRAVITY;
-        dy /= 1.2;
+		dy /= 1.1;
+		//if(dy > 12)
+			//dy = 12;
     }
 }

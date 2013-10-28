@@ -8,6 +8,8 @@ public class Player extends Entity
     private final Velocity vel;
     private final Vector[] vec;
     private final Vector[] des;
+    Sprite legs;
+	Sprite arm;
     
     public Player(Vector vIn)
     {
@@ -29,6 +31,10 @@ public class Player extends Entity
         vel = new Velocity();
         list.add("Block");
         list.add("Platform");
+		SpriteSheet sprites = new SpriteSheet("player");
+		sprite = new Sprite(sprites, 0);
+		legs = new Sprite(sprites, 2);
+		arm = new Sprite(sprites, 1);
     }
     /*
      public void move()
@@ -67,12 +73,39 @@ public class Player extends Entity
 
         Collision.moveX(this);
         Collision.moveY(this);
+		
+		
+		arm.rotation = Math.round(Math.toDegrees(Math.atan2(Mouse.Y() - getDest().y, Mouse.X() - getDest().x )));
+		vel.dx = Math.min(Math.max(-3d, vel.dx), 3d);
+		
+		if(vel.dx == 0)
+			legs.animation = 2;
+		else
+		{
+			legs.animation = 3;
+			legs.frame += vel.dx/30 * (int)sprite.xScale;
+		}
+		if(getDest().x <= Mouse.X())
+		{
+			sprite.xScale = 1;
+			arm.yScale = 1;
+			legs.xScale = 1;
+		}
+		else
+		{
+			sprite.xScale = -1;
+			arm.yScale = -1;
+			legs.xScale = -1;
+		}
     }
     @Override
     public void paint(Graphics2D gIn)
     {
-        gIn.setColor(Color.blue);
-        gIn.fillRect(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
+		Point center = new Point(getDest().x, getDest().y);
+		sprite.draw(gIn, center);
+		legs.draw(gIn, center);
+		Point shoulder = new Point(getDest().x - 3 * (int)sprite.xScale, getDest().y - 9);
+		arm.draw(gIn, shoulder);
     }
     @Override
     public void dispose()
