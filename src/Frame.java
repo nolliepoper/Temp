@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -14,17 +15,17 @@ public class Frame extends JFrame
         setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setResizable(false);
+        setResizable(false);
         addWindowListener(new Exit());
-        
+
         manager = new Content(this);
         add(manager);
-        
+
         new Collision(this, manager);
-        
+
         addKeyListener(new Keyboard());
         addMouseListener(new Mouse());
-        
+
         setVisible(true);
     }
     public Content getManager()
@@ -32,6 +33,7 @@ public class Frame extends JFrame
         return manager;
     }
     // Private inner class because no other classes should determine termination.
+
     private class Exit extends WindowAdapter
     {
         @Override

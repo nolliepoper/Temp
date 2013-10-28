@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 
 public class Paint implements Runnable

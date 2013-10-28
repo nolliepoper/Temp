@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -19,7 +20,9 @@ public class Manager<T extends Entity>
     public String getType()
     {
         if(list.isEmpty())
+        {
             return null;
+        }
         //System.out.println(list.get(0).getClass().getName());
         return list.get(0).getClass().getName();
     }
@@ -27,11 +30,10 @@ public class Manager<T extends Entity>
     {
         list.add(eIn);
     }
-	public void addAll(ArrayList<T> eIn)
-	{
-		list.addAll(eIn);
-	}
-	
+    public void addAll(ArrayList<T> eIn)
+    {
+        list.addAll(eIn);
+    }
     public void remove(T eIn)
     {
         list.remove(eIn);
@@ -39,22 +41,30 @@ public class Manager<T extends Entity>
     public T getRandom()
     {
         if(list.isEmpty())
+        {
             return null;
+        }
         return (T)list.get((int)(Math.random() * list.size()));
     }
     public void logic()
     {
-        for(T e: list)
+        for(T e : list)
+        {
             e.logic();
+        }
     }
     public void paint(Graphics2D gIn)
     {
-        for(T e: list)
+        for(T e : list)
+        {
             e.paint(gIn);
+        }
     }
     public void dispose()
     {
-        for(T e: list)
+        for(T e : list)
+        {
             e.dispose();
+        }
     }
 }

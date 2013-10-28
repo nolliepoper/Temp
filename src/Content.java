@@ -1,6 +1,6 @@
+
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.*;
 import java.util.concurrent.*;
 
@@ -11,29 +11,29 @@ public class Content extends JPanel
     private final Frame frame;
     private final CopyOnWriteArrayList<Manager> list;
     private final Manager pltfrmMng;
-	//private final Manager block;
+    //private final Manager block;
     private boolean run;
-	
-	private Room currRoom;
+    private Room currRoom;
     
     public Content(Frame fIn)
     {
         frame = fIn;
         list = new CopyOnWriteArrayList<>();
         run = true;
-        
+
         setBackground(Color.WHITE);
-		
-		pltfrmMng = new Manager(frame, this);
+
+        pltfrmMng = new Manager(frame, this);
         add(pltfrmMng);
-		
-		/*block = new Manager(frame, this);
-        add(block);*/
-		
+
+        /*
+         * block = new Manager(frame, this); add(block);
+         */
+
         currRoom = new Room("start.json", frame);
-        
-		pltfrmMng.addAll(currRoom.getPlatforms());
-		
+
+        pltfrmMng.addAll(currRoom.getPlatforms());
+
         add(new Manager(frame, this));
         getLast().add(new Player(new Vector(100, 100)));
     }
@@ -41,20 +41,25 @@ public class Content extends JPanel
     {
         list.add(mIn);
     }
-
     public Manager getLast()
     {
         if(list.isEmpty())
+        {
             return null;
+        }
         return list.get(list.size() - 1);
     }
     public Manager getType(String sIn)
     {
-        for(Manager m: list)
+        for(Manager m : list)
         {
             if(m.getType() != null)
+            {
                 if(m.getType().equals(sIn))
+                {
                     return m;
+                }
+            }
         }
         return null;
     }
@@ -72,13 +77,15 @@ public class Content extends JPanel
         }
         if(run)
         {
-            /*if(Mouse.isPressesd(MouseEvent.BUTTON1))
+            /*
+             * if(Mouse.isPressesd(MouseEvent.BUTTON1)) { block.add(new
+             * Block(Mouse.getClick(MouseEvent.BUTTON1), new Vector(50, 50)));
+             * Mouse.release(MouseEvent.BUTTON1); }
+             */
+            for(Manager m : list)
             {
-                block.add(new Block(Mouse.getClick(MouseEvent.BUTTON1), new Vector(50, 50)));
-                Mouse.release(MouseEvent.BUTTON1);
-            }*/
-            for(Manager m: list)
                 m.logic();
+            }
         }
     }
     @Override
@@ -86,9 +93,11 @@ public class Content extends JPanel
     {
         super.paint(gIn);
         Graphics2D g = (Graphics2D)gIn;
-		
-		currRoom.paint(g);
-        for(Manager m: list)
+
+        currRoom.paint(g);
+        for(Manager m : list)
+        {
             m.paint(g);
+        }
     }
 }

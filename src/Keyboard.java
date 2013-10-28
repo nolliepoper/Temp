@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.*;
 import java.awt.event.*;
@@ -10,7 +11,9 @@ public class Keyboard implements KeyListener
     {
         Boolean k = map.get(kIn);
         if(k == null)
+        {
             return false;
+        }
         return k;
     }
     public static void release(int kIn)
@@ -22,9 +25,9 @@ public class Keyboard implements KeyListener
     {
         int k = eIn.getKeyCode();
         map.put(k, Boolean.TRUE);
-        
+
         String s = KeyEvent.getKeyText(k); // Not important.
-        System.out.println(k+"="+s); // Not important.
+        System.out.println(k + "=" + s); // Not important.
     }
     @Override
     public void keyTyped(KeyEvent eIn)

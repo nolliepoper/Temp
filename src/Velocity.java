@@ -2,7 +2,6 @@
 public class Velocity
 {
     public static final double GRAVITY = 1;
-    
     public double dx, dy;
     
     public Velocity()
@@ -11,8 +10,8 @@ public class Velocity
     }
     public void logic()
     {
-        dx /= 1.1; // Friction.
+        dx /= 1.2; // Friction.
         dy += GRAVITY;
-        dy /= 1.1;
+        dy /= 1.2;
     }
 }

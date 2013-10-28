@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -20,7 +21,9 @@ public class Mouse implements MouseListener, MouseMotionListener
     {
         Boolean b = map.get(cIn);
         if(b == null)
+        {
             return false;
+        }
         return b;
     }
     public static void release(int kIn)
@@ -35,12 +38,12 @@ public class Mouse implements MouseListener, MouseMotionListener
     public void mousePressed(MouseEvent eIn)
     {
         int c = eIn.getButton();
-        
+
         click.put(c, new Vector(eIn.getPoint().x, eIn.getPoint().y));
         map.put(c, Boolean.TRUE);
-        
+
         String s = MouseEvent.getMouseModifiersText(MouseEvent.getMaskForButton(c)); //Not important, only helps get mouse button string.
-        System.out.println(c+"="+s); // Not important.
+        System.out.println(c + "=" + s); // Not important.
     }
     @Override
     public void mouseReleased(MouseEvent eIn)
