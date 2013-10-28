@@ -56,11 +56,22 @@ public class RoomData {
 	
 	public Image getBackground() { return background; };
 	public boolean getTiled() { return isBackTiled; };
+	
+	//Each of the possible exits in the room
+	Walls exits;
+	public void setExits(Walls exIn)
+	{
+		exits = exIn;
+	}
+	
+	public Walls getExits() { return exits; }
+	
 	//The list of platforms in the room
 	ArrayList<Platform> platforms;
 	
-	public void setPlatforms()
+/*public void setPlatforms()
 	{
+		System.out.println("Hello?");
 		ObjectMapper mapper = new ObjectMapper();
 		TypeFactory typeFactory = TypeFactory.defaultInstance();
 		try {
@@ -72,10 +83,14 @@ public class RoomData {
 		} catch (IOException ex) {
 			Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
 		}
-	}
+		
+		platforms.addAll(exits.buildExits(800, 600));
+		System.out.println(platforms.get(2).getHeight());
+	}*/
 	
 	public ArrayList<Platform> getPlatforms()
 	{
+		platforms.addAll(exits.buildExits(800, 600));
 		return platforms;
 	}
 
@@ -101,31 +116,4 @@ public class RoomData {
 	{
 		return enemies;
 	}
-	
-    /*public enum Gender { MALE, FEMALE };
-
-    public static class Name {
-      private String first, last;
-
-      public String getFirst() { return first; }
-      public String getLast() { return last; }
-
-      public void setFirst(String s) { first = s; }
-      public void setLast(String s) { last = s; }
-    }
-
-    private Gender gender;
-    private Name name;
-    private boolean isVerified;
-    private byte[] userImage;
-
-    public Name getName() { return name; }
-    public boolean isVerified() { return isVerified; }
-    public Gender getGender() { return gender; }
-    public byte[] getUserImage() { return userImage; }
-
-    public void setName(Name n) { name = n; }
-    public void setVerified(boolean b) { isVerified = b; }
-    public void setGender(Gender g) { gender = g; }
-    public void setUserImage(byte[] b) { userImage = b; }*/
 }

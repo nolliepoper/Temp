@@ -19,6 +19,14 @@ public class Platform extends Entity {
 	
 	public String art;
 
+	public Platform() {}
+	
+	public Platform(Vector center, int width, int height)
+	{
+		super(center, width, height);
+	}
+	
+	
 	@Override
 	public void logic() {
 		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
