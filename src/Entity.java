@@ -65,11 +65,11 @@ public abstract class Entity
     }
     public void setWidth(int wIn)
     {
-        width = wIn;
+        width = (wIn % 2 == 0) ? wIn : wIn + 1;
     }
     public void setHeight(int hIn)
     {
-        height = hIn;
+        height = (hIn % 2 == 0) ? hIn : hIn + 1;
     }
     //Getters for everything
     public Vector getCenter()

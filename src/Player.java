@@ -13,7 +13,7 @@ public class Player extends Entity
     
     public Player(Vector vIn)
     {
-        super(vIn, 30, 30);
+        super(vIn, 26, 38);
         vec = new Vector[]
         {
             new Vector(getCenter().x, getCenter().y),
@@ -101,10 +101,10 @@ public class Player extends Entity
     @Override
     public void paint(Graphics2D gIn)
     {
-		Point center = new Point(getDest().x, getDest().y);
+		Point center = new Point(getCenter().x, getCenter().y);
 		sprite.draw(gIn, center);
 		legs.draw(gIn, center);
-		Point shoulder = new Point(getDest().x - 3 * (int)sprite.xScale, getDest().y - 9);
+		Point shoulder = new Point(getCenter().x - 3 * (int)sprite.xScale, getCenter().y - 9);
 		arm.draw(gIn, shoulder);
     }
     @Override
