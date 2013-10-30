@@ -16,6 +16,8 @@ public abstract class Entity
 {
     private Vector center;
     private Vector dest;
+	public double dx = 0;
+	public double dy = 0;
     private int width;
     private int height;
     public final ArrayList<String> list;

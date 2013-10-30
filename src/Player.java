@@ -5,30 +5,17 @@ import javax.swing.*;
 
 public class Player extends Entity
 {
-    private final Velocity vel;
-    private final Vector[] vec;
-    private final Vector[] des;
     Sprite legs;
 	Sprite arm;
-    
+	boolean hasJumped = false;
+	
+	public static final int WIDTH = 28;
+    public static final int HEIGHT = 36;
+    public static final double GRAVITY = 0.75;
+	
     public Player(Vector vIn)
     {
-        super(vIn, 30, 30);
-        vec = new Vector[]
-        {
-            new Vector(getCenter().x, getCenter().y),
-            new Vector(getCenter().x + getWidth(), getCenter().y),
-            new Vector(getCenter().x, getCenter().y + getHeight()),
-            new Vector(getCenter().x + getWidth(), getCenter().y + getHeight())
-        };
-        des = new Vector[]
-        {
-            new Vector(getCenter().x, getCenter().y),
-            new Vector(getCenter().x + getWidth(), getCenter().y),
-            new Vector(getCenter().x, getCenter().y + getHeight()),
-            new Vector(getCenter().x + getWidth(), getCenter().y + getHeight())
-        };
-        vel = new Velocity();
+        super(vIn, WIDTH, HEIGHT);
         list.add("Block");
         list.add("Platform");
 		SpriteSheet sprites = new SpriteSheet("player");
@@ -49,42 +36,56 @@ public class Player extends Entity
     @Override
     public void logic()
     {
-        if(Keyboard.isPressed(KeyEvent.VK_W))
-            ;//vel.dy += -1;
         if(Keyboard.isPressed(KeyEvent.VK_A))
         {
-            vel.dx += -1;
+            dx += -1;
         }
-        if(Keyboard.isPressed(KeyEvent.VK_S))
-            ;//vel.dy += 5;
         if(Keyboard.isPressed(KeyEvent.VK_D))
         {
-            vel.dx += 1;
+            dx += 1;
         }
-        if(Keyboard.isPressed(KeyEvent.VK_SPACE))
+        if(Keyboard.isPressed(KeyEvent.VK_SPACE) || Keyboard.isPressed(KeyEvent.VK_W))
         {
-            vel.dy += -50; // Jump.
-            Keyboard.release(KeyEvent.VK_SPACE);
+			if(!hasJumped)
+			{
+				hasJumped = true;
+				dy = -12; // Jump.
+			}
         }
-
-        vel.logic();
-        getDest().x = getCenter().x + (int)vel.dx;
-        getDest().y = getCenter().y + (int)vel.dy;
+		else
+			hasJumped = false;
+		
+		
+        dx = Math.max(Math.min(dx+0.2d, 0), dx-0.2d); // Friction.
+		dx = Math.min(Math.max(-2d, dx), 2d);//Max speed
+        dy += GRAVITY;
+		if(dy > 12)
+			dy = 12;
+		
+        getDest().x = getCenter().x + (int)dx;
+        getDest().y = getCenter().y + (int)dy;
 
         Collision.moveX(this);
         Collision.moveY(this);
-		
+		System.out.println(dy);
 		
 		arm.rotation = Math.round(Math.toDegrees(Math.atan2(Mouse.Y() - getDest().y, Mouse.X() - getDest().x )));
-		vel.dx = Math.min(Math.max(-3d, vel.dx), 3d);
 		
-		if(vel.dx == 0)
-			legs.animation = 2;
-		else
-		{
-			legs.animation = 3;
-			legs.frame += vel.dx/30 * (int)sprite.xScale;
-		}
+		//if(dy == 0)//I'll replace this soon
+		//{
+			if(dx == 0)
+				legs.animation = 2;
+			else
+			{
+				legs.animation = 3;
+				legs.frame += dx/25 * (int)sprite.xScale;
+			}
+		//}
+		//else
+		//{
+		//		legs.animation = 3;
+		//		legs.frame = 1;
+		//}
 		if(getDest().x <= Mouse.X())
 		{
 			sprite.xScale = 1;
@@ -101,10 +102,10 @@ public class Player extends Entity
     @Override
     public void paint(Graphics2D gIn)
     {
-		Point center = new Point(getDest().x, getDest().y);
+		Point center = new Point(getCenter().x, getCenter().y);
 		sprite.draw(gIn, center);
 		legs.draw(gIn, center);
-		Point shoulder = new Point(getDest().x - 3 * (int)sprite.xScale, getDest().y - 9);
+		Point shoulder = new Point(getCenter().x - 3 * (int)sprite.xScale, getCenter().y - 9);
 		arm.draw(gIn, shoulder);
     }
     @Override

@@ -16,6 +16,9 @@ public class Keyboard implements KeyListener
         }
         return k;
     }
+	/**
+	 * @deprecated This can potentially lead to all sorts of problems. The keyboard map should accurately represent which keys are being held down at what time.
+	 */
     public static void release(int kIn)
     {
         map.put(kIn, Boolean.FALSE); // Use static variable from Boolean class so it won't make a new Boolean object inside the map.
