@@ -1,6 +1,7 @@
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class Player extends Entity
@@ -18,7 +19,7 @@ public class Player extends Entity
         super(vIn, WIDTH, HEIGHT);
         list.add("Block");
         list.add("Platform");
-		SpriteSheet sprites = new SpriteSheet("player");
+		SpriteSheet sprites = SpriteSheet.PLAYER;
 		sprite = new Sprite(sprites, 0);
 		legs = new Sprite(sprites, 2);
 		arm = new Sprite(sprites, 1);
@@ -69,7 +70,7 @@ public class Player extends Entity
         Collision.moveY(this);
 		System.out.println(dy);
 		
-		arm.rotation = Math.round(Math.toDegrees(Math.atan2(Mouse.Y() - getDest().y, Mouse.X() - getDest().x )));
+		arm.rotation = Math.atan2(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
 		
 		//if(dy == 0)//I'll replace this soon
 		//{
@@ -107,6 +108,21 @@ public class Player extends Entity
 		legs.draw(gIn, center);
 		Point shoulder = new Point(getCenter().x - 3 * (int)sprite.xScale, getCenter().y - 9);
 		arm.draw(gIn, shoulder);
+		
+		
+		BufferedImage temp = new BufferedImage(800, 800, BufferedImage.TYPE_4BYTE_ABGR);
+		Graphics2D g2 = temp.createGraphics();
+		g2.setColor(new Color(0,0,0,223));
+		g2.fillRect(0, 0, 800, 800);
+		g2.setComposite(AlphaComposite.DstOut);
+		g2.setColor(Color.white);
+		g2.fillOval(getCenter().x - 25, getCenter().y - 25, 50, 50);
+		//int shineX = (int)(50 * Math.cos(arm.rotation));
+		//int shineY = (int)(50 * Math.sin(arm.rotation));
+		//g2.fillOval(getCenter().x + shineX - 50, getCenter().y + shineY - 50, 100, 100);
+		g2.fillArc(getCenter().x - 100, getCenter().y - 100, 200, 200, -(int)Math.toDegrees(arm.rotation), 45);
+		g2.setPaintMode();
+		gIn.drawImage(temp, null, 0, 0);
     }
     @Override
     public void dispose()

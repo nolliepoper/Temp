@@ -6,22 +6,38 @@ import java.io.*;
 import java.util.*;
 import javax.imageio.ImageIO;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+<p> This is an enum that contains all the sprite sheets. A sprite sheet is simply a large image that contains all the frames for an animated sprite. This is an enum because there will be a fixed number of image files in the final project, and I don't want entities creating duplicates of each sprite sheet. </p>
+
+<p> Each sprite sheet consists of a single .png image and another file with the same name but a .spr extension. This .spr file is a simple text file that contains information on how the .png image should be broken up into different frames. The .spr uses the following format: </p>
+<pre> &#60# of animations&#62 &#60Width&#62 &#60Height&#62
+
+&#60Animation 1 name&#62 &#60number of frames&#62
+
+	&#60Left coordinate&#62 &#60Top coordinate&#62 &#60Anchor coordinate&#62 &#60Anchor coordinate&#62
+	
+	&#60Left coordinate&#62 &#60Top coordinate&#62 &#60Anchor coordinate&#62 &#60Anchor coordinate&#62
+
+	...
+&#60Animation 2 name&#62 &#60number of frames&#62
+
+	&#60Left coordinate&#62 &#60Top coordinate&#62 &#60Anchor coordinate&#62 &#60Anchor coordinate&#62
+	
+	&#60Left coordinate&#62 &#60Top coordinate&#62 &#60Anchor coordinate&#62 &#60Anchor coordinate&#62
+
+	...
+...</pre>
  * @author John Michael
  */
-public class SpriteSheet 
+public enum SpriteSheet 
 {
+	PLAYER("player");
+	
 	private BufferedImage[][] frames;
 	private int[][] anchorsX;
 	private int[][] anchorsY;
 	
-	SpriteSheet(String imageName)
+	private SpriteSheet(String imageName)
 	{
 		try
 		{
@@ -68,7 +84,7 @@ public class SpriteSheet
 		AffineTransform trans = new AffineTransform();
 		int centerX = (int)Math.round(anchorsX[animationNum][frameNum] * xScale);
 		int centerY = (int)Math.round(anchorsY[animationNum][frameNum] * yScale);
-		trans.rotate(Math.toRadians(rotation), centerX, centerY);
+		trans.rotate(rotation, centerX, centerY);
 		trans.scale(xScale, yScale);
 		
 		gIn.drawImage(frames[animationNum][frameNum], new AffineTransformOp(trans, AffineTransformOp.TYPE_NEAREST_NEIGHBOR), 

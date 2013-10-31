@@ -1,6 +1,6 @@
 {
   "roomName" : "start.json",
-  "background" : "fullBackground.jpg",
+  "background" : "map4.png",
   "tiled" : false,
   "exits" : { "northPos": 200, "eastPos" : 100, "southPos": 500, "westPos" : 0},
   "platforms" : [ 

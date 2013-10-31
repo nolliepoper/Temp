@@ -3,7 +3,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 
 /**
- * A class that holds sprite information, and makes animating easier. This class is technically not necessary, but it is much easier than using the SpriteSheet's draw function.
+ * A class that holds sprite information, and makes animating easier. This class is technically not necessary, but it is much easier tha using the SpriteSheet's draw function. 
  * @author John Michael
  */
 public class Sprite {
