@@ -6,13 +6,13 @@ import javax.swing.*;
 public class CustomJPanel extends JPanel implements MouseListener
 {
     String name;
-    JFrame container;
+    Frame frame;
     
-    public CustomJPanel(GridLayout gl, String name, JFrame container)
+    public CustomJPanel(GridLayout gl, String name, Frame frame)
     {
         super(gl);
         this.name = name;
-        this.container = container;
+        this.frame = frame;
         addMouseListener(this);
         setBackground(Color.gray);
     }
@@ -20,43 +20,29 @@ public class CustomJPanel extends JPanel implements MouseListener
     public void mouseClicked(MouseEvent e)
     {
         System.out.println(name + " was clicked!");
-        if(name.equals("New Game"))
-        {
+        if(name.equals("New Game")){
             System.out.println("New Game Begin");
             System.out.println("Main begin");
-
-
-            Frame frame = new Frame();
-
-            Thread logic = new Thread(new Logic(frame, frame.getManager()));
-            Thread paint = new Thread(new Paint(frame, frame.getManager()));
-
-            logic.start();
-            paint.start();
-
-            System.out.println("Main end");
-            container.setVisible(false);
+            
+            frame.beginGame();
         }
 
         if(name.equals("Options"))
         {
             System.out.println("Options Begin");
-            container.dispose();
-            OptionsMenu om = new OptionsMenu();
+            frame.swapCenter();
         }
 
         if(name.equals("Exit"))
         {
             System.out.println("Exit Begin");
-            container.dispose();
+            frame.dispose();
         }
 
         if(name.equals("Return to Main Menu"))
         {
             System.out.println("Return to Menu Begin");
-            container.dispose();
-            //set the options
-            MainMenu mm = new MainMenu();
+            frame.swapCenter();
         }
     }
     @Override
