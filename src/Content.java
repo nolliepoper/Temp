@@ -1,7 +1,8 @@
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
+import java.awt.geom.AffineTransform;
+import java.awt.image.*;
 import javax.swing.*;
 import java.util.concurrent.*;
 
@@ -15,6 +16,7 @@ public class Content extends JPanel
     //private final Manager block;
     private boolean run;
     private Room currRoom;
+	public static Graphics2D darkness;
     
     public Content(Frame fIn)
     {
@@ -94,11 +96,21 @@ public class Content extends JPanel
     {
         super.paint(gIn);
         Graphics2D g = (Graphics2D)gIn;
-
+		AffineTransform trans = new AffineTransform();
+		//trans.scale(0.5, 0.5);
+		g.transform(trans);
+		
+		BufferedImage temp = new BufferedImage(800, 800, BufferedImage.TYPE_4BYTE_ABGR);
+		darkness = temp.createGraphics();
+		darkness.setColor(Color.BLACK);
+		darkness.fillRect(0, 0, frame.getWidth(), frame.getHeight());
+		darkness.setComposite(AlphaComposite.DstOut);
+		
         currRoom.paint(g);
         for(Manager m : list)
         {
             m.paint(g);
         }
+		g.drawImage(temp, null, 0, 0);
     }
 }

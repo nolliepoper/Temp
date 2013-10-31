@@ -1,6 +1,7 @@
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
@@ -66,20 +67,21 @@ public class Player extends Entity
         getDest().x = getCenter().x + (int)dx;
         getDest().y = getCenter().y + (int)dy;
 
+		double xMoved = getCenter().x;
         Collision.moveX(this);
         Collision.moveY(this);
-		System.out.println(dy);
 		
+		xMoved = getCenter().x - xMoved;
 		arm.rotation = Math.atan2(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
 		
 		//if(dy == 0)//I'll replace this soon
 		//{
-			if(dx == 0)
+			if(xMoved == 0)
 				legs.animation = 2;
 			else
 			{
 				legs.animation = 3;
-				legs.frame += dx/25 * (int)sprite.xScale;
+				legs.frame += xMoved/25 * (int)sprite.xScale;
 			}
 		//}
 		//else
@@ -109,20 +111,20 @@ public class Player extends Entity
 		Point shoulder = new Point(getCenter().x - 3 * (int)sprite.xScale, getCenter().y - 9);
 		arm.draw(gIn, shoulder);
 		
+		float[] dist = {0.0f, 1.0f};
+		Color[] colors = {Color.WHITE, new Color(0, 0, 0, 0)};
+		RadialGradientPaint grad = new RadialGradientPaint(center, 50, dist, colors);
+		Content.darkness.setPaint(grad);
+		Content.darkness.fillOval(getCenter().x - 100, getCenter().y - 100, 200, 200);
 		
-		BufferedImage temp = new BufferedImage(800, 800, BufferedImage.TYPE_4BYTE_ABGR);
-		Graphics2D g2 = temp.createGraphics();
-		g2.setColor(new Color(0,0,0,223));
-		g2.fillRect(0, 0, 800, 800);
-		g2.setComposite(AlphaComposite.DstOut);
-		g2.setColor(Color.white);
-		g2.fillOval(getCenter().x - 25, getCenter().y - 25, 50, 50);
-		//int shineX = (int)(50 * Math.cos(arm.rotation));
-		//int shineY = (int)(50 * Math.sin(arm.rotation));
-		//g2.fillOval(getCenter().x + shineX - 50, getCenter().y + shineY - 50, 100, 100);
-		g2.fillArc(getCenter().x - 100, getCenter().y - 100, 200, 200, -(int)Math.toDegrees(arm.rotation), 45);
-		g2.setPaintMode();
-		gIn.drawImage(temp, null, 0, 0);
+		float distance = (float)Math.hypot(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
+		int angle = 0;
+		if(distance > 0)
+			angle = Math.round(10000/distance);
+        grad = new RadialGradientPaint(center, distance, dist, colors);
+		Content.darkness.setPaint(grad);
+		Content.darkness.fillArc(shoulder.x - 800, shoulder.y - 800, 1600, 1600,
+				-(int)Math.toDegrees(arm.rotation) - angle/2, angle);
     }
     @Override
     public void dispose()

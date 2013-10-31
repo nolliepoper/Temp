@@ -28,9 +28,6 @@ public class Keyboard implements KeyListener
     {
         int k = eIn.getKeyCode();
         map.put(k, Boolean.TRUE);
-
-        String s = KeyEvent.getKeyText(k); // Not important.
-        System.out.println(k + "=" + s); // Not important.
     }
     @Override
     public void keyTyped(KeyEvent eIn)
