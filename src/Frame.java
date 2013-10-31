@@ -1,8 +1,10 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -17,6 +19,11 @@ public class Frame extends JFrame
     JPanel centerPanel = new JPanel(new GridLayout(3,1));
     JPanel centerPanelO= new JPanel(new GridLayout(5,1));
     
+    String iconPath = new String("resources\\icon.png");
+    BufferedImage imgIcon;
+    String titlePath = new String("resources\\Title.png");
+    BufferedImage imgTitle;
+    
     public Frame()
     {
         super("Tempovania");
@@ -25,6 +32,12 @@ public class Frame extends JFrame
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         addWindowListener(new Frame.Exit());
+        
+        loadIconImage();
+        setIconImage(imgIcon);
+        loadTitleImage();
+        ImagePanel titlePanel = new ImagePanel(imgTitle);
+        titlePanel.setVisible(true);
         
         manager = new Content(this);
 
@@ -44,6 +57,7 @@ public class Frame extends JFrame
         setUpFillerPanel(centerPanelO, expectedDimension);
         setUpCenterPanelO(centerPanelO);
         
+        northPanel.add(titlePanel, SwingConstants.CENTER);
         
         wholePanel.add(eastPanel, BorderLayout.WEST);
         wholePanel.add(westPanel, BorderLayout.EAST);
@@ -154,6 +168,23 @@ public class Frame extends JFrame
         remove(eastPanel);
         remove(westPanel);
         remove(wholePanel);
+    }
+
+    private void loadIconImage(){
+        try{
+            System.out.println(iconPath);
+            imgIcon = ImageIO.read(new File(iconPath));
+        }catch(IOException e){
+            System.out.println("Unable to load Icon Image!");
+        }
+    }
+    private void loadTitleImage(){
+        try{
+            System.out.println(titlePath);
+            imgTitle = ImageIO.read(new File(titlePath));
+        }catch(IOException e){
+            System.out.println("Unable to load Title Image!");
+        }
     }
     
     public Content getManager()
