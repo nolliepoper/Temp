@@ -19,9 +19,9 @@ public class Frame extends JFrame
     JPanel centerPanel = new JPanel(new GridLayout(3,1));
     JPanel centerPanelO= new JPanel(new GridLayout(5,1));
     
-    String iconPath = new String("resources\\icon.png");
+    String iconPath = new String("bin\\images\\MainMenu\\icon.png");
     BufferedImage imgIcon;
-    String titlePath = new String("resources\\Title.png");
+    String titlePath = new String("bin\\images\\MainMenu\\Title.png");
     BufferedImage imgTitle;
     
     public Frame()
