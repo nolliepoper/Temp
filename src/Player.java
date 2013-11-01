@@ -18,7 +18,6 @@ public class Player extends Entity
     public Player(Vector vIn)
     {
         super(vIn, WIDTH, HEIGHT);
-        list.add("Block");
         list.add("Platform");
 		SpriteSheet sprites = SpriteSheet.PLAYER;
 		sprite = new Sprite(sprites, 0);
@@ -117,7 +116,7 @@ public class Player extends Entity
 		Content.darkness.setPaint(grad);
 		Content.darkness.fillOval(getCenter().x - 100, getCenter().y - 100, 200, 200);
 		
-		float distance = (float)Math.hypot(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
+		float distance = 300;//(float)Math.hypot(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
 		int angle = 0;
 		if(distance > 0)
 			angle = Math.round(10000/distance);

@@ -38,6 +38,10 @@ public class Manager<T extends Entity>
     {
         list.remove(eIn);
     }
+	public T get(int i)
+	{
+		return (T)list.get(i);
+	}
     public T getRandom()
     {
         if(list.isEmpty())

@@ -34,6 +34,7 @@ public class Content extends JPanel
          */
 
         currRoom = new Room("start.json", frame);
+		currRoom.getData();
 
         pltfrmMng.addAll(currRoom.getPlatforms());
 
@@ -80,16 +81,39 @@ public class Content extends JPanel
         }
         if(run)
         {
-            /*
-             * if(Mouse.isPressesd(MouseEvent.BUTTON1)) { block.add(new
-             * Block(Mouse.getClick(MouseEvent.BUTTON1), new Vector(50, 50)));
-             * Mouse.release(MouseEvent.BUTTON1); }
-             */
             for(Manager m : list)
             {
                 m.logic();
             }
         }
+		
+		//Move to the next room
+		Vector playLoc = getType("Player").get(0).getCenter();
+		System.out.println(playLoc.y);
+		if(playLoc.y < 0)
+		{
+			currRoom.loadRoom(currRoom.getNorth());
+			//currRoom.getData();
+			getType("Player").get(0).setCenter(new Vector(400, 300));
+		}
+		else if(playLoc.x < 0)
+		{
+			currRoom.loadRoom(currRoom.getWest());
+			//currRoom.getData();
+			getType("Player").get(0).setCenter(new Vector(400, 300));
+		}
+		else if(playLoc.y > frame.getHeight())
+		{
+			currRoom.loadRoom(currRoom.getSouth());
+			//currRoom.getData();
+			getType("Player").get(0).setCenter(new Vector(400, 300));
+		}
+		else if(playLoc.x > frame.getWidth())
+		{
+			currRoom.loadRoom(currRoom.getEast());
+			//currRoom.getData();
+			getType("Player").get(0).setCenter(new Vector(400, 300));
+		}
     }
     @Override
     public void paint(Graphics gIn)

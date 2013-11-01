@@ -1,10 +1,6 @@
 
 import java.util.ArrayList;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Branden
@@ -12,9 +8,10 @@ import java.util.ArrayList;
 public class Walls
 {
     private static final int DOOR_WIDTH = 100;
-    boolean nExist, eExist, sExist, wExist;
     int nPos, ePos, sPos, wPos;
+	String adjRooms[] = new String[4];
     
+	//All of the setter functions
     public void setNorthPos(int nIn)
     {
         nPos = nIn;
@@ -31,11 +28,21 @@ public class Walls
     {
         wPos = wIn;
     }
-    public boolean getWExist()
-    {
-        return wExist;
-    }
-    private int avg(int n1, int n2)
+
+	//North is 0, east is 1, south is 2, west is 3
+	public void setAdjRooms(String rooms[])
+	{
+		adjRooms = rooms;
+	}
+	
+	//Getters for the names of the rooms
+	public String getAdjRoom(int i)
+	{
+		return adjRooms[i];
+	}
+
+	
+	private int avg(int n1, int n2)
     {
         return (n1 + n2) / 2;
     }
@@ -86,13 +93,13 @@ public class Walls
             walls.add(new Platform(new Vector(avg(sPos, 0) - DOOR_WIDTH / 2, windowH - 42),
                     sPos, 20));
             walls.add(new Platform(
-                    new Vector(avg(sPos + DOOR_WIDTH / 2, windowW), windowH - 42),
+                    new Vector(avg(sPos + DOOR_WIDTH / 2, windowW), windowH - 40),
                     windowW - sPos - DOOR_WIDTH / 2, 20));
         }
         else
         {
             walls.add(new Platform(
-                    new Vector(windowW / 2, windowH - 42),
+                    new Vector(windowW / 2, windowH - 40),
                     windowW, 20));
         }
 

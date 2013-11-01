@@ -50,24 +50,21 @@ public class RoomData
         //System.out.println(roomName);
         //background = backName;
     }
-    ;
 	public void setTiled(boolean isTiled)
     {
         isBackTiled = isTiled;
     }
-    ;
 	
 	public Image getBackground()
     {
         return background;
     }
-    ;
+    
 	public boolean getTiled()
     {
         return isBackTiled;
     }
-    ;
-	
+    
 	//Each of the possible exits in the room
 	Walls exits;
     public void setExits(Walls exIn)
@@ -78,6 +75,16 @@ public class RoomData
     {
         return exits;
     }
+	
+	//This is the locations that a player can spawn. There are multiple
+	//  possibilites becasue the spawn location varies based on the room
+	//	the player entered from
+	Vector spawnPoints[] = new Vector[4];
+	public void setSpawns(Vector spawns[])
+	{
+		spawnPoints = spawns;
+	}
+	
     //The list of platforms in the room
     ArrayList<Platform> platforms;
     /*public void setPlatforms()
@@ -105,7 +112,7 @@ public class RoomData
     }
     //The list of enemies in the room
     ArrayList<Enemy> enemies;
-    public void setEnemies()
+    /*public void setEnemies()
     {
         ObjectMapper mapper = new ObjectMapper();
         TypeFactory typeFactory = TypeFactory.defaultInstance();
@@ -125,7 +132,7 @@ public class RoomData
         {
             Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
     public ArrayList<Enemy> getEnemies()
     {
         return enemies;
