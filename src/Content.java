@@ -113,4 +113,13 @@ public class Content extends JPanel
         }
 		g.drawImage(temp, null, 0, 0);
     }
+	
+	public int ScreenWidth()
+	{
+		return frame.getWidth();
+	}
+	public int ScreenHeight()
+	{
+		return frame.getHeight();
+	}
 }

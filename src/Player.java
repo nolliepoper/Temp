@@ -10,6 +10,8 @@ public class Player extends Entity
     Sprite legs;
 	Sprite arm;
 	boolean hasJumped = false;
+	boolean autoFire = true;
+	int reload = -1;
 	
 	public static final int WIDTH = 28;
     public static final int HEIGHT = 36;
@@ -71,6 +73,21 @@ public class Player extends Entity
         Collision.moveX(this);
         Collision.moveY(this);
 		
+		if(Mouse.isPressesd(1))
+		{
+			if(reload <= (autoFire? 0 : -1))
+			{
+				reload = 30;
+				System.out.println("BANG!!!");
+			}
+		}
+		else
+		{
+			if(reload == 0)
+				reload = -1;
+		}
+		if(reload > 0)
+			reload -= 1;
 		xMoved = getCenter().x - xMoved;
 		arm.rotation = Math.atan2(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
 		
@@ -111,16 +128,16 @@ public class Player extends Entity
 		Point shoulder = new Point(getCenter().x - 3 * (int)sprite.xScale, getCenter().y - 9);
 		arm.draw(gIn, shoulder);
 		
-		float[] dist = {0.0f, 1.0f};
-		Color[] colors = {Color.WHITE, new Color(0, 0, 0, 0)};
+		float[] dist = {0.0f, 0.3f, 1f};
+		Color[] colors = {Color.WHITE, new Color(0, 0, 0, 128), new Color(0, 0, 0, 0)};
 		RadialGradientPaint grad = new RadialGradientPaint(center, 50, dist, colors);
 		Content.darkness.setPaint(grad);
 		Content.darkness.fillOval(getCenter().x - 100, getCenter().y - 100, 200, 200);
 		
-		float distance = (float)Math.hypot(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
+		float distance = (float)Math.hypot(Mouse.Y() - getDest().y, Mouse.X() - getDest().x ) + 100;
 		int angle = 0;
 		if(distance > 0)
-			angle = Math.round(10000/distance);
+			angle = Math.max(1, 90 -(int)(distance * 0.1));
         grad = new RadialGradientPaint(center, distance, dist, colors);
 		Content.darkness.setPaint(grad);
 		Content.darkness.fillArc(shoulder.x - 800, shoulder.y - 800, 1600, 1600,
@@ -129,5 +146,6 @@ public class Player extends Entity
     @Override
     public void dispose()
     {
+		
     }
 }

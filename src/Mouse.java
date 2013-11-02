@@ -26,7 +26,8 @@ public class Mouse implements MouseListener, MouseMotionListener
         }
         return b;
     }
-    public static void release(int kIn)
+    @Deprecated
+	public static void release(int kIn)
     {
         map.put(kIn, Boolean.FALSE);
     }
@@ -38,12 +39,8 @@ public class Mouse implements MouseListener, MouseMotionListener
     public void mousePressed(MouseEvent eIn)
     {
         int c = eIn.getButton();
-
         click.put(c, new Vector(eIn.getPoint().x, eIn.getPoint().y));
         map.put(c, Boolean.TRUE);
-
-        String s = MouseEvent.getMouseModifiersText(MouseEvent.getMaskForButton(c)); //Not important, only helps get mouse button string.
-        System.out.println(c + "=" + s); // Not important.
     }
     @Override
     public void mouseReleased(MouseEvent eIn)
@@ -62,6 +59,8 @@ public class Mouse implements MouseListener, MouseMotionListener
     @Override
     public void mouseDragged(MouseEvent eIn)
     {
+        point.x = eIn.getX();
+        point.y = eIn.getY();
     }
     @Override
     public void mouseMoved(MouseEvent eIn)
