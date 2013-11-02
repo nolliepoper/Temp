@@ -26,6 +26,8 @@ public class Frame extends JFrame
     BufferedImage imgIcon;
     String titlePath = new String("bin\\images\\MainMenu\\Title.png");
     BufferedImage imgTitle;
+    //To play music loop
+    
     // Constructor
     public Frame()
     {
@@ -46,6 +48,10 @@ public class Frame extends JFrame
         manager = new Content(this);
 
         wholePanel.setVisible(true);
+        
+        //Sets up the Audio!
+        String musicDest = "bin\\sounds\\mainMenu\\DST-Surreal.wav";
+        //We can implement this later
 
         //The size of the center panel, where the main menu options will be
         Dimension expectedDimension = new Dimension(300, 200);
