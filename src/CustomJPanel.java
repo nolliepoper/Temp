@@ -4,9 +4,9 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class CustomJPanel extends JPanel implements MouseListener
-{
-    String name;
-    Frame frame;
+{//Used to make labels interactive, used on the Main Menu and Options Menu
+    String name; //To check which Label was clicked
+    Frame frame; //To link the action back to the Frame
     // Constructor
     public CustomJPanel(GridLayout gl, String name, Frame frame)
     {
@@ -63,5 +63,9 @@ public class CustomJPanel extends JPanel implements MouseListener
     public void mouseExited(MouseEvent e)
     {
         setBackground(Color.gray);
+    }
+    
+    public void destroyMouseListener(){
+        removeMouseListener(this);
     }
 }

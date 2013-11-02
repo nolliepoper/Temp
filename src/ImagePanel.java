@@ -11,7 +11,7 @@ public class ImagePanel extends JPanel
     private BufferedImage image;
     // Constructor
     public ImagePanel(BufferedImage image)
-    {
+    { //Stores the image attached to the Panel (Only allows one image per panel)
         this.image = image;
     }
     @Override
