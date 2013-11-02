@@ -9,6 +9,7 @@ import javax.swing.*;
 public class ImagePanel extends JPanel
 {
     private BufferedImage image;
+    // Constructor
     public ImagePanel(BufferedImage image)
     {
         this.image = image;

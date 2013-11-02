@@ -17,7 +17,7 @@ public class Content extends JPanel
     private boolean run;
     private Room currRoom;
     public static Graphics2D darkness;
-    
+    // Constructor
     public Content(Frame fIn)
     {
         frame = fIn;
@@ -74,7 +74,7 @@ public class Content extends JPanel
     }
     public void dispose()
     {
-        for(Manager m: list)
+        for(Manager m : list)
         {
             remove(m);
         }

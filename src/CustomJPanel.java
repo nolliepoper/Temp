@@ -7,7 +7,7 @@ public class CustomJPanel extends JPanel implements MouseListener
 {
     String name;
     Frame frame;
-    
+    // Constructor
     public CustomJPanel(GridLayout gl, String name, Frame frame)
     {
         super(gl);
@@ -20,10 +20,11 @@ public class CustomJPanel extends JPanel implements MouseListener
     public void mouseClicked(MouseEvent e)
     {
         System.out.println(name + " was clicked!");
-        if(name.equals("New Game")){
+        if(name.equals("New Game"))
+        {
             System.out.println("New Game Begin");
             System.out.println("Main begin");
-            
+
             frame.beginGame();
         }
 

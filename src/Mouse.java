@@ -8,6 +8,10 @@ public class Mouse implements MouseListener, MouseMotionListener
     private static final HashMap<Integer, Boolean> map = new HashMap<>();
     private static final HashMap<Integer, Vector> click = new HashMap<>();
     private static final Vector point = new Vector(0, 0);
+    // Constructor
+    public Mouse()
+    {
+    }
     public static Vector getClick(int cIn)
     {
         return click.get(cIn);

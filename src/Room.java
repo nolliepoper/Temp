@@ -21,6 +21,7 @@ public class Room
     private Frame roomFrame;
     private RoomData roomInfo;
     private Vector spawn;
+    // Constructor
     public Room(String name, Frame frame)
     {
         roomFrame = frame;
@@ -30,7 +31,6 @@ public class Room
     public boolean loadRoom(String name)
     {
         //String prevRoom = roomInfo.getRoomName();
-
         ObjectMapper mapper = new ObjectMapper();
         try
         {
@@ -88,8 +88,7 @@ public class Room
     public void paint(Graphics2D gIn)
     {
 
-        gIn.drawImage(roomInfo.getBackground(), 0, 0, roomFrame.getWidth(),
-                roomFrame.getHeight(), roomFrame);
+        gIn.drawImage(roomInfo.getBackground(), 0, 0, roomFrame.getWidth(), roomFrame.getHeight(), roomFrame);
 
         /*for(Platform p : roomInfo.getPlatforms())
          p.paint(gIn);*/

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Platform extends Entity
 {
     public String art;
+    // Constructor
     public Platform()
     {
     }

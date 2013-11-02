@@ -82,8 +82,7 @@ public enum SpriteSheet
         trans.rotate(rotation, centerX, centerY);
         trans.scale(xScale, yScale);
 
-        gIn.drawImage(frames[animationNum][frameNum], new AffineTransformOp(trans, AffineTransformOp.TYPE_NEAREST_NEIGHBOR),
-                point.x - centerX, point.y - centerY);
+        gIn.drawImage(frames[animationNum][frameNum], new AffineTransformOp(trans, AffineTransformOp.TYPE_NEAREST_NEIGHBOR), point.x - centerX, point.y - centerY);
     }
     public void drawFrame(Graphics2D gIn, Point point, int animationNum, int frameNum)
     {

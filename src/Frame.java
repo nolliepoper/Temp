@@ -22,7 +22,7 @@ public class Frame extends JFrame
     BufferedImage imgIcon;
     String titlePath = new String("bin\\images\\MainMenu\\Title.png");
     BufferedImage imgTitle;
-    
+    // Constructor
     public Frame()
     {
         super("Tempovania");

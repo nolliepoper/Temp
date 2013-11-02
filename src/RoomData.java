@@ -19,11 +19,25 @@ import org.codehaus.jackson.map.type.TypeFactory;
 public class RoomData
 {
     private final String IMG_PATH = "bin/images/";
+    //The room name is needed for parsing lists of data
+    private String roomName;
+    //Data for setting the scenary of the room
+    Image background;
+    boolean isBackTiled;
+    //Each of the possible exits in the room
+    Walls exits;
+    //This is the locations that a player can spawn. There are multiple
+    //  possibilites becasue the spawn location varies based on the room
+    //	the player entered from
+    Vector spawnPoints[] = new Vector[4];
+    //The list of platforms in the room
+    ArrayList<Platform> platforms;
+    //The list of enemies in the room
+    ArrayList<Enemy> enemies;
+    // Constructor
     public RoomData()
     {
     }
-    //The room name is needed for parsing lists of data
-    private String roomName;
     public void setRoomName(String name)
     {
         roomName = name;
@@ -32,12 +46,8 @@ public class RoomData
     {
         return roomName;
     }
-    //Data for setting the scenary of the room
-    Image background;
-    boolean isBackTiled;
     public void setBackground(String backName)
     {
-
         try
         {
             background = ImageIO.read(new File(IMG_PATH + backName));
@@ -61,8 +71,6 @@ public class RoomData
     {
         return isBackTiled;
     }
-    //Each of the possible exits in the room
-    Walls exits;
     public void setExits(Walls exIn)
     {
         exits = exIn;
@@ -71,16 +79,10 @@ public class RoomData
     {
         return exits;
     }
-    //This is the locations that a player can spawn. There are multiple
-    //  possibilites becasue the spawn location varies based on the room
-    //	the player entered from
-    Vector spawnPoints[] = new Vector[4];
     public void setSpawns(Vector spawns[])
     {
         spawnPoints = spawns;
     }
-    //The list of platforms in the room
-    ArrayList<Platform> platforms;
     /*public void setPlatforms()
      {
      System.out.println("Hello?");
@@ -95,7 +97,6 @@ public class RoomData
      } catch (IOException ex) {
      Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
      }
-		
      platforms.addAll(exits.buildExits(800, 600));
      System.out.println(platforms.get(2).getHeight());
      }*/
@@ -104,8 +105,6 @@ public class RoomData
         platforms.addAll(exits.buildExits(800, 600));
         return platforms;
     }
-    //The list of enemies in the room
-    ArrayList<Enemy> enemies;
     /*public void setEnemies()
      {
      ObjectMapper mapper = new ObjectMapper();

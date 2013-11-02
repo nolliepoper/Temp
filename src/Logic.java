@@ -5,7 +5,7 @@ public class Logic implements Runnable
 {
     private final JFrame frame;
     private final Content manager;
-    
+    // Constructor
     public Logic(JFrame jIn, Content mIn)
     {
         frame = jIn;

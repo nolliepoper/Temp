@@ -10,6 +10,7 @@ public class Manager<T extends Entity>
     protected final Frame frame;
     protected final Content manager;
     protected final CopyOnWriteArrayList<T> list;
+    // Constructor
     public Manager(Frame fIn, Content mIn)
     {
         frame = fIn;
