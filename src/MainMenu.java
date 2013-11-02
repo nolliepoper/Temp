@@ -152,10 +152,7 @@ public class MainMenu extends JPanel{
             @Override
             public void mouseClicked(MouseEvent arg0) {
                 options[0] = !options[0];
-                if(options[0])
-                    setForeground(Color.green);
-                else
-                    setForeground(Color.red);
+                setLabelColor(1);
             }
             @Override
             public void mouseEntered(MouseEvent arg0){
@@ -177,10 +174,7 @@ public class MainMenu extends JPanel{
             @Override
             public void mouseClicked(MouseEvent arg0) {
                 options[1] = !options[1];
-                if(options[1])
-                    setForeground(Color.green);
-                else
-                    setForeground(Color.red);
+                setLabelColor(2);
             }
             @Override
             public void mouseEntered(MouseEvent arg0){
@@ -202,10 +196,7 @@ public class MainMenu extends JPanel{
             @Override
             public void mouseClicked(MouseEvent arg0) {
                 options[2] = !options[2];
-                if(options[2])
-                    setForeground(Color.green);
-                else
-                    setForeground(Color.red);
+                setLabelColor(3);
             }
             @Override
             public void mouseEntered(MouseEvent arg0){
@@ -279,4 +270,12 @@ public class MainMenu extends JPanel{
         centerPanel.setVisible(true);
     }
     
+    private void setLabelColor(int id){
+        JLabel temp = optionsButtons.get(id);
+        if(options[id - 1])
+            temp.setForeground(Color.green);
+        else
+            temp.setForeground(Color.red);
+        temp.repaint();
+    }
 }
