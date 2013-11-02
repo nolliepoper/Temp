@@ -19,7 +19,6 @@ import org.codehaus.jackson.map.type.TypeFactory;
 public class RoomData
 {
     private final String IMG_PATH = "bin/images/";
-    
     public RoomData()
     {
     }
@@ -50,23 +49,20 @@ public class RoomData
         //System.out.println(roomName);
         //background = backName;
     }
-	public void setTiled(boolean isTiled)
+    public void setTiled(boolean isTiled)
     {
         isBackTiled = isTiled;
     }
-	
-	public Image getBackground()
+    public Image getBackground()
     {
         return background;
     }
-    
-	public boolean getTiled()
+    public boolean getTiled()
     {
         return isBackTiled;
     }
-    
-	//Each of the possible exits in the room
-	Walls exits;
+    //Each of the possible exits in the room
+    Walls exits;
     public void setExits(Walls exIn)
     {
         exits = exIn;
@@ -75,16 +71,14 @@ public class RoomData
     {
         return exits;
     }
-	
-	//This is the locations that a player can spawn. There are multiple
-	//  possibilites becasue the spawn location varies based on the room
-	//	the player entered from
-	Vector spawnPoints[] = new Vector[4];
-	public void setSpawns(Vector spawns[])
-	{
-		spawnPoints = spawns;
-	}
-	
+    //This is the locations that a player can spawn. There are multiple
+    //  possibilites becasue the spawn location varies based on the room
+    //	the player entered from
+    Vector spawnPoints[] = new Vector[4];
+    public void setSpawns(Vector spawns[])
+    {
+        spawnPoints = spawns;
+    }
     //The list of platforms in the room
     ArrayList<Platform> platforms;
     /*public void setPlatforms()
@@ -113,26 +107,26 @@ public class RoomData
     //The list of enemies in the room
     ArrayList<Enemy> enemies;
     /*public void setEnemies()
-    {
-        ObjectMapper mapper = new ObjectMapper();
-        TypeFactory typeFactory = TypeFactory.defaultInstance();
-        try
-        {
-            platforms = mapper.readValue(new File(roomName), typeFactory.constructCollectionType(List.class, Platform.class));
-        }
-        catch(JsonParseException ex)
-        {
-            Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch(JsonMappingException ex)
-        {
-            Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch(IOException ex)
-        {
-            Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
+     {
+     ObjectMapper mapper = new ObjectMapper();
+     TypeFactory typeFactory = TypeFactory.defaultInstance();
+     try
+     {
+     platforms = mapper.readValue(new File(roomName), typeFactory.constructCollectionType(List.class, Platform.class));
+     }
+     catch(JsonParseException ex)
+     {
+     Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     catch(JsonMappingException ex)
+     {
+     Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     catch(IOException ex)
+     {
+     Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     }*/
     public ArrayList<Enemy> getEnemies()
     {
         return enemies;

@@ -21,17 +21,16 @@ public class Room
     private Frame roomFrame;
     private RoomData roomInfo;
     private Vector spawn;
-	
     public Room(String name, Frame frame)
     {
         roomFrame = frame;
         loadRoom(name);
-		//spawn = roomInfo.getDefaultSpawn();
+        //spawn = roomInfo.getDefaultSpawn();
     }
     public boolean loadRoom(String name)
     {
-		//String prevRoom = roomInfo.getRoomName();
-		
+        //String prevRoom = roomInfo.getRoomName();
+
         ObjectMapper mapper = new ObjectMapper();
         try
         {
@@ -52,11 +51,11 @@ public class Room
             e.printStackTrace();
             return false;
         }
-		
-		System.out.println(Arrays.toString(roomInfo.getExits().adjRooms));
-		
-		//if(roomInfo.getNorth() == prevRoom)
-			//spawn = roomInfo.getNorthSpawn();
+
+        System.out.println(Arrays.toString(roomInfo.getExits().adjRooms));
+
+        //if(roomInfo.getNorth() == prevRoom)
+        //spawn = roomInfo.getNorthSpawn();
 
         return true;
     }
@@ -64,33 +63,28 @@ public class Room
     {
         return roomInfo.getPlatforms();
     }
-	
-	public String getNorth()
-	{
-		return roomInfo.getExits().getAdjRoom(0);
-	}
-	
-	public String getEast()
-	{
-		return roomInfo.getExits().getAdjRoom(1);
-	}
-	
-	public String getSouth()
-	{
-		return roomInfo.getExits().getAdjRoom(2);
-	}
-	
-	public String getWest()
-	{
-		return roomInfo.getExits().getAdjRoom(3);
-	}
-	
-	public void getData()
-	{
-		System.out.println(roomInfo.getBackground());
-		System.out.println(roomInfo.isBackTiled);
-		System.out.println(roomInfo.getExits().getAdjRoom(0));
-	}
+    public String getNorth()
+    {
+        return roomInfo.getExits().getAdjRoom(0);
+    }
+    public String getEast()
+    {
+        return roomInfo.getExits().getAdjRoom(1);
+    }
+    public String getSouth()
+    {
+        return roomInfo.getExits().getAdjRoom(2);
+    }
+    public String getWest()
+    {
+        return roomInfo.getExits().getAdjRoom(3);
+    }
+    public void getData()
+    {
+        System.out.println(roomInfo.getBackground());
+        System.out.println(roomInfo.isBackTiled);
+        System.out.println(roomInfo.getExits().getAdjRoom(0));
+    }
     public void paint(Graphics2D gIn)
     {
 

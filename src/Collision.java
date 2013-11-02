@@ -120,12 +120,12 @@ public class Collision
         else if(eIn.getCenter().x < eIn.getDest().x)
         {
             eIn.getCenter().x = o.getCenter().x - (eIn.getWidth() + o.getWidth()) / 2;
-			eIn.dx = 0;
+            eIn.dx = 0;
         }
         else
         {
             eIn.getCenter().x = o.getCenter().x + (eIn.getWidth() + o.getWidth()) / 2;
-			eIn.dx = 0;
+            eIn.dx = 0;
         }
     }
     public static void moveY(Entity eIn)
@@ -138,12 +138,12 @@ public class Collision
         else if(eIn.getCenter().y < eIn.getDest().y)
         {
             eIn.getCenter().y = o.getCenter().y - (eIn.getHeight() + o.getHeight()) / 2;
-			eIn.dy = 0;
+            eIn.dy = 0;
         }
         else
         {
             eIn.getCenter().y = o.getCenter().y + (eIn.getHeight() + o.getHeight()) / 2;
-			eIn.dy = 0;
+            eIn.dy = 0;
         }
     }
 }

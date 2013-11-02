@@ -8,7 +8,6 @@ public class Mouse implements MouseListener, MouseMotionListener
     private static final HashMap<Integer, Boolean> map = new HashMap<>();
     private static final HashMap<Integer, Vector> click = new HashMap<>();
     private static final Vector point = new Vector(0, 0);
-    
     public static Vector getClick(int cIn)
     {
         return click.get(cIn);
@@ -69,13 +68,12 @@ public class Mouse implements MouseListener, MouseMotionListener
         point.x = eIn.getX();
         point.y = eIn.getY();
     }
-	
-	public static int X()//Just to make because typing Mouse.point.x gets annoying after a while
-	{
-		return point.x;
-	}
-	public static int Y()
-	{
-		return point.y;
-	}
+    public static int X()//Just to make because typing Mouse.point.x gets annoying after a while
+    {
+        return point.x;
+    }
+    public static int Y()
+    {
+        return point.y;
+    }
 }

@@ -10,7 +10,6 @@ public class Manager<T extends Entity>
     protected final Frame frame;
     protected final Content manager;
     protected final CopyOnWriteArrayList<T> list;
-    
     public Manager(Frame fIn, Content mIn)
     {
         frame = fIn;
@@ -36,12 +35,13 @@ public class Manager<T extends Entity>
     }
     public void remove(T eIn)
     {
+        eIn.dispose();
         list.remove(eIn);
     }
-	public T get(int i)
-	{
-		return (T)list.get(i);
-	}
+    public T get(int i)
+    {
+        return (T)list.get(i);
+    }
     public T getRandom()
     {
         if(list.isEmpty())
@@ -68,7 +68,7 @@ public class Manager<T extends Entity>
     {
         for(T e : list)
         {
-            e.dispose();
+            remove(e);
         }
     }
 }
