@@ -16,16 +16,16 @@ public class Player extends Entity
 	public static final int WIDTH = 28;
     public static final int HEIGHT = 36;
     public static final double GRAVITY = 0.75;
-	
+    // Constructor
     public Player(Vector vIn)
     {
         super(vIn, WIDTH, HEIGHT);
-        list.add("Block");
         list.add("Platform");
-		SpriteSheet sprites = SpriteSheet.PLAYER;
-		sprite = new Sprite(sprites, 0);
-		legs = new Sprite(sprites, 2);
-		arm = new Sprite(sprites, 1);
+        SpriteSheet sprites = SpriteSheet.PLAYER;
+        sprite = new Sprite(sprites, 0);
+        legs = new Sprite(sprites, 2);
+        arm = new Sprite(sprites, 1);
+        doubleJump = singleJump = false;
     }
     /*
      public void move()
@@ -48,28 +48,39 @@ public class Player extends Entity
         {
             dx += 1;
         }
-        if(Keyboard.isPressed(KeyEvent.VK_SPACE) || Keyboard.isPressed(KeyEvent.VK_W))
+        if(Keyboard.isOnce(KeyEvent.VK_SPACE) || Keyboard.isOnce(KeyEvent.VK_W))
         {
-			if(!hasJumped)
-			{
-				hasJumped = true;
-				dy = -12; // Jump.
-			}
+            Keyboard.useOnce(KeyEvent.VK_SPACE);
+            Keyboard.useOnce(KeyEvent.VK_W);
+            if(singleJump)
+            {
+                dy = -12; // Single jump.
+                singleJump = false;
+                doubleJump = true;
+            }
+            else if(doubleJump)
+            {
+                dy = -12; // Double jump.
+                doubleJump = false;
+            }
         }
-		else
-			hasJumped = false;
-		
-		
-        dx = Math.max(Math.min(dx+0.2d, 0), dx-0.2d); // Friction.
-		dx = Math.min(Math.max(-2d, dx), 2d);//Max speed
+        
+        dx = Math.max(Math.min(dx + 0.2d, 0), dx - 0.2d); // Friction.
+        dx = Math.min(Math.max(-2d, dx), 2d);//Max speed
         dy += GRAVITY;
-		if(dy > 12)
-			dy = 12;
-		
+        if(dy > 12)
+        {
+            dy = 12;
+        }
+        boolean down = false;
+        if(dy > 0)
+        {
+            down = true;
+        }
         getDest().x = getCenter().x + (int)dx;
         getDest().y = getCenter().y + (int)dy;
-
-		double xMoved = getCenter().x;
+        
+        double xMoved = getCenter().x;
         Collision.moveX(this);
         Collision.moveY(this);
 		
@@ -139,9 +150,9 @@ public class Player extends Entity
 		if(distance > 0)
 			angle = Math.max(1, 90 -(int)(distance * 0.1));
         grad = new RadialGradientPaint(center, distance, dist, colors);
-		Content.darkness.setPaint(grad);
-		Content.darkness.fillArc(shoulder.x - 800, shoulder.y - 800, 1600, 1600,
-				-(int)Math.toDegrees(arm.rotation) - angle/2, angle);
+        Content.darkness.setPaint(grad);
+        Content.darkness.fillArc(shoulder.x - 800, shoulder.y - 800, 1600, 1600,
+                                 -(int)Math.toDegrees(arm.rotation) - angle / 2, angle);
     }
     @Override
     public void dispose()

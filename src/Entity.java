@@ -11,18 +11,16 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
     @JsonSubTypes.Type(value = Platform.class, name = "Platform"),
     @JsonSubTypes.Type(value = Enemy.class, name = "Enemy")
 })
-
 public abstract class Entity
 {
     private Vector center;
     private Vector dest;
-	public double dx = 0;
-	public double dy = 0;
+    public double dx = 0;
+    public double dy = 0;
     private int width;
     private int height;
     public final ArrayList<String> list;
-	protected Sprite sprite;
-    
+    protected Sprite sprite;
     //Default constructor for the parser
     public Entity()
     {

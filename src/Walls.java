@@ -1,10 +1,6 @@
 
 import java.util.ArrayList;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Branden
@@ -12,9 +8,9 @@ import java.util.ArrayList;
 public class Walls
 {
     private static final int DOOR_WIDTH = 100;
-    boolean nExist, eExist, sExist, wExist;
     int nPos, ePos, sPos, wPos;
-    
+    String adjRooms[] = new String[4];
+    //All of the setter functions
     public void setNorthPos(int nIn)
     {
         nPos = nIn;
@@ -31,9 +27,15 @@ public class Walls
     {
         wPos = wIn;
     }
-    public boolean getWExist()
+    //North is 0, east is 1, south is 2, west is 3
+    public void setAdjRooms(String rooms[])
     {
-        return wExist;
+        adjRooms = rooms;
+    }
+    //Getters for the names of the rooms
+    public String getAdjRoom(int i)
+    {
+        return adjRooms[i];
     }
     private int avg(int n1, int n2)
     {
@@ -51,19 +53,13 @@ public class Walls
         //Northern door
         if(nPos > 0)
         {
-            walls.add(new Platform(new Vector(avg(nPos, 0) - DOOR_WIDTH / 2, 10),
-                    nPos, 20));
-            walls.add(new Platform(
-                    new Vector(avg(nPos + DOOR_WIDTH / 2, windowW), 10),
-                    windowW - nPos - DOOR_WIDTH / 2, 20));
+            walls.add(new Platform(new Vector(avg(nPos, 0) - DOOR_WIDTH / 2, 10), nPos, 20));
+            walls.add(new Platform(new Vector(avg(nPos + DOOR_WIDTH / 2, windowW), 10), windowW - nPos - DOOR_WIDTH / 2, 20));
         }
         else
         {
-            walls.add(new Platform(
-                    new Vector(windowW / 2, 10),
-                    windowW, 20));
+            walls.add(new Platform(new Vector(windowW / 2, 10), windowW, 20));
         }
-
         //Eastern door
         if(ePos > 0)
         {
@@ -75,43 +71,28 @@ public class Walls
         }
         else
         {
-            walls.add(new Platform(
-                    new Vector(windowW - 15, windowH / 2),
-                    20, windowH));
+            walls.add(new Platform(new Vector(windowW - 15, windowH / 2), 20, windowH));
         }
-
         //Southern door		
         if(sPos > 0)
         {
-            walls.add(new Platform(new Vector(avg(sPos, 0) - DOOR_WIDTH / 2, windowH - 42),
-                    sPos, 20));
-            walls.add(new Platform(
-                    new Vector(avg(sPos + DOOR_WIDTH / 2, windowW), windowH - 42),
-                    windowW - sPos - DOOR_WIDTH / 2, 20));
+            walls.add(new Platform(new Vector(avg(sPos, 0) - DOOR_WIDTH / 2, windowH - 42), sPos, 20));
+            walls.add(new Platform(new Vector(avg(sPos + DOOR_WIDTH / 2, windowW), windowH - 40), windowW - sPos - DOOR_WIDTH / 2, 20));
         }
         else
         {
-            walls.add(new Platform(
-                    new Vector(windowW / 2, windowH - 42),
-                    windowW, 20));
+            walls.add(new Platform(new Vector(windowW / 2, windowH - 40), windowW, 20));
         }
-
         //Western door
         if(wPos > 0)
         {
-            walls.add(new Platform(new Vector(10, avg(wPos, 0) - DOOR_WIDTH / 2),
-                    20, wPos));
-            walls.add(new Platform(
-                    new Vector(10, avg(wPos + DOOR_WIDTH / 2, windowH)),
-                    20, windowH - wPos - DOOR_WIDTH / 2));
+            walls.add(new Platform(new Vector(10, avg(wPos, 0) - DOOR_WIDTH / 2), 20, wPos));
+            walls.add(new Platform(new Vector(10, avg(wPos + DOOR_WIDTH / 2, windowH)), 20, windowH - wPos - DOOR_WIDTH / 2));
         }
         else
         {
-            walls.add(new Platform(
-                    new Vector(10, windowH / 2),
-                    20, windowH));
+            walls.add(new Platform(new Vector(10, windowH / 2), 20, windowH));
         }
-
         return walls;
     }
 }

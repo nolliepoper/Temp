@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Platform extends Entity
 {
     public String art;
-    
+    // Constructor
     public Platform()
     {
     }
@@ -35,7 +35,7 @@ public class Platform extends Entity
     {
         gIn.setColor(Color.WHITE);
         gIn.fillRect(getCenter().x - getWidth() / 2,
-                getCenter().y - getHeight() / 2, getWidth(), getHeight());
+        getCenter().y - getHeight() / 2, getWidth(), getHeight());
     }
     @Override
     public void dispose()

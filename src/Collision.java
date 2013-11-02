@@ -6,7 +6,7 @@ public class Collision
 {
     private static Frame frame;
     private static Content manager;
-    
+    // Constructor
     public Collision(Frame fIn, Content mIn)
     {
         frame = fIn;
@@ -110,7 +110,7 @@ public class Collision
     {
         return wallUp(eIn) || wallDown(eIn);
     }
-    public static void moveX(Entity eIn)
+    public static Entity moveX(Entity eIn)
     {
         Entity o = collisionX(eIn);
         if(o == null)
@@ -120,15 +120,16 @@ public class Collision
         else if(eIn.getCenter().x < eIn.getDest().x)
         {
             eIn.getCenter().x = o.getCenter().x - (eIn.getWidth() + o.getWidth()) / 2;
-			eIn.dx = 0;
+            eIn.dx = 0;
         }
         else
         {
             eIn.getCenter().x = o.getCenter().x + (eIn.getWidth() + o.getWidth()) / 2;
-			eIn.dx = 0;
+            eIn.dx = 0;
         }
+        return o;
     }
-    public static void moveY(Entity eIn)
+    public static Entity moveY(Entity eIn)
     {
         Entity o = collisionY(eIn);
         if(o == null)
@@ -138,12 +139,13 @@ public class Collision
         else if(eIn.getCenter().y < eIn.getDest().y)
         {
             eIn.getCenter().y = o.getCenter().y - (eIn.getHeight() + o.getHeight()) / 2;
-			eIn.dy = 0;
+            eIn.dy = 0;
         }
         else
         {
             eIn.getCenter().y = o.getCenter().y + (eIn.getHeight() + o.getHeight()) / 2;
-			eIn.dy = 0;
+            eIn.dy = 0;
         }
+        return o;
     }
 }

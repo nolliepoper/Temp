@@ -16,8 +16,8 @@ public class Content extends JPanel
     //private final Manager block;
     private boolean run;
     private Room currRoom;
-	public static Graphics2D darkness;
-    
+    public static Graphics2D darkness;
+    // Constructor
     public Content(Frame fIn)
     {
         frame = fIn;
@@ -34,6 +34,7 @@ public class Content extends JPanel
          */
 
         currRoom = new Room("start.json", frame);
+        currRoom.getData();
 
         pltfrmMng.addAll(currRoom.getPlatforms());
 
@@ -71,24 +72,57 @@ public class Content extends JPanel
         mIn.dispose();
         list.remove(mIn);
     }
+    public void dispose()
+    {
+        for(Manager m : list)
+        {
+            remove(m);
+        }
+    }
     public void logic()
     {
         if(Keyboard.isPressed(KeyEvent.VK_P))
         {
             run = !run;
             Keyboard.release(KeyEvent.VK_P);
+            if(run == false){
+                
+            }
         }
         if(run)
         {
-            /*
-             * if(Mouse.isPressesd(MouseEvent.BUTTON1)) { block.add(new
-             * Block(Mouse.getClick(MouseEvent.BUTTON1), new Vector(50, 50)));
-             * Mouse.release(MouseEvent.BUTTON1); }
-             */
             for(Manager m : list)
             {
                 m.logic();
             }
+        }
+
+        //Move to the next room
+        Vector playLoc = getType("Player").get(0).getCenter();
+        //System.out.println(playLoc.y);
+        if(playLoc.y < 0)
+        {
+            currRoom.loadRoom(currRoom.getNorth());
+            //currRoom.getData();
+            getType("Player").get(0).setCenter(new Vector(400, 300));
+        }
+        else if(playLoc.x < 0)
+        {
+            currRoom.loadRoom(currRoom.getWest());
+            //currRoom.getData();
+            getType("Player").get(0).setCenter(new Vector(400, 300));
+        }
+        else if(playLoc.y > frame.getHeight())
+        {
+            currRoom.loadRoom(currRoom.getSouth());
+            //currRoom.getData();
+            getType("Player").get(0).setCenter(new Vector(400, 300));
+        }
+        else if(playLoc.x > frame.getWidth())
+        {
+            currRoom.loadRoom(currRoom.getEast());
+            //currRoom.getData();
+            getType("Player").get(0).setCenter(new Vector(400, 300));
         }
     }
     @Override
@@ -96,22 +130,22 @@ public class Content extends JPanel
     {
         super.paint(gIn);
         Graphics2D g = (Graphics2D)gIn;
-		AffineTransform trans = new AffineTransform();
-		//trans.scale(0.5, 0.5);
-		g.transform(trans);
-		
-		BufferedImage temp = new BufferedImage(800, 800, BufferedImage.TYPE_4BYTE_ABGR);
-		darkness = temp.createGraphics();
-		darkness.setColor(Color.BLACK);
-		darkness.fillRect(0, 0, frame.getWidth(), frame.getHeight());
-		darkness.setComposite(AlphaComposite.DstOut);
-		
+        AffineTransform trans = new AffineTransform();
+        //trans.scale(0.5, 0.5);
+        g.transform(trans);
+
+        BufferedImage temp = new BufferedImage(800, 800, BufferedImage.TYPE_4BYTE_ABGR);
+        darkness = temp.createGraphics();
+        darkness.setColor(Color.BLACK);
+        darkness.fillRect(0, 0, frame.getWidth(), frame.getHeight());
+        darkness.setComposite(AlphaComposite.DstOut);
+
         currRoom.paint(g);
         for(Manager m : list)
         {
             m.paint(g);
         }
-		g.drawImage(temp, null, 0, 0);
+        g.drawImage(temp, null, 0, 0);
     }
 	
 	public int ScreenWidth()

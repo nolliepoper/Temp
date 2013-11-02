@@ -4,7 +4,7 @@ import java.math.*;
 public class Vector
 {
     int x, y;
-    
+    // Constructor
     public Vector()
     {
     }

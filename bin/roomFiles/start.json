@@ -1,10 +1,10 @@
 {
   "roomName" : "start.json",
-  "background" : "map4.png",
+  "background" : "map4Special.jpg",
   "tiled" : false,
-  "exits" : { "northPos": 200, "eastPos" : 100, "southPos": 500, "westPos" : 0},
+  "exits" : { "adjRooms" : ["north.json", "east.json", "south.json"], "northPos": 200, "eastPos" : 100, "southPos": 500, "westPos" : 0},
   "platforms" : [ 
-	{"type" : "Platform", "center" : {"x" : 500, "y" : 500}, "width" : 200, "height" : 25}, 
+	{"type" : "Platform", "center" : {"x" : 100, "y" : 300}, "width" : 200, "height" : 25}, 
 	{"type" : "Platform", "center" : {"x" : 600, "y" : 400}, "width" : 200, "height" : 80}
   ],
   "enemies" : [{"type" : "Enemy", "name" : "Crawler"},
