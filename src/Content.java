@@ -85,6 +85,9 @@ public class Content extends JPanel
         {
             run = !run;
             Keyboard.release(KeyEvent.VK_P);
+            if(run == false){
+                
+            }
         }
         if(run)
         {
