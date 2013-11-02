@@ -124,9 +124,9 @@ public class Frame extends JFrame
         JLabel optionsL = new JLabel("Options Menu");
         JLabel returnL = new JLabel("Return to Main Menu");
         CustomJPanel south = new CustomJPanel(new GridLayout(1, 1), "Return to Main Menu", this);
-        JCheckBox muteSound = new JCheckBox("Enable Global Sound", true);
-        JCheckBox option2 = new JCheckBox("Option Number 2", true);
-        JCheckBox option3 = new JCheckBox("Option Number 3", true);
+        JCheckBox muteSound = new JCheckBox("Afflict Main Character With Paralysis", false);
+        JCheckBox option2 = new JCheckBox("Option Number 2", false);
+        JCheckBox option3 = new JCheckBox("Option Number 3", false);
 
         optionsL.setFont(font);
         jIn.setBackground(Color.red);
