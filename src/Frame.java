@@ -10,6 +10,9 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 public class Frame extends JFrame
 {
+	public static final int HEIGHT = 600;
+	public static final int WIDTH = 800;
+	
     //Where everything is drawn and handled after Main Menu Concludes
     private final Content manager;
     //Used to add/remove the main menu from the frame before and after user
@@ -32,7 +35,7 @@ public class Frame extends JFrame
     public Frame()
     {
         super("Tempovania");
-        setSize(800, 600);
+        setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);

@@ -1,5 +1,5 @@
 
-import java.math.*;
+import java.awt.*;
 
 public class Vector
 {
@@ -60,4 +60,9 @@ public class Vector
         }
         return true;
     }
+	
+	public Point toPoint()
+	{
+		return new Point(x, y);
+	}
 }

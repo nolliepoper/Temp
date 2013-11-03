@@ -20,7 +20,7 @@ public class Sprite
         this.spriteSheet = spriteSheet;
         this.animation = animation;
     }
-    public void draw(Graphics2D gIn, Point point)
+    public void draw(Graphics2D gIn, Vector point)
     {
         frame = ((frame % spriteSheet.numFrames(animation)) + spriteSheet.numFrames(animation)) % spriteSheet.numFrames(animation);
         int subimage = (int)frame;

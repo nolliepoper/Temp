@@ -13,6 +13,7 @@ public class Content extends JPanel
     private final Frame frame;
     private final CopyOnWriteArrayList<Manager> list;
     private final Manager pltfrmMng;
+    public static Manager bulletMng;
     //private final Manager block;
     private boolean run;
     private Room currRoom;
@@ -28,6 +29,10 @@ public class Content extends JPanel
 
         pltfrmMng = new Manager(frame, this);
         add(pltfrmMng);
+		
+		
+        bulletMng = new Manager(frame, this);
+        add(bulletMng);
 
         /*
          * block = new Manager(frame, this); add(block);
@@ -147,13 +152,4 @@ public class Content extends JPanel
         }
         g.drawImage(temp, null, 0, 0);
     }
-	
-	public int ScreenWidth()
-	{
-		return frame.getWidth();
-	}
-	public int ScreenHeight()
-	{
-		return frame.getHeight();
-	}
 }
