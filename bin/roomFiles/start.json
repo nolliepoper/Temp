@@ -1,11 +1,17 @@
 {
   "roomName" : "start.json",
-  "background" : "map4Special.jpg",
+  "background" : "map4.png",
   "tiled" : false,
   "exits" : { "adjRooms" : ["north.json", "east.json", "south.json"], "northPos": 200, "eastPos" : 100, "southPos": 500, "westPos" : 0},
   "platforms" : [ 
-	{"type" : "Platform", "center" : {"x" : 100, "y" : 300}, "width" : 200, "height" : 25}, 
-	{"type" : "Platform", "center" : {"x" : 600, "y" : 400}, "width" : 200, "height" : 80}
+{"type" : "Platform", "center" : {"x" : 200, "y" : 100}, "width" : 50, "height" : 42},
+	{"type" : "Platform", "center" : {"x" : 50, "y" : 200}, "width" : 200, "height" : 25},
+	{"type" : "Platform", "center" : {"x" : 100, "y" : 300}, "width" : 200, "height" : 25},
+	{"type" : "Platform", "center" : {"x" : 600, "y" : 400}, "width" : 200, "height" : 80},
+	{"type" : "Platform", "center" : {"x" : 400, "y" : 440}, "width" : 200, "height" : 10},
+	{"type" : "Platform", "center" : {"x" : 790, "y" : 450}, "width" : 50, "height" : 300},
+	{"type" : "Platform", "center" : {"x" : 150, "y" : 500}, "width" : 80, "height" : 100},
+	{"type" : "Platform", "center" : {"x" : 200, "y" : 450}, "width" : 50, "height" : 50}
   ],
   "enemies" : [{"type" : "Enemy", "name" : "Crawler"},
 				{"type" : "Enemy", "name" : "Flyer"},

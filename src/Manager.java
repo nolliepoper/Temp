@@ -39,6 +39,14 @@ public class Manager<T extends Entity>
         eIn.dispose();
         list.remove(eIn);
     }
+	//takes everything out of a manager, but doesn't call dispose on it
+	public void drop()
+	{
+		for(T ent : list)
+		{
+			list.remove(ent);
+		}
+	}
     public T get(int i)
     {
         return (T)list.get(i);

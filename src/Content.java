@@ -11,8 +11,8 @@ import java.util.concurrent.*;
 public class Content extends JPanel
 {
     private final Frame frame;
-    private final CopyOnWriteArrayList<Manager> list;
-    private final Manager pltfrmMng;
+    private CopyOnWriteArrayList<Manager> list;
+    private Manager pltfrmMng;
     public static Manager bulletMng;
     private final Manager target;
     private boolean run;
@@ -109,32 +109,45 @@ public class Content extends JPanel
         }
 
         //Move to the next room
-        Vector playLoc = getType("Player").get(0).getCenter();
-        //System.out.println(playLoc.y);
+		Manager<Player> tmpMng = getType("Player");
+        Vector playLoc = tmpMng.get(0).getCenter();
+		boolean isMove = false;
+	
         if(playLoc.y < 0)
         {
+			//Read the data about the room
             currRoom.loadRoom(currRoom.getNorth());
-            //currRoom.getData();
-            getType("Player").get(0).setCenter(new Vector(400, 300));
+			isMove = true;
         }
         else if(playLoc.x < 0)
         {
+			//Read the data about the room
             currRoom.loadRoom(currRoom.getWest());
-            //currRoom.getData();
-            getType("Player").get(0).setCenter(new Vector(400, 300));
+			isMove = true;
         }
         else if(playLoc.y > frame.getHeight())
         {
+			//Read the data about the room
             currRoom.loadRoom(currRoom.getSouth());
-            //currRoom.getData();
-            getType("Player").get(0).setCenter(new Vector(400, 300));
+			isMove = true;
+
         }
         else if(playLoc.x > frame.getWidth())
         {
+			//Read the data about the room
             currRoom.loadRoom(currRoom.getEast());
-            //currRoom.getData();
-            getType("Player").get(0).setCenter(new Vector(400, 300));
+			isMove = true;
         }
+		
+		//If the player is actually moving to a new room, recreate 
+		//the managers
+		if(isMove)
+		{
+			pltfrmMng.drop();
+			bulletMng.drop();
+			pltfrmMng.addAll(currRoom.getPlatforms());
+			getType("Player").get(0).setCenter(new Vector(400, 300));
+		}
     }
     @Override
     public void paint(Graphics gIn)

@@ -1,7 +1,7 @@
 {
   "background" : "fullBackground.jpg",
   "tiled" : true,
-  "exits" : { "adjRooms" : ["A.json", "B.json", "C.json", "D.json"], "northPos": 200, "eastPos" : 100, "southPos": 500, "westPos" : 0},
+  "exits" : { "adjRooms" : [null, null, "start.json", null], "southPos" : 200},
   "platforms" : [ 
 	{"type" : "Platform", "center" : {"x" : 500, "y" : 500}, "width" : 200, "height" : 25}, 
 	{"type" : "Platform", "center" : {"x" : 600, "y" : 400}, "width" : 200, "height" : 80}
