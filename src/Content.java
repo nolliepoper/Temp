@@ -14,7 +14,7 @@ public class Content extends JPanel
     private final CopyOnWriteArrayList<Manager> list;
     private final Manager pltfrmMng;
     public static Manager bulletMng;
-    //private final Manager block;
+    private final Manager target;
     private boolean run;
     private Room currRoom;
     public static Graphics2D darkness;
@@ -43,6 +43,12 @@ public class Content extends JPanel
 
         pltfrmMng.addAll(currRoom.getPlatforms());
 
+        target = new Manager(frame, this);
+        add(target);
+        getLast().add(new Target(new Vector(200, 150), 50, 50, target));
+        getLast().add(new Target(new Vector(300, 150), 50, 50, target));
+        getLast().add(new Target(new Vector(400, 150), 50, 50, target));
+        
         add(new Manager(frame, this));
         getLast().add(new Player(new Vector(100, 100)));
     }
