@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 
-public class Target extends Entity
+public class Target extends Entity  
 {
     private Manager manager;
     private Color color;
@@ -12,7 +12,7 @@ public class Target extends Entity
     {
         super(vIn, wIn, hIn);
         manager = mIn;
-        dx = -4.0;
+        dx = 3.0;
         color = Color.RED;
         list.add("Platform");
     }
@@ -41,7 +41,5 @@ public class Target extends Entity
     @Override
     public void dispose()
     {
-        //setWidth(0);
-        //setHeight(0);
     }
 }

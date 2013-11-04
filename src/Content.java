@@ -45,9 +45,10 @@ public class Content extends JPanel
 
         target = new Manager(frame, this);
         add(target);
-        getLast().add(new Target(new Vector(200, 150), 50, 50, target));
-        getLast().add(new Target(new Vector(300, 150), 50, 50, target));
-        getLast().add(new Target(new Vector(400, 150), 50, 50, target));
+        getLast().add(new Target(new Vector(450, 150), 50, 50, target));
+        getLast().add(new Target(new Vector(200, 250), 50, 50, target));
+        getLast().add(new Target(new Vector(100, 375), 50, 50, target));
+        getLast().add(new Target(new Vector(300, 500), 50, 50, target));
         
         add(new Manager(frame, this));
         getLast().add(new Player(new Vector(100, 100)));
