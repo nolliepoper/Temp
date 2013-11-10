@@ -3,8 +3,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Random;
 import javax.swing.*;
 import java.util.concurrent.*;
+import javax.imageio.ImageIO;
 
 // This class is the master content manager, it has a list of managers.
 // Also, this class may manange a few list of entities on it's own.
@@ -19,7 +23,8 @@ public class Content extends JPanel
     private Room currRoom;
     public static Graphics2D darkness;
     private boolean setOpaque = false;
-    private JLabel pause;
+    private int bloodOverlay = 0;
+    private BufferedImage blood;
     // Constructor
     public Content(Frame fIn)
     {
@@ -55,9 +60,7 @@ public class Content extends JPanel
         add(new Manager(frame, this));
         getLast().add(new Player(new Vector(100, 100)));
         
-        pause = new JLabel("GAME PAUSED");
-        pause.setForeground(Color.WHITE);
-        pause.setVisible(true);
+        setBloodImage();
     }
     public void add(Manager mIn)
     {
@@ -158,6 +161,18 @@ public class Content extends JPanel
 			getType("Player").get(0).setCenter(new Vector(400, 300));
 		}
     }
+    public void setBloodOverlay(){
+        setBloodImage();
+        bloodOverlay = 25;
+    }
+    private void setBloodImage(){
+        Random rand = new Random(4);
+        try{
+            blood = ImageIO.read(new File(new String("bin\\images\\splatter\\Splatter" + (rand.nextInt() + 1)) + ".png"));
+        }catch(IOException e){
+            System.out.println("Error Loading Blood Splatter Image!");
+        }
+    }
     @Override
     public void paint(Graphics gIn)
     {
@@ -180,6 +195,10 @@ public class Content extends JPanel
                 m.paint(g);
             }
             g.drawImage(temp, null, 0, 0);
+            if(bloodOverlay > 0){
+                
+                bloodOverlay--;
+            }
         }else{ //If the game is "Paused"
             //From Here to (Look for Comment Here) Is a copy, I have no idea what it does or how to use it.
             super.paint(gIn);
