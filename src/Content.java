@@ -23,6 +23,7 @@ public class Content extends JPanel
     private Room currRoom;
     public static Graphics2D darkness;
     private boolean setOpaque = false;
+    private Graphics2D bloodOverlayG;
     private int bloodOverlay = 0;
     private BufferedImage blood;
     // Constructor
@@ -196,7 +197,10 @@ public class Content extends JPanel
             }
             g.drawImage(temp, null, 0, 0);
             if(bloodOverlay > 0){
-                
+                bloodOverlayG = blood.createGraphics();
+                bloodOverlayG.fillRect(0, 0, getWidth(), getHeight());
+                bloodOverlayG.setComposite(AlphaComposite.DstOut);
+                g.drawImage(blood, null, 0, 0);
                 bloodOverlay--;
             }
         }else{ //If the game is "Paused"
