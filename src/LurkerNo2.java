@@ -20,6 +20,7 @@ public class LurkerNo2 extends Entity{
     public LurkerNo2(Vector vIn, int wIn, int hIn, Manager mIn, Player pIn)
     {
         super(vIn, wIn, hIn);
+        name = "LurkerNo3"; //Default Name, can be changed
         health = 5;
         manager = mIn;
         dx = 1.5;
@@ -29,11 +30,11 @@ public class LurkerNo2 extends Entity{
     }
     void die()
     {
-        System.out.println("LurkerNO1 Hit");
+        System.out.println("LurkerNO2 Hit");
         health--;
         if(health <= 0){
             manager.remove(this);
-            System.out.println("LurkerNo1 Dead");
+            System.out.println("LurkerNo2 Dead");
         }
     }
     public void setName(String nIn)

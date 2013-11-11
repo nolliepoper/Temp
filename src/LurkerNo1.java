@@ -23,6 +23,7 @@ public class LurkerNo1 extends Entity{
     public LurkerNo1(Vector vIn, int wIn, int hIn, Manager mIn, int px1, int px2)
     {
         super(vIn, wIn, hIn);
+        name = "LurkerNo1"; //Default Name, can be changed
         health = 2;
         manager = mIn;
         dx = 3;
