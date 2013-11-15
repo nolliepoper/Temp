@@ -5,12 +5,12 @@ import javax.swing.*;
 import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes(
-{
-    @JsonSubTypes.Type(value = Platform.class, name = "Platform"),
-    @JsonSubTypes.Type(value = Enemy.class, name = "Enemy")
-})
+//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+//@JsonSubTypes(
+//{
+//    @JsonSubTypes.Type(value = Platform.class, name = "Platform"),
+//    @JsonSubTypes.Type(value = Enemy.class, name = "Enemy")
+//})
 public abstract class Entity
 {
     private Vector center;

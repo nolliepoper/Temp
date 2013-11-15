@@ -17,8 +17,9 @@ public class Content extends JPanel
     private final Frame frame;
     private CopyOnWriteArrayList<Manager> list;
     private Manager pltfrmMng;
+	private Manager enemyMng;
     public static Manager bulletMng;
-    private final Manager target;
+    //private final Manager target;
     private boolean run;
     private Room currRoom;
     public static Graphics2D darkness;
@@ -34,10 +35,18 @@ public class Content extends JPanel
         run = true;
 
         setBackground(Color.WHITE);
+		currRoom = new Room("start.json", frame);
+        //currRoom.getData();
 
         pltfrmMng = new Manager(frame, this);
         add(pltfrmMng);
+		pltfrmMng.addAll(currRoom.getPlatforms());
 		
+		enemyMng = new Manager(frame, this);
+        add(enemyMng);
+		enemyMng.addAll(currRoom.getEnemies());
+
+		 
 		
         bulletMng = new Manager(frame, this);
         add(bulletMng);
@@ -46,18 +55,15 @@ public class Content extends JPanel
          * block = new Manager(frame, this); add(block);
          */
 
-        currRoom = new Room("start.json", frame);
-        currRoom.getData();
+        
 
-        pltfrmMng.addAll(currRoom.getPlatforms());
-
-        target = new Manager(frame, this);
+        /*target = new Manager(frame, this);
         add(target);
         getLast().add(new Target(new Vector(450, 150), 50, 50, target));
         getLast().add(new Target(new Vector(200, 250), 50, 50, target));
         getLast().add(new Target(new Vector(100, 375), 50, 50, target));
         getLast().add(new Target(new Vector(300, 500), 50, 50, target));
-        
+        */
         add(new Manager(frame, this));
         getLast().add(new Player(new Vector(100, 100)));
         

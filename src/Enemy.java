@@ -4,38 +4,69 @@
  */
 
 import java.awt.Graphics2D;
+import org.codehaus.jackson.annotate.JsonSubTypes;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes(
+{
+    @JsonSubTypes.Type(value = Target.class, name = "Target")
+})
 
 /**
  *
  * @author Branden
  */
-public class Enemy extends Entity
+public abstract class Enemy extends Entity
 {
     //This should be where the sprite sheet is attached
     private String sprites;
-    private String name;
+    //How many hits before the poor guy dies
+	private int health;
+	private boolean alive;
     
-    public void setName(String nIn)
+	Enemy() {
+		super(new Vector(50, 50), 50, 50);
+		alive = true;
+		health = 5;
+	}
+	public Enemy(Vector vIn, int wIn, int hIn)
     {
-        name = nIn;
+        super(vIn, wIn, hIn);
+		alive = true;
+		health = 5;
     }
-    public String getName()
-    {
-        return name;
-    }
-    @Override
+
+	public void setHp(int hp)
+	{
+		health = hp;
+	}
+	
+	public void kill()
+	{
+		alive = false;
+	}
+
+	public boolean isAlive()
+	{
+		return alive;
+	}
+	
+	@Override
     public void logic()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		System.out.println("CALLING LOGIC IN ENEMY\n");
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     @Override
     public void paint(Graphics2D gIn)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		System.out.println("CALLING PAINT IN ENEMY!!\n");
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     @Override
     public void dispose()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
