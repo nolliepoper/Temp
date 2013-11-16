@@ -165,7 +165,7 @@ public class MainMenu extends JPanel
         optionsTitle.setForeground(Color.black);
         optionsButtons.add(optionsTitle);
 
-        JLabel temp = new JLabel("Option 1");
+        JLabel temp = new JLabel("Easy Mode");
         temp.setFont(fontP);
         temp.setHorizontalAlignment(SwingConstants.CENTER);
         temp.setForeground(Color.red);
@@ -177,6 +177,9 @@ public class MainMenu extends JPanel
             {
                 options[0] = !options[0];
                 setLabelColor(1);
+				
+				if(options[0])
+					JOptionPane.showMessageDialog(null,"You wimp! Just for that, I'm doubling the amount of enemies. How do you like them apples?");
             }
             @Override
             public void mouseEntered(MouseEvent arg0)
@@ -191,7 +194,7 @@ public class MainMenu extends JPanel
         });
         optionsButtons.add(temp);
 
-        temp = new JLabel("Option 2");
+        temp = new JLabel("Music Toggle");
         temp.setFont(fontP);
         temp.setHorizontalAlignment(SwingConstants.CENTER);
         temp.setForeground(Color.red);
@@ -203,6 +206,9 @@ public class MainMenu extends JPanel
             {
                 options[1] = !options[1];
                 setLabelColor(2);
+				
+				if(options[1])
+					JOptionPane.showMessageDialog(null,"Any music you are hearing isn't coming from here, so I can't turn it off");
             }
             @Override
             public void mouseEntered(MouseEvent arg0)
@@ -217,7 +223,7 @@ public class MainMenu extends JPanel
         });
         optionsButtons.add(temp);
 
-        temp = new JLabel("Option 3");
+        temp = new JLabel("Erase Saves");
         temp.setFont(fontP);
         temp.setHorizontalAlignment(SwingConstants.CENTER);
         temp.setForeground(Color.red);
@@ -229,6 +235,9 @@ public class MainMenu extends JPanel
             {
                 options[2] = !options[2];
                 setLabelColor(3);
+				if(options[2])
+					JOptionPane.showMessageDialog(null,"Ok, I'm erasing all of the files saved on your computer, please wait...");
+
             }
             @Override
             public void mouseEntered(MouseEvent arg0)
@@ -273,7 +282,7 @@ public class MainMenu extends JPanel
     {//Switches the Main Menu to Options (+ vice versa) based on the currentCenterPanel flag
         if(currentCenterPanel)
         {
-            System.out.println("Swap Options to Main");
+            //System.out.println("Swap Options to Main");
             centerPanel.setVisible(false);
             centerPanel.removeAll();
             loadMainCenter();
@@ -281,7 +290,7 @@ public class MainMenu extends JPanel
         }
         else
         {
-            System.out.println("Swap Main to Options");
+            //System.out.println("Swap Main to Options");
             centerPanel.setVisible(false);
             centerPanel.removeAll();
             loadOptionsCenter();
