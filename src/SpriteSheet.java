@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.geom.*;
 import java.awt.image.*;
@@ -14,16 +13,16 @@ import javax.imageio.ImageIO;
 
  &#60Animation 1 name&#62 &#60number of frames&#62
 
- &#60Left coordinate&#62 &#60Top coordinate&#62 &#60Anchor coordinate&#62 &#60Anchor coordinate&#62
+ &#60Left coordinate&#62 &#60Top coordinate&#62 &#60X Anchor coordinate&#62 &#60Y Anchor coordinate&#62
 	
- &#60Left coordinate&#62 &#60Top coordinate&#62 &#60Anchor coordinate&#62 &#60Anchor coordinate&#62
+ &#60Left coordinate&#62 &#60Top coordinate&#62 &#60X Anchor coordinate&#62 &#60Y Anchor coordinate&#62
 
  ...
  &#60Animation 2 name&#62 &#60number of frames&#62
 
- &#60Left coordinate&#62 &#60Top coordinate&#62 &#60Anchor coordinate&#62 &#60Anchor coordinate&#62
+ &#60Left coordinate&#62 &#60Top coordinate&#62 &#60X Anchor coordinate&#62 &#60Y Anchor coordinate&#62
 	
- &#60Left coordinate&#62 &#60Top coordinate&#62 &#60Anchor coordinate&#62 &#60Anchor coordinate&#62
+ &#60Left coordinate&#62 &#60Top coordinate&#62 &#60X Anchor coordinate&#62 &#60Y Anchor coordinate&#62
 
  ...
  ...</pre>
@@ -31,7 +30,10 @@ import javax.imageio.ImageIO;
  */
 public enum SpriteSheet
 {
-    PLAYER("player");
+    PLAYER("player"),
+	BULLET("bullet");
+	
+	
     private BufferedImage[][] frames;
     private int[][] anchorsX;
     private int[][] anchorsY;
@@ -56,6 +58,7 @@ public enum SpriteSheet
                 for(int j = 0; j < frames[i].length; j++)
                 {
                     frames[i][j] = spriteSheet.getSubimage(spriteInfo.nextInt(), spriteInfo.nextInt(), width, height);
+					System.out.printf("%s %d:%d\n", imageName, i, j);
                     anchorsX[i][j] = spriteInfo.nextInt();
                     anchorsY[i][j] = spriteInfo.nextInt();
                 }

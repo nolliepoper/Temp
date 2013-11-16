@@ -191,17 +191,18 @@ public class Content extends JPanel
         bloodOverlay = 25;
     }
     private void setBloodImage(){
-        Random rand = new Random(4);
+        Random rand = new Random();
+        String path = new String("bin\\images\\splatter\\Splatter" + new String(Integer.toString((rand.nextInt() % 5 + 1))) + ".png");
         try{
-            blood = ImageIO.read(new File(new String("bin\\images\\splatter\\Splatter" + (rand.nextInt() + 1)) + ".png"));
+            blood = ImageIO.read(new File(path));
         }catch(IOException e){
             System.out.println("Error Loading Blood Splatter Image!");
+            System.out.println("Bad Path: " + path);
         }
     }
     @Override
     public void paint(Graphics gIn)
     {
-        if(!setOpaque){ //If the game is "running" (not paused)
             super.paint(gIn);
             Graphics2D g = (Graphics2D)gIn;
             AffineTransform trans = new AffineTransform();
@@ -220,6 +221,7 @@ public class Content extends JPanel
                 m.paint(g);
             }
             g.drawImage(temp, null, 0, 0);
+        if(!setOpaque){ //If the game is "running" (not paused)
             if(bloodOverlay > 0){
                 bloodOverlayG = blood.createGraphics();
                 bloodOverlayG.fillRect(0, 0, getWidth(), getHeight());
@@ -229,30 +231,11 @@ public class Content extends JPanel
             }
         }else{ //If the game is "Paused"
             //From Here to (Look for Comment Here) Is a copy, I have no idea what it does or how to use it.
-            super.paint(gIn);
-            Graphics2D g = (Graphics2D)gIn;
-            AffineTransform trans = new AffineTransform();
-            //trans.scale(0.5, 0.5);
-            g.transform(trans);
-
-            BufferedImage temp = new BufferedImage(800, 800, BufferedImage.TYPE_4BYTE_ABGR);
-            darkness = temp.createGraphics();
-            darkness.setColor(Color.BLACK);
-            darkness.fillRect(0, 0, frame.getWidth(), frame.getHeight());
-            darkness.setComposite(AlphaComposite.DstOut);
-
-            currRoom.paint(g);
-            for(Manager m : list)
-            {
-                m.paint(g);
-            }
-            g.drawImage(temp, null, 0, 0);
-            
             //To Here
             
             //This is used to Gray out the background When Pause is Selected
             g.setComposite(AlphaComposite.SrcOver.derive(.1f)); //Lets make a box that is 10% opaque!
-            //g.setColor(Color.black); //I was going to do this, but I really like the random color that it makes it haha
+            g.setColor(Color.black);
             g.fillRect(0, 0, getWidth(), getHeight());//Lets make it the size of the window!
             super.paint(g); //and lets throw it on top of everything!
             g.setColor(Color.WHITE);
@@ -260,6 +243,7 @@ public class Content extends JPanel
             g.setColor(Color.WHITE);
             g.drawString("Press 'P' to Resume Game", 330, 30); //And how they Can Return to it!
             super.paint(g);
+			
         }
     }
 }

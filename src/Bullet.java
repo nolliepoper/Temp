@@ -7,25 +7,25 @@ import java.awt.Graphics2D;
  */
 public class Bullet extends Entity
 {
-    double speed = 10d;
-    int prevX;
-    int prevY;
+    double speed = 16d;
     // Constructor
     public Bullet(Vector pos, double angle)
     {
-        super(pos, 1, 1);
+        super(pos, 16, 16);
+		sprite = new Sprite(SpriteSheet.BULLET, 0);
+		sprite.rotation = angle;
         dx = speed * Math.cos(angle);
         dy = speed * Math.sin(angle);
         list.add("Target");
+		list.add("Platform");
     }
     @Override
     public void logic()
     {
-        prevX = getDest().x;
-        prevY = getDest().y;
-
         getDest().x = getCenter().x + (int)dx;
         getDest().y = getCenter().y + (int)dy;
+		
+		sprite.frame += 1;
 
         Entity o1 = Collision.moveX(this);
         Entity o2 = Collision.moveY(this);
@@ -43,13 +43,12 @@ public class Bullet extends Entity
                 tmp.die();
             }
             Content.bulletMng.remove(this);
-            System.out.println("boom");
         }
     }
     @Override
     public void paint(Graphics2D gIn)
     {
-        gIn.drawLine(prevX, prevY, getCenter().x, getDest().y);
+		sprite.draw(gIn, getCenter());
     }
     @Override
     public void dispose()

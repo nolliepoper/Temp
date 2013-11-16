@@ -67,6 +67,12 @@ public class Frame extends JFrame
         Mouse m = new Mouse();
         addMouseListener(m);
         addMouseMotionListener(m);
+        
+        manager.remove(manager);
+        //below is used to test the credits menu
+        //remove(manager);
+        //add(new GameCompletion(this, 500));
+        
         setVisible(true);
     }
     
@@ -79,18 +85,19 @@ public class Frame extends JFrame
         catch(IOException e)
         {
             System.out.println("Unable to load Icon Image!");
+            System.out.println("Bad Path: " + path);
         }
     }
     private void loadTitleImage(String path)
     {//Try to Load the Image from the bin Images
         try
         {
-            System.out.println(path);
             imgTitle = ImageIO.read(new File(path));
         }
         catch(IOException e)
         {
             System.out.println("Unable to load Title Image!");
+            System.out.println("Bad Path: " + path);
         }
     }
     public Content getManager()

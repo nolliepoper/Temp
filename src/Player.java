@@ -20,6 +20,7 @@ public class Player extends Entity
     public static final int WIDTH = 28;
     public static final int HEIGHT = 36;
     public static final double GRAVITY = 0.75;
+    public static final int LIGHTRADIUS = 100;
 	private static final Vector shoulderPos = SpriteSheet.PLAYER.getAnchor(1, 0).sub(SpriteSheet.PLAYER.getAnchor(0, 0));
     // Constructor
 	
@@ -63,9 +64,9 @@ public class Player extends Entity
 		float[] distribution = {0.0f, 0.3f, 1f};
 		Color[] colors = {Color.WHITE, new Color(0, 0, 0, 128), new Color(0, 0, 0, 0)};
 		Point center = getCenter().toPoint();
-		RadialGradientPaint grad = new RadialGradientPaint(center, 50, distribution, colors);
+		RadialGradientPaint grad = new RadialGradientPaint(center, LIGHTRADIUS, distribution, colors);
 		Content.darkness.setPaint(grad);
-		Content.darkness.fillOval(getCenter().x - 100, getCenter().y - 100, 200, 200);
+		Content.darkness.fillOval(getCenter().x - 800, getCenter().y - 800, 1600, 1600);
 		
 		int angle = 0;
 		if(mouseDistance > 0)
