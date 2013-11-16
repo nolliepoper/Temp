@@ -3,15 +3,21 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 
-public class Target extends Entity  
+public class Target extends Enemy  
 {
     private Manager manager;
     private Color color;
+	
     // Constructor
-    public Target(Vector vIn, int wIn, int hIn, Manager mIn)
+	public Target() { 
+		dx = 3.0;
+        color = Color.BLUE;
+        list.add("Platform");
+	}
+	
+    public Target(Vector vIn, int wIn, int hIn)
     {
         super(vIn, wIn, hIn);
-        manager = mIn;
         dx = 3.0;
         color = Color.RED;
         list.add("Platform");
@@ -19,24 +25,32 @@ public class Target extends Entity
     void die()
     {
         System.out.println("DIE");
-        manager.remove(this);
+        kill();
     }
     @Override
     public void logic()
     {
-        getDest().x = getCenter().x + (int)dx;
-        getDest().y = getCenter().y;
-        double pre = dx;
-        Entity tmp = Collision.moveX(this);
-        Collision.moveY(this);
-        if(tmp != null && (tmp.getClass().getName()+"").equals("Platform"))
-            dx = -pre;
+		if(isAlive())
+		{
+			System.out.println("CALLING LOGIC IN TARGET\n");
+			getDest().x = getCenter().x + (int)dx;
+			getDest().y = getCenter().y;
+			double pre = dx;
+			Entity tmp = Collision.moveX(this);
+			Collision.moveY(this);
+			if(tmp != null && (tmp.getClass().getName()+"").equals("Platform"))
+				dx = -pre;
+		}
     }
     @Override
     public void paint(Graphics2D gIn)
     {
-        gIn.setColor(color);
-        gIn.fillOval(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
+		if(isAlive())
+		{
+			
+			gIn.setColor(color);
+			gIn.fillOval(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
+		}
     }
     @Override
     public void dispose()

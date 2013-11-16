@@ -52,7 +52,7 @@ public class Room
             return false;
         }
 
-        System.out.println(Arrays.toString(roomInfo.getExits().adjRooms));
+        //(Arrays.toString(roomInfo.getExits().adjRooms));
 
         //if(roomInfo.getNorth() == prevRoom)
         //spawn = roomInfo.getNorthSpawn();
@@ -63,6 +63,17 @@ public class Room
     {
         return roomInfo.getPlatforms();
     }
+	
+	public ArrayList<Enemy> getEnemies()
+	{
+		ArrayList<Enemy> tmp = roomInfo.getEnemies();
+		
+		//System.out.println("ENEMY #1: " + tmp.get(0).getName());
+		System.out.println("X: " + tmp.get(0).getCenter().x);
+		System.out.println(" Y: " + tmp.get(0).getCenter().y);
+		return roomInfo.getEnemies();
+	}
+	
     public String getNorth()
     {
         return roomInfo.getExits().getAdjRoom(0);
