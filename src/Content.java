@@ -27,6 +27,9 @@ public class Content extends JPanel
     private Graphics2D bloodOverlayG;
     private int bloodOverlay = 0;
     private BufferedImage blood;
+	
+	//This is where the player will spawn in the current room
+	Vector currSpawn = null;
     // Constructor
     public Content(Frame fIn)
     {
@@ -64,8 +67,10 @@ public class Content extends JPanel
         getLast().add(new Target(new Vector(100, 375), 50, 50, target));
         getLast().add(new Target(new Vector(300, 500), 50, 50, target));
         */
+		//Create the player
+		currSpawn = currRoom.getWestSpawn();
         add(new Manager(frame, this));
-        getLast().add(new Player(new Vector(100, 100)));
+        getLast().add(new Player(currSpawn));
         
         setBloodImage();
     }
@@ -109,6 +114,7 @@ public class Content extends JPanel
     }
     public void logic()
     {
+		//Pause the game
         if(Keyboard.isPressed(KeyEvent.VK_P))
         {
             run = !run;
@@ -119,6 +125,7 @@ public class Content extends JPanel
                 setOpaque = !setOpaque;
             }
         }
+		//Update everything if the game is not paused
         if(run)
         {
             for(Manager m : list)
@@ -128,44 +135,55 @@ public class Content extends JPanel
         }
 
         //Move to the next room
-		Manager<Player> tmpMng = getType("Player");
-        Vector playLoc = tmpMng.get(0).getCenter();
+
+		Vector currPos = getType("Player").get(0).getCenter();
+        
 		boolean isMove = false;
 	
-        if(playLoc.y < 0)
+		//Go north?
+        if(currPos.y < 0)
         {
 			//Read the data about the room
             currRoom.loadRoom(currRoom.getNorth());
+			currSpawn = currRoom.getSouthSpawn();
 			isMove = true;
         }
-        else if(playLoc.x < 0)
-        {
-			//Read the data about the room
-            currRoom.loadRoom(currRoom.getWest());
-			isMove = true;
-        }
-        else if(playLoc.y > frame.getHeight())
+		//Go south?
+		else if(currPos.y > frame.getHeight())
         {
 			//Read the data about the room
             currRoom.loadRoom(currRoom.getSouth());
+			currSpawn = currRoom.getNorthSpawn();
 			isMove = true;
 
         }
-        else if(playLoc.x > frame.getWidth())
+		//Go east?
+		else if(currPos.x > frame.getWidth())
         {
 			//Read the data about the room
             currRoom.loadRoom(currRoom.getEast());
+			currSpawn = currRoom.getWestSpawn();
 			isMove = true;
         }
-		
+		//Go west?
+        else if(currPos.x < 0)
+        {
+			//Read the data about the room
+            currRoom.loadRoom(currRoom.getWest());
+			currSpawn = currRoom.getEastSpawn();
+			isMove = true;
+        }
+        
 		//If the player is actually moving to a new room, recreate 
 		//the managers
 		if(isMove)
 		{
 			pltfrmMng.drop();
 			bulletMng.drop();
+			enemyMng.drop();
 			pltfrmMng.addAll(currRoom.getPlatforms());
-			getType("Player").get(0).setCenter(new Vector(400, 300));
+			enemyMng.addAll(currRoom.getEnemies());
+			getType("Player").get(0).setCenter(currSpawn);
 		}
     }
     public void setBloodOverlay(){

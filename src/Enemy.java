@@ -42,6 +42,13 @@ public abstract class Enemy extends Entity
 		health = hp;
 	}
 	
+	public void damage()
+	{
+		health--;
+		if(health <= 0)
+			kill();
+	}
+	
 	public void kill()
 	{
 		alive = false;

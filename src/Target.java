@@ -32,7 +32,6 @@ public class Target extends Enemy
     {
 		if(isAlive())
 		{
-			System.out.println("CALLING LOGIC IN TARGET\n");
 			getDest().x = getCenter().x + (int)dx;
 			getDest().y = getCenter().y;
 			double pre = dx;
@@ -47,7 +46,6 @@ public class Target extends Enemy
     {
 		if(isAlive())
 		{
-			
 			gIn.setColor(color);
 			gIn.fillOval(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
 		}

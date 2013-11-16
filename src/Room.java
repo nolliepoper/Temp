@@ -66,11 +66,6 @@ public class Room
 	
 	public ArrayList<Enemy> getEnemies()
 	{
-		ArrayList<Enemy> tmp = roomInfo.getEnemies();
-		
-		//System.out.println("ENEMY #1: " + tmp.get(0).getName());
-		System.out.println("X: " + tmp.get(0).getCenter().x);
-		System.out.println(" Y: " + tmp.get(0).getCenter().y);
 		return roomInfo.getEnemies();
 	}
 	
@@ -90,6 +85,35 @@ public class Room
     {
         return roomInfo.getExits().getAdjRoom(3);
     }
+	
+	public Vector getNorthSpawn()
+	{
+		return roomInfo.getSpawns()[0];
+	}
+	
+	public Vector getEastSpawn()
+	{
+		return roomInfo.getSpawns()[1];
+	}
+			
+	public Vector getSouthSpawn()
+	{
+		return roomInfo.getSpawns()[2];
+	}
+	
+	public Vector getWestSpawn()
+	{
+		return roomInfo.getSpawns()[3];
+	}
+	
+	public void showSpawns()
+	{
+		Vector[] pts = roomInfo.getSpawns();
+		for(int i = 0; i < 4; i++)
+		{
+			System.out.println("Spawn " + i + "(" + pts[i].x + ", "+ pts[i].y + ")");
+		}
+	}
     public void getData()
     {
         System.out.println(roomInfo.getBackground());

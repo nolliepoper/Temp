@@ -48,7 +48,7 @@ public class Player extends Entity
         Collision.moveY(this);
 		xMoved = getCenter().x - xMoved;
 		
-		annimate(xMoved);
+		animate(xMoved);
     }
 	
 	
@@ -156,7 +156,7 @@ public class Player extends Entity
         }
 	}
 	
-	public void annimate(double xMoved)
+	public void animate(double xMoved)
 	{
 		shoulder.x = getCenter().x + shoulderPos.x;
 		shoulder.y = getCenter().y + shoulderPos.y;

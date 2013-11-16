@@ -32,7 +32,7 @@ public class Manager<T extends Entity>
     }
     public void addAll(ArrayList<T> eIn)
     {
-        list.addAll(eIn);
+		list.addAll(eIn);
     }
     public void remove(T eIn)
     {
