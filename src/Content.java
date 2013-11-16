@@ -177,7 +177,6 @@ public class Content extends JPanel
     @Override
     public void paint(Graphics gIn)
     {
-        if(!setOpaque){ //If the game is "running" (not paused)
             super.paint(gIn);
             Graphics2D g = (Graphics2D)gIn;
             AffineTransform trans = new AffineTransform();
@@ -196,6 +195,7 @@ public class Content extends JPanel
                 m.paint(g);
             }
             g.drawImage(temp, null, 0, 0);
+        if(!setOpaque){ //If the game is "running" (not paused)
             if(bloodOverlay > 0){
                 bloodOverlayG = blood.createGraphics();
                 bloodOverlayG.fillRect(0, 0, getWidth(), getHeight());
@@ -205,25 +205,6 @@ public class Content extends JPanel
             }
         }else{ //If the game is "Paused"
             //From Here to (Look for Comment Here) Is a copy, I have no idea what it does or how to use it.
-            super.paint(gIn);
-            Graphics2D g = (Graphics2D)gIn;
-            AffineTransform trans = new AffineTransform();
-            //trans.scale(0.5, 0.5);
-            g.transform(trans);
-
-            BufferedImage temp = new BufferedImage(800, 800, BufferedImage.TYPE_4BYTE_ABGR);
-            darkness = temp.createGraphics();
-            darkness.setColor(Color.BLACK);
-            darkness.fillRect(0, 0, frame.getWidth(), frame.getHeight());
-            darkness.setComposite(AlphaComposite.DstOut);
-
-            currRoom.paint(g);
-            for(Manager m : list)
-            {
-                m.paint(g);
-            }
-            g.drawImage(temp, null, 0, 0);
-            
             //To Here
             
             //This is used to Gray out the background When Pause is Selected
@@ -236,6 +217,7 @@ public class Content extends JPanel
             g.setColor(Color.WHITE);
             g.drawString("Press 'P' to Resume Game", 330, 30); //And how they Can Return to it!
             super.paint(g);
+			
         }
     }
 }
