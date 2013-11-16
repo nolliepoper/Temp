@@ -32,7 +32,7 @@ public class Target extends Enemy
     {
 		if(isAlive())
 		{
-			System.out.println("CALLING LOGIC IN TARGET\n");
+			//System.out.println("CALLING LOGIC IN TARGET\n");
 			getDest().x = getCenter().x + (int)dx;
 			getDest().y = getCenter().y;
 			double pre = dx;

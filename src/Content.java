@@ -215,7 +215,7 @@ public class Content extends JPanel
             
             //This is used to Gray out the background When Pause is Selected
             g.setComposite(AlphaComposite.SrcOver.derive(.1f)); //Lets make a box that is 10% opaque!
-            //g.setColor(Color.black); //I was going to do this, but I really like the random color that it makes it haha
+            g.setColor(Color.black);
             g.fillRect(0, 0, getWidth(), getHeight());//Lets make it the size of the window!
             super.paint(g); //and lets throw it on top of everything!
             g.setColor(Color.WHITE);

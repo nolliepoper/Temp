@@ -67,6 +67,12 @@ public class Frame extends JFrame
         Mouse m = new Mouse();
         addMouseListener(m);
         addMouseMotionListener(m);
+        
+        manager.remove(manager);
+        //below is used to test the credits menu
+        //remove(manager);
+        //add(new GameCompletion(this, 500));
+        
         setVisible(true);
     }
     
