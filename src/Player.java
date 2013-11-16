@@ -45,7 +45,7 @@ public class Player extends Entity
 		
         double xMoved = getCenter().x;
         Collision.moveX(this);
-        //Collision.moveY(this);
+        Collision.moveY(this);
 		xMoved = getCenter().x - xMoved;
 		
 		annimate(xMoved);
@@ -64,8 +64,6 @@ public class Player extends Entity
 		Color[] colors = {Color.WHITE, new Color(0, 0, 0, 128), new Color(0, 0, 0, 0)};
 		Point center = getCenter().toPoint();
 		RadialGradientPaint grad = new RadialGradientPaint(center, 50, distribution, colors);
-		if(singleJump)
-			Content.darkness.fillRect(0, 0, 100, 100);
 		Content.darkness.setPaint(grad);
 		Content.darkness.fillOval(getCenter().x - 100, getCenter().y - 100, 200, 200);
 		
@@ -97,6 +95,7 @@ public class Player extends Entity
             {
                 dy = -12; // Single jump.
                 singleJump = false;
+                doubleJump = true;
             }
             else if(doubleJump)
             {
@@ -141,23 +140,20 @@ public class Player extends Entity
         {
             dy = 12;
         }
-        boolean down = (dy > 0);
-		boolean onGround = getCenter().y != getDest().y;//temp fix, get rid of later
-				
+        boolean down = false;
+        if(dy > 0)
+        {
+            down = true;
+        }
         getDest().x = getCenter().x + (int)dx;
         getDest().y = getCenter().y + (int)dy;
 		
-		System.out.print(String.format("%f, %d -> %d   ", dy, getCenter().y, getDest().y));
         Entity o = Collision.moveY(this);
         
-        if(down && dy == 0 && o != null || onGround)
-		{
+        if(down && dy == 0 && o != null)
+        {
             singleJump = true;
-            doubleJump = true;
-		}
-		else //if(getCenter().y == getDest().y)
-			singleJump = false;
-		System.out.println(String.format("%f, %d -> %d, %b", dy, getCenter().y, getDest().y, singleJump));
+        }
 	}
 	
 	public void annimate(double xMoved)
