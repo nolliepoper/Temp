@@ -88,6 +88,13 @@ public abstract class Entity
     {
         return height;
     }
+    /*
+    @Override
+    public String toString()
+    {
+        return getClass().getName();
+    }
+    */
     //These are the important functions in the class
     public abstract void logic();
     public abstract void paint(Graphics2D gIn);

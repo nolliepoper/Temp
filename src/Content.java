@@ -16,9 +16,9 @@ public class Content extends JPanel
 {
     private final Frame frame;
     private CopyOnWriteArrayList<Manager> list;
-    private Manager pltfrmMng;
-	private Manager enemyMng;
-    public static Manager bulletMng;
+    private Manager<Platform> pltfrmMng;
+    private Manager<Enemy> enemyMng;
+    public static Manager<Bullet> bulletMng;
     //private final Manager target;
     private boolean run;
     private Room currRoom;
@@ -27,9 +27,8 @@ public class Content extends JPanel
     private Graphics2D bloodOverlayG;
     private int bloodOverlay = 0;
     private BufferedImage blood;
-	
-	//This is where the player will spawn in the current room
-	Vector currSpawn = null;
+    //This is where the player will spawn in the current room
+    Vector currSpawn = null;
     // Constructor
     public Content(Frame fIn)
     {
@@ -38,40 +37,42 @@ public class Content extends JPanel
         run = true;
 
         setBackground(Color.WHITE);
-		currRoom = new Room("start.json", frame);
+        currRoom = new Room("start.json", frame);
         //currRoom.getData();
 
-        pltfrmMng = new Manager(frame, this);
+        pltfrmMng = new Manager<>(frame, this);
         add(pltfrmMng);
-		pltfrmMng.addAll(currRoom.getPlatforms());
-		
-		enemyMng = new Manager(frame, this);
-        add(enemyMng);
-		enemyMng.addAll(currRoom.getEnemies());
+        pltfrmMng.addAll(currRoom.getPlatforms());
 
-		 
-		
-        bulletMng = new Manager(frame, this);
+        enemyMng = new Manager<>(frame, this);
+        add(enemyMng);
+        enemyMng.addAll(currRoom.getEnemies());
+
+
+
+        bulletMng = new Manager<>(frame, this);
         add(bulletMng);
 
         /*
          * block = new Manager(frame, this); add(block);
          */
 
+        add(new Manager<Hopper>(frame, this));
+        getLast().add(new Hopper(new Vector(250, 500), 50, 50));
         
 
         /*target = new Manager(frame, this);
-        add(target);
-        getLast().add(new Target(new Vector(450, 150), 50, 50, target));
-        getLast().add(new Target(new Vector(200, 250), 50, 50, target));
-        getLast().add(new Target(new Vector(100, 375), 50, 50, target));
-        getLast().add(new Target(new Vector(300, 500), 50, 50, target));
-        */
-		//Create the player
-		currSpawn = currRoom.getWestSpawn();
-        add(new Manager(frame, this));
+         add(target);
+         getLast().add(new Target(new Vector(450, 150), 50, 50, target));
+         getLast().add(new Target(new Vector(200, 250), 50, 50, target));
+         getLast().add(new Target(new Vector(100, 375), 50, 50, target));
+         getLast().add(new Target(new Vector(300, 500), 50, 50, target));
+         */
+        //Create the player
+        currSpawn = currRoom.getWestSpawn();
+        add(new Manager<Player>(frame, this));
         getLast().add(new Player(currSpawn));
-        
+
         setBloodImage();
     }
     public void add(Manager mIn)
@@ -114,18 +115,21 @@ public class Content extends JPanel
     }
     public void logic()
     {
-		//Pause the game
+        //Pause the game
         if(Keyboard.isPressed(KeyEvent.VK_P))
         {
             run = !run;
             Keyboard.release(KeyEvent.VK_P);
-            if(!run){
+            if(!run)
+            {
                 setOpaque = !setOpaque;
-            }else{
+            }
+            else
+            {
                 setOpaque = !setOpaque;
             }
         }
-		//Update everything if the game is not paused
+        //Update everything if the game is not paused
         if(run)
         {
             for(Manager m : list)
@@ -136,66 +140,71 @@ public class Content extends JPanel
 
         //Move to the next room
 
-		Vector currPos = getType("Player").get(0).getCenter();
-        
-		boolean isMove = false;
-	
-		//Go north?
+        Vector currPos = getType("Player").get(0).getCenter();
+
+        boolean isMove = false;
+
+        //Go north?
         if(currPos.y < 0)
         {
-			//Read the data about the room
+            //Read the data about the room
             currRoom.loadRoom(currRoom.getNorth());
-			currSpawn = currRoom.getSouthSpawn();
-			isMove = true;
+            currSpawn = currRoom.getSouthSpawn();
+            isMove = true;
         }
-		//Go south?
-		else if(currPos.y > frame.getHeight())
+        //Go south?
+        else if(currPos.y > frame.getHeight())
         {
-			//Read the data about the room
+            //Read the data about the room
             currRoom.loadRoom(currRoom.getSouth());
-			currSpawn = currRoom.getNorthSpawn();
-			isMove = true;
+            currSpawn = currRoom.getNorthSpawn();
+            isMove = true;
 
         }
-		//Go east?
-		else if(currPos.x > frame.getWidth())
+        //Go east?
+        else if(currPos.x > frame.getWidth())
         {
-			//Read the data about the room
+            //Read the data about the room
             currRoom.loadRoom(currRoom.getEast());
-			currSpawn = currRoom.getWestSpawn();
-			isMove = true;
+            currSpawn = currRoom.getWestSpawn();
+            isMove = true;
         }
-		//Go west?
+        //Go west?
         else if(currPos.x < 0)
         {
-			//Read the data about the room
+            //Read the data about the room
             currRoom.loadRoom(currRoom.getWest());
-			currSpawn = currRoom.getEastSpawn();
-			isMove = true;
+            currSpawn = currRoom.getEastSpawn();
+            isMove = true;
         }
-        
-		//If the player is actually moving to a new room, recreate 
-		//the managers
-		if(isMove)
-		{
-			pltfrmMng.drop();
-			bulletMng.drop();
-			enemyMng.drop();
-			pltfrmMng.addAll(currRoom.getPlatforms());
-			enemyMng.addAll(currRoom.getEnemies());
-			getType("Player").get(0).setCenter(currSpawn);
-		}
+
+        //If the player is actually moving to a new room, recreate 
+        //the managers
+        if(isMove)
+        {
+            pltfrmMng.drop();
+            bulletMng.drop();
+            enemyMng.drop();
+            pltfrmMng.addAll(currRoom.getPlatforms());
+            enemyMng.addAll(currRoom.getEnemies());
+            getType("Player").get(0).setCenter(currSpawn);
+        }
     }
-    public void setBloodOverlay(){
+    public void setBloodOverlay()
+    {
         setBloodImage();
         bloodOverlay = 25;
     }
-    private void setBloodImage(){
+    private void setBloodImage()
+    {
         Random rand = new Random();
         String path = new String("bin\\images\\splatter\\Splatter" + new String(Integer.toString((rand.nextInt() % 5 + 1))) + ".png");
-        try{
+        try
+        {
             blood = ImageIO.read(new File(path));
-        }catch(IOException e){
+        }
+        catch(IOException e)
+        {
             System.out.println("Error Loading Blood Splatter Image!");
             System.out.println("Bad Path: " + path);
         }
@@ -203,36 +212,40 @@ public class Content extends JPanel
     @Override
     public void paint(Graphics gIn)
     {
-            super.paint(gIn);
-            Graphics2D g = (Graphics2D)gIn;
-            AffineTransform trans = new AffineTransform();
-            //trans.scale(0.5, 0.5);
-            g.transform(trans);
+        super.paint(gIn);
+        Graphics2D g = (Graphics2D)gIn;
+        AffineTransform trans = new AffineTransform();
+        //trans.scale(0.5, 0.5);
+        g.transform(trans);
 
-            BufferedImage temp = new BufferedImage(800, 800, BufferedImage.TYPE_4BYTE_ABGR);
-            darkness = temp.createGraphics();
-            darkness.setColor(Color.BLACK);
-            darkness.fillRect(0, 0, frame.getWidth(), frame.getHeight());
-            darkness.setComposite(AlphaComposite.DstOut);
+        BufferedImage temp = new BufferedImage(800, 800, BufferedImage.TYPE_4BYTE_ABGR);
+        darkness = temp.createGraphics();
+        darkness.setColor(Color.BLACK);
+        darkness.fillRect(0, 0, frame.getWidth(), frame.getHeight());
+        darkness.setComposite(AlphaComposite.DstOut);
 
-            currRoom.paint(g);
-            for(Manager m : list)
+        currRoom.paint(g);
+        for(Manager m : list)
+        {
+            m.paint(g);
+        }
+        g.drawImage(temp, null, 0, 0);
+        if(!setOpaque)
+        { //If the game is "running" (not paused)
+            if(bloodOverlay > 0)
             {
-                m.paint(g);
-            }
-            g.drawImage(temp, null, 0, 0);
-        if(!setOpaque){ //If the game is "running" (not paused)
-            if(bloodOverlay > 0){
                 bloodOverlayG = blood.createGraphics();
                 bloodOverlayG.fillRect(0, 0, getWidth(), getHeight());
                 bloodOverlayG.setComposite(AlphaComposite.DstOut);
                 g.drawImage(blood, null, 0, 0);
                 bloodOverlay--;
             }
-        }else{ //If the game is "Paused"
+        }
+        else
+        { //If the game is "Paused"
             //From Here to (Look for Comment Here) Is a copy, I have no idea what it does or how to use it.
             //To Here
-            
+
             //This is used to Gray out the background When Pause is Selected
             g.setComposite(AlphaComposite.SrcOver.derive(.1f)); //Lets make a box that is 10% opaque!
             g.setColor(Color.black);
@@ -243,7 +256,6 @@ public class Content extends JPanel
             g.setColor(Color.WHITE);
             g.drawString("Press 'P' to Resume Game", 330, 30); //And how they Can Return to it!
             super.paint(g);
-			
         }
     }
 }

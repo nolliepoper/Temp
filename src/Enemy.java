@@ -12,7 +12,6 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 {
     @JsonSubTypes.Type(value = Target.class, name = "Target")
 })
-
 /**
  *
  * @author Branden
@@ -22,53 +21,52 @@ public abstract class Enemy extends Entity
     //This should be where the sprite sheet is attached
     private String sprites;
     //How many hits before the poor guy dies
-	private int health;
-	private boolean alive;
-    
-	Enemy() {
-		super(new Vector(50, 50), 50, 50);
-		alive = true;
-		health = 5;
-	}
-	public Enemy(Vector vIn, int wIn, int hIn)
+    private int health;
+    private boolean alive;
+    // Constructor.
+    Enemy()
+    {
+        super(new Vector(50, 50), 50, 50);
+        alive = true;
+        health = 5;
+    }
+    public Enemy(Vector vIn, int wIn, int hIn)
     {
         super(vIn, wIn, hIn);
-		alive = true;
-		health = 5;
+        alive = true;
+        health = 5;
     }
-
-	public void setHp(int hp)
-	{
-		health = hp;
-	}
-	
-	public void damage()
-	{
-		health--;
-		if(health <= 0)
-			kill();
-	}
-	
-	public void kill()
-	{
-		alive = false;
-	}
-
-	public boolean isAlive()
-	{
-		return alive;
-	}
-	
-	@Override
+    public void setHp(int hp)
+    {
+        health = hp;
+    }
+    public void damage()
+    {
+        health--;
+        if(health <= 0)
+        {
+            kill();
+        }
+    }
+    public void kill()
+    {
+        alive = false;
+    }
+    public boolean isAlive()
+    {
+        return alive;
+    }
+    /*
+    @Override
     public void logic()
     {
-		System.out.println("CALLING LOGIC IN ENEMY\n");
+        System.out.println("CALLING LOGIC IN ENEMY\n");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     @Override
     public void paint(Graphics2D gIn)
     {
-		System.out.println("CALLING PAINT IN ENEMY!!\n");
+        System.out.println("CALLING PAINT IN ENEMY!!\n");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     @Override
@@ -76,4 +74,5 @@ public abstract class Enemy extends Entity
     {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    */
 }

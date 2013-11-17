@@ -8,22 +8,20 @@ import javax.swing.*;
 public class Player extends Entity
 {
     Sprite legs;
-	Sprite arm;
-	boolean hasJumped = false;
-	boolean autoFire = true;
-	int reload = -1;
-	double mouseDistance;
-	private Vector shoulder = new Vector();
-	
+    Sprite arm;
+    boolean hasJumped = false;
+    boolean autoFire = true;
+    int reload = -1;
+    double mouseDistance;
+    private Vector shoulder = new Vector();
     boolean singleJump;
     boolean doubleJump;
     public static final int WIDTH = 28;
     public static final int HEIGHT = 36;
     public static final double GRAVITY = 0.75;
     public static final int LIGHTRADIUS = 100;
-	private static final Vector shoulderPos = SpriteSheet.PLAYER.getAnchor(1, 0).sub(SpriteSheet.PLAYER.getAnchor(0, 0));
+    private static final Vector shoulderPos = SpriteSheet.PLAYER.getAnchor(1, 0).sub(SpriteSheet.PLAYER.getAnchor(0, 0));
     // Constructor
-	
     public Player(Vector vIn)
     {
         super(vIn, WIDTH, HEIGHT);
@@ -33,54 +31,56 @@ public class Player extends Entity
         legs = new Sprite(sprites, 2);
         arm = new Sprite(sprites, 1);
         doubleJump = singleJump = false;
-		
+
     }
-	
-	 
     @Override
     public void logic()
     {
-		move();
-		shoot();
-		physics();
-		
+        move();
+        shoot();
+        physics();
+
         double xMoved = getCenter().x;
         Collision.moveX(this);
         Collision.moveY(this);
-		xMoved = getCenter().x - xMoved;
-		
-		animate(xMoved);
+        xMoved = getCenter().x - xMoved;
+
+        animate(xMoved);
     }
-	
-	
     @Override
     public void paint(Graphics2D gIn)
     {
-		sprite.draw(gIn, getCenter());
-		legs.draw(gIn, getCenter());
-		arm.draw(gIn, shoulder);
-		
-		//lighting stuff
-		float[] distribution = {0.0f, 0.3f, 1f};
-		Color[] colors = {Color.WHITE, new Color(0, 0, 0, 128), new Color(0, 0, 0, 0)};
-		Point center = getCenter().toPoint();
-		RadialGradientPaint grad = new RadialGradientPaint(center, LIGHTRADIUS, distribution, colors);
-		Content.darkness.setPaint(grad);
-		Content.darkness.fillOval(getCenter().x - 800, getCenter().y - 800, 1600, 1600);
-		
-		int angle = 0;
-		if(mouseDistance > 0)
+        sprite.draw(gIn, getCenter());
+        legs.draw(gIn, getCenter());
+        arm.draw(gIn, shoulder);
+
+        //lighting stuff
+        float[] distribution =
+        {
+            0.0f, 0.3f, 1f
+        };
+        Color[] colors =
+        {
+            Color.WHITE, new Color(0, 0, 0, 128), new Color(0, 0, 0, 0)
+        };
+        Point center = getCenter().toPoint();
+        RadialGradientPaint grad = new RadialGradientPaint(center, LIGHTRADIUS, distribution, colors);
+        Content.darkness.setPaint(grad);
+        Content.darkness.fillOval(getCenter().x - 800, getCenter().y - 800, 1600, 1600);
+
+        int angle = 0;
+        if(mouseDistance > 0)
+        {
             angle = 30;//(int)Math.max(-0.25*mouseDistance + 90 , 0);
+        }
         grad = new RadialGradientPaint(center, (float)mouseDistance + 100f, distribution, colors);
         Content.darkness.setPaint(grad);
         Content.darkness.fillArc(shoulder.x - 800, shoulder.y - 800, 1600, 1600,
-                                 -(int)Math.toDegrees(arm.rotation) - angle / 2, angle);
+                -(int)Math.toDegrees(arm.rotation) - angle / 2, angle);
     }
-	
-	public void move()
-	{
-	
-		if(Keyboard.isPressed(KeyEvent.VK_A))
+    public void move()
+    {
+        if(Keyboard.isPressed(KeyEvent.VK_A))
         {
             dx += -1;
         }
@@ -104,36 +104,36 @@ public class Player extends Entity
                 doubleJump = false;
             }
         }
-		
-		
-		if(Keyboard.isPressed(KeyEvent.VK_S))
+
+        if(Keyboard.isPressed(KeyEvent.VK_S))
         {
             dy = -8;
         }
-	}
-	
-	public void shoot()
-	{
-		if(Mouse.isPressesd(1))
-		{
-			if(reload <= (autoFire? 0 : -1))
-			{
-				reload = 30;
-				Content.bulletMng.add(new Bullet(new Vector(shoulder.x, shoulder.y), arm.rotation));
-			}
-		}
-		else
-		{
-			if(reload == 0)
-				reload = -1;
-		}
-		if(reload > 0)
-			reload -= 1;
-	}
-	
-	public void physics()
-	{
-		
+    }
+    public void shoot()
+    {
+        if(Mouse.isPressesd(1))
+        {
+            if(reload <= (autoFire ? 0 : -1))
+            {
+                reload = 30;
+                Content.bulletMng.add(new Bullet(new Vector(shoulder.x, shoulder.y), arm.rotation));
+            }
+        }
+        else
+        {
+            if(reload == 0)
+            {
+                reload = -1;
+            }
+        }
+        if(reload > 0)
+        {
+            reload -= 1;
+        }
+    }
+    public void physics()
+    {
         dx = Math.max(Math.min(dx + 0.2d, 0), dx - 0.2d); // Friction.
         dx = Math.min(Math.max(-2d, dx), 2d);//Max speed
         dy += GRAVITY;
@@ -148,46 +148,45 @@ public class Player extends Entity
         }
         getDest().x = getCenter().x + (int)dx;
         getDest().y = getCenter().y + (int)dy;
-		
+
         Entity o = Collision.moveY(this);
-        
-        if(down && dy == 0 && o != null)
+
+        if(down && o != null)
         {
             singleJump = true;
         }
-	}
-	
-	public void animate(double xMoved)
-	{
-		shoulder.x = getCenter().x + shoulderPos.x;
-		shoulder.y = getCenter().y + shoulderPos.y;
-		arm.rotation = Math.atan2(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
-		mouseDistance = 200;//Math.hypot(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
-		
-		if(xMoved == 0)
-			legs.animation = 2;
-		else
-		{
-			legs.animation = 3;
-			legs.frame += xMoved/25 * (int)sprite.xScale;
-		}
-		if(getDest().x <= Mouse.X())
-		{
-			sprite.xScale = 1;
-			arm.yScale = 1;
-			legs.xScale = 1;
-		}
-		else
-		{
-			sprite.xScale = -1;
-			arm.yScale = -1;
-			legs.xScale = -1;
-		}
-	}
-	
+    }
+    public void animate(double xMoved)
+    {
+        shoulder.x = getCenter().x + shoulderPos.x;
+        shoulder.y = getCenter().y + shoulderPos.y;
+        arm.rotation = Math.atan2(Mouse.Y() - getDest().y, Mouse.X() - getDest().x);
+        mouseDistance = 200;//Math.hypot(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
+
+        if(xMoved == 0)
+        {
+            legs.animation = 2;
+        }
+        else
+        {
+            legs.animation = 3;
+            legs.frame += xMoved / 25 * (int)sprite.xScale;
+        }
+        if(getDest().x <= Mouse.X())
+        {
+            sprite.xScale = 1;
+            arm.yScale = 1;
+            legs.xScale = 1;
+        }
+        else
+        {
+            sprite.xScale = -1;
+            arm.yScale = -1;
+            legs.xScale = -1;
+        }
+    }
     @Override
     public void dispose()
     {
-		
     }
 }
