@@ -57,10 +57,6 @@ public class Content extends JPanel
          * block = new Manager(frame, this); add(block);
          */
 
-        add(new Manager<Hopper>(frame, this));
-        getLast().add(new Hopper(new Vector(250, 500), 50, 50));
-        
-
         /*target = new Manager(frame, this);
          add(target);
          getLast().add(new Target(new Vector(450, 150), 50, 50, target));

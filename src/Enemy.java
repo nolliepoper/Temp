@@ -10,7 +10,8 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes(
 {
-    @JsonSubTypes.Type(value = Target.class, name = "Target")
+    @JsonSubTypes.Type(value = Target.class, name = "Target"),
+	@JsonSubTypes.Type(value = Hopper.class, name = "Hopper")
 })
 /**
  *
