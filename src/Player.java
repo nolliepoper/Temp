@@ -63,15 +63,14 @@ public class Player extends Entity
 		//lighting stuff
 		float[] distribution = {0.0f, 0.3f, 1f};
 		Color[] colors = {Color.WHITE, new Color(0, 0, 0, 128), new Color(0, 0, 0, 0)};
-		Point center = getCenter().toPoint();
-		RadialGradientPaint grad = new RadialGradientPaint(center, LIGHTRADIUS, distribution, colors);
+		RadialGradientPaint grad = new RadialGradientPaint(getCenter(), LIGHTRADIUS, distribution, colors);
 		Content.darkness.setPaint(grad);
 		Content.darkness.fillOval(getCenter().x - 800, getCenter().y - 800, 1600, 1600);
 		
 		int angle = 0;
 		if(mouseDistance > 0)
             angle = 30;//(int)Math.max(-0.25*mouseDistance + 90 , 0);
-        grad = new RadialGradientPaint(center, (float)mouseDistance + 100f, distribution, colors);
+        grad = new RadialGradientPaint(getCenter(), (float)mouseDistance + 100f, distribution, colors);
         Content.darkness.setPaint(grad);
         Content.darkness.fillArc(shoulder.x - 800, shoulder.y - 800, 1600, 1600,
                                  -(int)Math.toDegrees(arm.rotation) - angle / 2, angle);

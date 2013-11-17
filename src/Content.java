@@ -19,6 +19,7 @@ public class Content extends JPanel
     private Manager pltfrmMng;
 	private Manager enemyMng;
     public static Manager bulletMng;
+    public static Manager powerUpsMng;
     //private final Manager target;
     private boolean run;
     private Room currRoom;

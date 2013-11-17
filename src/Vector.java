@@ -1,7 +1,7 @@
 
 import java.awt.*;
 
-public class Vector
+public class Vector extends Point
 {
     int x, y;
     // Constructor
