@@ -16,8 +16,10 @@ public class Logic implements Runnable
     {
         for(;;)
         {
+			long nano = System.nanoTime();
             manager.logic();
             Util.sleep(17);
+			System.out.println("FPS: " + 1000000000d/(double)(System.nanoTime() - nano));
         }
     }
 }

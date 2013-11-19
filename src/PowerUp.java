@@ -8,35 +8,25 @@ import java.awt.RadialGradientPaint;
 public class PowerUp extends Entity
 {
 	private static final int LIGHTRADIUS = 50;
-	private Type type;
+	public Type type;
 	
 	public PowerUp(Vector vIn, Type type) {
 		super(vIn, 16, 16);
 		getCenter().y = getCenter().y - getHeight()/2;
-		list.add("Player");
 		this.type = type;
+		sprite = new Sprite(SpriteSheet.POWERUP, type.aniNum);
+		sprite.frame = 0;
 	}
+	
+	
 	
 	@Override
 	public void logic() 
-	{
-        Entity o1 = Collision.collisionX(this);
-        Entity o2 = Collision.collisionY(this);
-		if(o1 != null || o2 != null)
-		{
-			if(o1 instanceof Player)
-				((Player)o1).powerUps.add(type);
-			else if(o2 instanceof Player)
-				((Player)o2).powerUps.add(type);
-			Content.powerUpsMng.remove(this);
-		}
-	}
+	{}
 
 	@Override
 	public void paint(Graphics2D gIn) {
-		gIn.setColor(Color.red);
-		gIn.fillRect(getCenter().x - getWidth()/2, getCenter().y - getHeight()/2, getWidth(), getHeight());
-		
+		sprite.draw(gIn, getCenter());
 		
 		//lighting stuff
 		float[] distribution = {0.0f, 0.3f, 1f};
@@ -51,14 +41,17 @@ public class PowerUp extends Entity
 	
 	public static enum Type
 	{
-		DOUBLEJUMP("Double Jump")
-		, BETTERLIGHT("Wider Flashlight Beam");
+		WIDERLIGHT("Wider Flashlight Beam", 0), 
+		DOUBLEJUMP("Double Jump", 1),
+		FASTERRELOAD("Faster Reload", 2);
 		
 		String name;
+		int aniNum;
 		
-		Type(String name)
+		Type(String name, int aniNum)
 		{
 			this.name = name;
+			this.aniNum = aniNum;
 		}
 
 		@Override

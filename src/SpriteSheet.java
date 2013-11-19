@@ -31,7 +31,8 @@ import javax.imageio.ImageIO;
 public enum SpriteSheet
 {
     PLAYER("player"),
-	BULLET("bullet");
+	BULLET("bullet"),
+	POWERUP("powerUps");
 	
 	
     private BufferedImage[][] frames;
@@ -41,8 +42,8 @@ public enum SpriteSheet
     {
         try
         {
-            BufferedImage spriteSheet = ImageIO.read(new File("resources\\" + imageName + ".png"));
-            Scanner spriteInfo = new Scanner(new File("resources\\" + imageName + ".spr"));
+            BufferedImage spriteSheet = ImageIO.read(new File("bin\\sprites\\" + imageName + ".png"));
+            Scanner spriteInfo = new Scanner(new File("bin\\sprites\\" + imageName + ".spr"));
             frames = new BufferedImage[spriteInfo.nextInt()][];
             anchorsX = new int[frames.length][];
             anchorsY = new int[frames.length][];
@@ -58,7 +59,6 @@ public enum SpriteSheet
                 for(int j = 0; j < frames[i].length; j++)
                 {
                     frames[i][j] = spriteSheet.getSubimage(spriteInfo.nextInt(), spriteInfo.nextInt(), width, height);
-					System.out.printf("%s %d:%d\n", imageName, i, j);
                     anchorsX[i][j] = spriteInfo.nextInt();
                     anchorsY[i][j] = spriteInfo.nextInt();
                 }

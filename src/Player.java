@@ -36,6 +36,8 @@ public class Player extends Entity
         arm = new Sprite(sprites, 1);
         doubleJump = singleJump = false;
 		Content.powerUpsMng.add(new PowerUp(new Vector(400,500), PowerUp.Type.DOUBLEJUMP));
+		Content.powerUpsMng.add(new PowerUp(new Vector(100,500), PowerUp.Type.WIDERLIGHT));
+		Content.powerUpsMng.add(new PowerUp(new Vector(300,500), PowerUp.Type.FASTERRELOAD));
     }
 	
 	 
@@ -71,6 +73,8 @@ public class Player extends Entity
 		
 		float LightDist = Math.min((float)mouseDistance + 100f, 400);
 		int angle = Math.min(18000/(int)LightDist - 30, 90);
+		if(powerUps.contains(PowerUp.Type.WIDERLIGHT))
+			angle+=30;
         grad = new RadialGradientPaint(getCenter().toPoint(), LightDist, distribution, colors);
         Content.darkness.setPaint(grad);
         Content.darkness.fillArc(shoulder.x - (int)LightDist, shoulder.y - (int)LightDist, 2*(int)LightDist, 2*(int)LightDist,
@@ -104,12 +108,6 @@ public class Player extends Entity
                 doubleJump = false;
             }
         }
-		
-		
-		if(Keyboard.isPressed(KeyEvent.VK_S))
-        {
-            dy = -8;
-        }
 	}
 	
 	public void shoot()
@@ -118,7 +116,7 @@ public class Player extends Entity
 		{
 			if(reload <= (autoFire? 0 : -1))
 			{
-				reload = 30;
+				reload = powerUps.contains(PowerUp.Type.FASTERRELOAD)? 10: 30;
 				Content.bulletMng.add(new Bullet(new Vector(shoulder.x, shoulder.y), arm.rotation));
 			}
 		}
@@ -133,8 +131,8 @@ public class Player extends Entity
 	
 	public void physics()
 	{
-		
-        dx = Math.max(Math.min(dx + 0.2d, 0), dx - 0.2d); // Friction.
+		if(dy >= 0 && dy <= GRAVITY)//I only want friction on the ground. Because of how collision works, dy is never quite 0 on the ground
+			dx = Math.max(Math.min(dx + 0.2d, 0), dx - 0.2d); // Friction.
         dx = Math.min(Math.max(-2d, dx), 2d);//Max speed
         dy += GRAVITY;
         if(dy > 12)
@@ -151,10 +149,25 @@ public class Player extends Entity
 		
         Entity o = Collision.moveY(this);
         
-        if(down && dy == 0 && o != null)
+        if(down && dy == 0 && o instanceof Platform)
         {
             singleJump = true;
         }
+		
+		list.add("PowerUp");//This is kind of a work around for Zach's weird way of collision checking
+        Entity o1 = Collision.collisionX(this);
+        Entity o2 = Collision.collisionY(this);
+		if(o1 instanceof PowerUp)
+		{
+			powerUps.add(((PowerUp)o1).type);
+			Content.powerUpsMng.remove(((PowerUp)o1));
+		}
+		else if(o2 instanceof PowerUp)
+		{
+			powerUps.add(((PowerUp)o2).type);
+			Content.powerUpsMng.remove(((PowerUp)o2));
+		}
+		list.remove("PowerUp");//without this, the player will collide with power ups in the same way he collides with walls
 	}
 	
 	public void annimate(double xMoved)
@@ -183,6 +196,12 @@ public class Player extends Entity
 			arm.yScale = -1;
 			legs.xScale = -1;
 		}
+		/*if(Math.abs(dy) > GRAVITY)
+		{
+			legs.animation = 3;
+			legs.frame = 1;
+		}*/
+			
 	}
 	
     @Override

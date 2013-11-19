@@ -176,11 +176,11 @@ public class Content extends JPanel
         bloodOverlay = 25;
     }
     private void setBloodImage(){
-        Random rand = new Random(4);
+		String path = "bin\\images\\Splatter\\Splatter" + (int)((Math.random() + 1) % 6) + ".png";
         try{
-            blood = ImageIO.read(new File(new String("bin\\images\\splatter\\Splatter" + (rand.nextInt() + 1)) + ".png"));
+            blood = ImageIO.read(new File(path));
         }catch(IOException e){
-            System.out.println("Error Loading Blood Splatter Image!");
+            System.out.println("Error Loading " + path);
         }
     }
     @Override
