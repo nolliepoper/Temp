@@ -2,6 +2,7 @@
   "background" : "fullBackground.jpg",
   "tiled" : true,
   "exits" : { "adjRooms" : ["start.json"], "northPos": 200},
+  "spawns" : [{"x" : 400, "y" : 50}, {"x" : 750, "y" : 300}, {"x" : 550, "y" : 400}, {"x" : 50, "y" : 300}],
   "platforms" : [ 
 		{"center" : {"x" : 200, "y" : 100}, "width" : 25, "height" : 25}, 
 		{"center" : {"x" : 250, "y" : 200}, "width" : 25, "height" : 25},
@@ -10,5 +11,5 @@
 		{"center" : {"x" : 450, "y" : 400}, "width" : 25, "height" : 25}, 
 		{"center" : {"x" : 500, "y" : 500}, "width" : 25, "height" : 25}
 	],
-  "spawns" : [{"x" : 1, "y" : 1}, {"x" : 4, "y" : 4}],
+  "enemies" : [{"type" : "Hopper", "center" : {"x" : 300, "y" : 300}}]
 }

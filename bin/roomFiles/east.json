@@ -1,9 +1,10 @@
 {
-  "background" : "fullBackground.jpg",
-  "tiled" : true,
-  "exits" : { "adjRooms" : [null, null, null, "start.json"], "westPos" : 300},
-  "platforms" : [ 
-	{"center" : {"x" : 200, "y" : 400}, "width" : 200, "height" : 10}
-  ],
-  "spawns" : [{"x" : 1, "y" : 1}, {"x" : 4, "y" : 4}],
+	"background" : "fullBackground.jpg",
+	"tiled" : true,
+	"exits" : { "adjRooms" : [null, null, null, "start.json"], "westPos" : 300},
+    "spawns" : [{"x" : 400, "y" : 50}, {"x" : 750, "y" : 300}, {"x" : 550, "y" : 400}, {"x" : 50, "y" : 300}],
+	"platforms" : [ 
+	  {"center" : {"x" : 200, "y" : 400}, "width" : 200, "height" : 10}
+	],
+	"enemies" : []
 }
