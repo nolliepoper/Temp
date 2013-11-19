@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -83,7 +84,12 @@ public class RoomData
     {
         spawnPoints = spawns;
     }
-    /*public void setPlatforms()
+	
+	public Vector[] getSpawns()
+	{
+			return spawnPoints;
+	}
+	/*public void setPlatforms()
      {
      System.out.println("Hello?");
      ObjectMapper mapper = new ObjectMapper();
