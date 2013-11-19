@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.util.HashSet;
 import javax.swing.*;
 
 public class Player extends Entity
@@ -15,6 +16,7 @@ public class Player extends Entity
 	double mouseDistance;
 	private Vector shoulder = new Vector();
 	
+	public static HashSet<PowerUp.Type> powerUps = new HashSet<>();
     boolean singleJump;
     boolean doubleJump;
     public static final int WIDTH = 28;
@@ -33,7 +35,7 @@ public class Player extends Entity
         legs = new Sprite(sprites, 2);
         arm = new Sprite(sprites, 1);
         doubleJump = singleJump = false;
-		
+		Content.powerUpsMng.add(new PowerUp(new Vector(400,500), PowerUp.Type.DOUBLEJUMP));
     }
 	
 	 
@@ -46,7 +48,7 @@ public class Player extends Entity
 		
         double xMoved = getCenter().x;
         Collision.moveX(this);
-        Collision.moveY(this);
+        //Collision.moveY(this);//we already have a movey somewhere else
 		xMoved = getCenter().x - xMoved;
 		
 		annimate(xMoved);
@@ -61,18 +63,17 @@ public class Player extends Entity
 		arm.draw(gIn, shoulder);
 		
 		//lighting stuff
-		float[] distribution = {0.0f, 0.3f, 1f};
+		float[] distribution = {0.0f, 0.4f, 1f};
 		Color[] colors = {Color.WHITE, new Color(0, 0, 0, 128), new Color(0, 0, 0, 0)};
-		RadialGradientPaint grad = new RadialGradientPaint(getCenter(), LIGHTRADIUS, distribution, colors);
+		RadialGradientPaint grad = new RadialGradientPaint(getCenter().toPoint(), LIGHTRADIUS, distribution, colors);
 		Content.darkness.setPaint(grad);
-		Content.darkness.fillOval(getCenter().x - 800, getCenter().y - 800, 1600, 1600);
+		Content.darkness.fillOval(getCenter().x - LIGHTRADIUS, getCenter().y - LIGHTRADIUS, 2*LIGHTRADIUS, 2*LIGHTRADIUS);
 		
-		int angle = 0;
-		if(mouseDistance > 0)
-            angle = 30;//(int)Math.max(-0.25*mouseDistance + 90 , 0);
-        grad = new RadialGradientPaint(getCenter(), (float)mouseDistance + 100f, distribution, colors);
+		float LightDist = Math.min((float)mouseDistance + 100f, 400);
+		int angle = Math.min(18000/(int)LightDist - 30, 90);
+        grad = new RadialGradientPaint(getCenter().toPoint(), LightDist, distribution, colors);
         Content.darkness.setPaint(grad);
-        Content.darkness.fillArc(shoulder.x - 800, shoulder.y - 800, 1600, 1600,
+        Content.darkness.fillArc(shoulder.x - (int)LightDist, shoulder.y - (int)LightDist, 2*(int)LightDist, 2*(int)LightDist,
                                  -(int)Math.toDegrees(arm.rotation) - angle / 2, angle);
     }
 	
@@ -97,7 +98,7 @@ public class Player extends Entity
                 singleJump = false;
                 doubleJump = true;
             }
-            else if(doubleJump)
+            else if(doubleJump && powerUps.contains(PowerUp.Type.DOUBLEJUMP))
             {
                 dy = -12; // Double jump.
                 doubleJump = false;
@@ -161,7 +162,7 @@ public class Player extends Entity
 		shoulder.x = getCenter().x + shoulderPos.x;
 		shoulder.y = getCenter().y + shoulderPos.y;
 		arm.rotation = Math.atan2(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
-		mouseDistance = 200;//Math.hypot(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
+		mouseDistance = Math.hypot(Mouse.Y() - getDest().y, Mouse.X() - getDest().x );
 		
 		if(xMoved == 0)
 			legs.animation = 2;

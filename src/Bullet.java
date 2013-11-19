@@ -7,11 +7,11 @@ import java.awt.Graphics2D;
  */
 public class Bullet extends Entity
 {
-    double speed = 16d;
+    double speed = 12d;
     // Constructor
     public Bullet(Vector pos, double angle)
     {
-        super(pos, 16, 16);
+        super(pos, 12, 12);
 		sprite = new Sprite(SpriteSheet.BULLET, 0);
 		sprite.rotation = angle;
         dx = speed * Math.cos(angle);
