@@ -70,6 +70,11 @@ public class Room
 		return roomInfo.getEnemies();
 	}
 	
+	public ArrayList<PowerUp> getPowerUps()
+	{
+		return roomInfo.getPowerups();
+	}
+	
     public String getNorth()
     {
         return roomInfo.getExits().getAdjRoom(0);

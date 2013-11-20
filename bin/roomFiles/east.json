@@ -6,5 +6,6 @@
 	"platforms" : [ 
 	  {"center" : {"x" : 200, "y" : 400}, "width" : 200, "height" : 10}
 	],
-	"enemies" : []
+	"enemies" : [],
+	"powerups" : [{"type" : "WIDERLIGHT", "center" : {"x" : 700, "y" : 400}}]
 }

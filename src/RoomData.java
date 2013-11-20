@@ -35,6 +35,8 @@ public class RoomData
     ArrayList<Platform> platforms;
     //The list of enemies in the room
     ArrayList<Enemy> enemies;
+	//The list of powerups in the room
+	ArrayList<PowerUp> powerups;
     // Constructor
     public RoomData()
     {
@@ -136,4 +138,10 @@ public class RoomData
     {
         return enemies;
     }
+	
+	public ArrayList<PowerUp> getPowerups()
+	{
+		return powerups;
+	}
+	
 }
