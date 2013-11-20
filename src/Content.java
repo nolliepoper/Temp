@@ -69,6 +69,7 @@ public class Content extends JPanel
         */
         add(new Manager(frame, this));
         getLast().add(new Player(new Vector(100, 100)));
+		Map.defaultMap = new Map(currRoom);
         
         setBloodImage();
     }
@@ -139,18 +140,21 @@ public class Content extends JPanel
         {
 			//Read the data about the room
             currRoom.loadRoom(currRoom.getNorth());
+			Map.defaultMap.Update(0, -1, currRoom);
 			isMove = true;
         }
         else if(playLoc.x < 0)
         {
 			//Read the data about the room
             currRoom.loadRoom(currRoom.getWest());
+			Map.defaultMap.Update(-1, 0, currRoom);
 			isMove = true;
         }
         else if(playLoc.y > frame.getHeight())
         {
 			//Read the data about the room
             currRoom.loadRoom(currRoom.getSouth());
+			Map.defaultMap.Update(0, 1, currRoom);
 			isMove = true;
 
         }
@@ -158,6 +162,7 @@ public class Content extends JPanel
         {
 			//Read the data about the room
             currRoom.loadRoom(currRoom.getEast());
+			Map.defaultMap.Update(1, 0, currRoom);
 			isMove = true;
         }
 		
@@ -207,7 +212,7 @@ public class Content extends JPanel
             if(bloodOverlay > 0){
                 bloodOverlayG = blood.createGraphics();
                 bloodOverlayG.fillRect(0, 0, frame.getWidth(), frame.getHeight());
-                bloodOverlayG.setComposite(AlphaComposite.DstOut);
+                //bloodOverlayG.setComposite(AlphaComposite.DstOut);
                 g.drawImage(blood, null, 0, 0);
                 bloodOverlay--;
             }
@@ -227,6 +232,8 @@ public class Content extends JPanel
 			g.setFont(tempFont);
 			for(PowerUp.Type t : Player.powerUps)
 				g.drawString(t.toString(), 30, 25*(i++) + 50);
+			
+			Map.defaultMap.draw(g, 250, 100, 300, 300);
         }
     }
 	

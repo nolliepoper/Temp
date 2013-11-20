@@ -12,6 +12,11 @@ public class PowerUp extends Entity
 	
 	public PowerUp(Vector vIn, Type type) {
 		super(vIn, 16, 16);
+		if(Player.powerUps.contains(type))
+		{
+			Content.powerUpsMng.remove(this);
+			return;
+		}
 		getCenter().y = getCenter().y - getHeight()/2;
 		this.type = type;
 		sprite = new Sprite(SpriteSheet.POWERUP, type.aniNum);

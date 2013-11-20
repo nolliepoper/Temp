@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.HashSet;
+import java.util.Locale;
 import javax.swing.*;
 
 public class Player extends Entity
@@ -83,7 +84,6 @@ public class Player extends Entity
 	
 	public void move()
 	{
-	
 		if(Keyboard.isPressed(KeyEvent.VK_A))
         {
             dx += -1;

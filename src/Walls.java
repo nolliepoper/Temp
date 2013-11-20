@@ -35,6 +35,8 @@ public class Walls
     //Getters for the names of the rooms
     public String getAdjRoom(int i)
     {
+		if(i >= adjRooms.length)
+			return null;
         return adjRooms[i];
     }
     private int avg(int n1, int n2)
