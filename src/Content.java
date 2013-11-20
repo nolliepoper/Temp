@@ -246,14 +246,10 @@ public class Content extends JPanel
                 bloodOverlay--;
             }
         }
-        else
-        { //If the game is "Paused"
-            //From Here to (Look for Comment Here) Is a copy, I have no idea what it does or how to use it.
-            //To Here
-
+        else{ //If the game is "Paused"
             //This is used to Gray out the background When Pause is Selected
-            g.setComposite(AlphaComposite.SrcOver.derive(.1f)); //Lets make a box that is 10% opaque!
-            g.setColor(Color.black);
+            g.setColor(new Color(255, 255, 255, 51)); //Lets make a box that is 20% opaque!
+            //g.setColor(Color.black); //I was going to do this, but I really like the random color that it makes it haha
             g.fillRect(0, 0, getWidth(), getHeight());//Lets make it the size of the window!
 			g.setColor(Color.WHITE);
             drawCenteredString(g, "GAME PAUSED", getWidth()/2, 15); //Let the Player know the game is Paused
