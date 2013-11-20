@@ -35,12 +35,12 @@ public class Bullet extends Entity
             if(o1 != null && (o1.getClass().getName()+"").equals("Target"))
             {
                 Target tmp = (Target)o1;
-                tmp.die();
+                tmp.damage();
             }
             else if(o2 != null && (o2.getClass().getName()+"").equals("Target"))
             {
                 Target tmp = (Target)o2;
-                tmp.die();
+                tmp.damage();
             }
             Content.bulletMng.remove(this);
         }
