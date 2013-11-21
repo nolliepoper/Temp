@@ -32,14 +32,14 @@ public class Bullet extends Entity
 
         if((o1 != null || o2 != null) || (getCenter().x > Frame.WIDTH || getCenter().x < 0 || getCenter().y > Frame.HEIGHT || getCenter().y < 0))
         {
-            if(o1 != null && (o1.getClass().getName()+"").equals("Target"))
+            if(o1 instanceof Enemy)
             {
-                Target tmp = (Target)o1;
+                Enemy tmp = (Enemy)o1;
                 tmp.damage();
             }
-            else if(o2 != null && (o2.getClass().getName()+"").equals("Target"))
+            else if(o2 instanceof Enemy)
             {
-                Target tmp = (Target)o2;
+                Enemy tmp = (Enemy)o2;
                 tmp.damage();
             }
             Content.bulletMng.remove(this);
