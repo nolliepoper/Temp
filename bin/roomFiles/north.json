@@ -1,5 +1,5 @@
 {
-	"background" : "fullBackground.jpg",
+	"background" : "map3.png",
 	"tiled" : true,
 	"exits" : { "adjRooms" : [null, null, "start.json", null], "southPos" : 200},
     "spawns" : [{"x" : 400, "y" : 50}, {"x" : 750, "y" : 300}, {"x" : 550, "y" : 400}, {"x" : 50, "y" : 300}],
