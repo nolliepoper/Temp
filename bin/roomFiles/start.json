@@ -14,5 +14,6 @@
 	{"center" : {"x" : 150, "y" : 500}, "width" : 80, "height" : 100},
 	{"center" : {"x" : 200, "y" : 450}, "width" : 50, "height" : 50}
   ],
-  "enemies" : [ {"type" : "Target", "center" : {"x" : 300, "y" : 200}, "width" : 200, "height" : 25}]
+  "enemies" : [ {"type" : "Target", "center" : {"x" : 300, "y" : 200}}],
+  "powerups" : [{"type" : "DOUBLEJUMP", "center" : {"x" : 100, "y" : 500}}]
 }

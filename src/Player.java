@@ -36,12 +36,13 @@ public class Player extends Entity
         legs = new Sprite(sprites, 2);
         arm = new Sprite(sprites, 1);
         doubleJump = singleJump = false;
-		Content.powerUpsMng.add(new PowerUp(new Vector(100,500), PowerUp.Type.DOUBLEJUMP));
-		Content.powerUpsMng.add(new PowerUp(new Vector(400,500), PowerUp.Type.WIDERLIGHT));
-		Content.powerUpsMng.add(new PowerUp(new Vector(300,500), PowerUp.Type.FASTERRELOAD));
     }
 	
-	 
+	public boolean hasPower(PowerUp pow)
+	{
+		return powerUps.contains(pow.type);
+	}
+	
     @Override
     public void logic()
     {

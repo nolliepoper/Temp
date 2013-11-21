@@ -10,20 +10,30 @@ public class PowerUp extends Entity
 	private static final int LIGHTRADIUS = 50;
 	public Type type;
 	
+	//Default constructor using placeholder values
+	public PowerUp()
+	{
+		super(new Vector(0, 0), 16, 16);
+		getCenter().y = getCenter().y - getHeight()/2;
+		this.type = Type.DOUBLEJUMP;
+		sprite = new Sprite(SpriteSheet.POWERUP, type.aniNum);
+		sprite.frame = 0;
+	}
+	
 	public PowerUp(Vector vIn, Type type) {
 		super(vIn, 16, 16);
-		if(Player.powerUps.contains(type))
-		{
-			Content.powerUpsMng.remove(this);
-			return;
-		}
 		getCenter().y = getCenter().y - getHeight()/2;
 		this.type = type;
 		sprite = new Sprite(SpriteSheet.POWERUP, type.aniNum);
 		sprite.frame = 0;
 	}
 	
-	
+	public void setType(String powUp)
+	{
+		//Change the type and sprite of the powerup
+		this.type = Type.valueOf(powUp);
+		sprite = new Sprite(SpriteSheet.POWERUP, type.aniNum);
+	}
 	
 	@Override
 	public void logic() 

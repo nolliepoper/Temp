@@ -42,36 +42,28 @@ public class Content extends JPanel
 		currRoom = new Room("start.json", frame);
         //currRoom.getData();
 
+		//Create the platforms in the starting room
         pltfrmMng = new Manager(frame, this);
         add(pltfrmMng);
 		pltfrmMng.addAll(currRoom.getPlatforms());
-		
+
+		//Spawn all of the enemies
 		enemyMng = new Manager(frame, this);
         add(enemyMng);
 		enemyMng.addAll(currRoom.getEnemies());
 
+		//Create all of the powerups
 		powerUpsMng = new Manager(frame, this);
         add(powerUpsMng);
-		//powerUpsMng.addAll(currRoom.getPowerUps());
+		powerUpsMng.addAll(currRoom.getPowerUps());
 		
         bulletMng = new Manager(frame, this);
         add(bulletMng);
 
-        /*
-         * block = new Manager(frame, this); add(block);
-         */
-
-        
-
-        /*target = new Manager(frame, this);
-        add(target);
-        getLast().add(new Target(new Vector(450, 150), 50, 50, target));
-        getLast().add(new Target(new Vector(200, 250), 50, 50, target));
-        getLast().add(new Target(new Vector(100, 375), 50, 50, target));
-        getLast().add(new Target(new Vector(300, 500), 50, 50, target));
-        */
+		//Create the map
 		Map.defaultMap = new Map(currRoom);
         
+		//Create the player and their spawn point
         currSpawn = currRoom.getWestSpawn();
         add(new Manager<Player>(frame, this));
         getLast().add(new Player(currSpawn));
@@ -191,9 +183,22 @@ public class Content extends JPanel
             pltfrmMng.drop();
             bulletMng.drop();
             enemyMng.drop();
+			powerUpsMng.drop();
             pltfrmMng.addAll(currRoom.getPlatforms());
             enemyMng.addAll(currRoom.getEnemies());
-            getType("Player").get(0).setCenter(currSpawn);
+			powerUpsMng.addAll(currRoom.getPowerUps());
+			getType("Player").get(0).setCenter(currSpawn);
+            
+			//Add only the powerups that have not been ollected to the list
+			/*ArrayList<PowerUp> newPowerUps = currRoom.getPowerUps();
+			Player tmpPlayer = (Player)getType("Player").get(0);
+			for(PowerUp powUp : newPowerUps)
+			{
+				if(tmpPlayer.hasPower(powUp))
+				{
+					newPowerUps.remove(powUp);
+				}
+			}*/
         }
     }
     public void setBloodOverlay()
