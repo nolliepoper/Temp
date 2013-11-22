@@ -6,18 +6,16 @@ import java.awt.Graphics2D;
  *
  * @author Branden
  */
-public class BreakableWall extends Enemy {
-
+public class BreakableWall extends Enemy
+{
 	int side;
-	
 	public void setSide(int s)
 	{
 		side = s;
 	}
-	
 	public void setPosition(int pos)
 	{
-		switch (side)
+		switch(side)
 		{
 			//north
 			case 0:
@@ -51,22 +49,22 @@ public class BreakableWall extends Enemy {
 				this.setHeight(100);
 				break;
 			}
-			
+
 		}
 	}
-	
 	@Override
-	public void logic() {
+	public void logic()
+	{
 	}
-
 	@Override
-	public void paint(Graphics2D gIn) {
+	public void paint(Graphics2D gIn)
+	{
 		gIn.setColor(Color.WHITE);
-        gIn.fillRect(getCenter().x - getWidth() / 2,
-        getCenter().y - getHeight() / 2, getWidth(), getHeight());
+		gIn.fillRect(getCenter().x - getWidth() / 2,
+				getCenter().y - getHeight() / 2, getWidth(), getHeight());
 	}
-
 	@Override
-	public void dispose() {	}
-	
+	public void dispose()
+	{
+	}
 }

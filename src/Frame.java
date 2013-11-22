@@ -12,101 +12,98 @@ public class Frame extends JFrame
 {
 	public static final int HEIGHT = 600;
 	public static final int WIDTH = 800;
-	
-    //Where everything is drawn and handled after Main Menu Concludes
-    private final Content manager;
-    private static MainMenu mainMenu;
-    //The image initiliazation information for the Game's Icon and Main Menu Image
-    BufferedImage imgIcon;
-    BufferedImage imgTitle;
-    //To play music loop
-    
-    // Constructor
-    public Frame()
-    {
-        super("Tempovania");
-        setSize(WIDTH, HEIGHT);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setResizable(false);
-        addWindowListener(new Frame.Exit());
+	//Where everything is drawn and handled after Main Menu Concludes
+	private final Content manager;
+	private static MainMenu mainMenu;
+	//The image initiliazation information for the Game's Icon and Main Menu Image
+	BufferedImage imgIcon;
+	BufferedImage imgTitle;
+	//To play music loop
+	// Constructor
+	public Frame()
+	{
+		super("Tempovania");
+		setSize(WIDTH, HEIGHT);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setResizable(false);
+		addWindowListener(new Frame.Exit());
 
-        //Load and set the main menu image and the game's icon
-        loadIconImage("bin\\images\\MainMenu\\icon.png");
-        setIconImage(imgIcon);
-        loadTitleImage("bin\\images\\MainMenu\\Title.png");
-        
-        mainMenu = new MainMenu(this, imgTitle);
-        add(mainMenu);
+		//Load and set the main menu image and the game's icon
+		loadIconImage("bin\\images\\MainMenu\\icon.png");
+		setIconImage(imgIcon);
+		loadTitleImage("bin\\images\\MainMenu\\Title.png");
 
-        manager = new Content(this);
-        
-        //Sets up the Audio!
-        String musicDest = "bin\\sounds\\mainMenu\\DST-Surreal.wav";
-        //We can implement this later
+		mainMenu = new MainMenu(this, imgTitle);
+		add(mainMenu);
 
-        setVisible(true);
-    }
-    public void beginGame()
-    {
-        remove(mainMenu);
-        add(manager);
+		manager = new Content(this);
 
-        //Create and begin the Logic and Paint Threads
-        Thread logic = new Thread(new Logic(this, manager));
-        Thread paint = new Thread(new Paint(this, manager));
+		//Sets up the Audio!
+		String musicDest = "bin\\sounds\\mainMenu\\DST-Surreal.wav";
+		//We can implement this later
 
-        logic.start();
-        paint.start();
+		setVisible(true);
+	}
+	public void beginGame()
+	{
+		remove(mainMenu);
+		add(manager);
 
-        //Add collision detection to the frame and content manager
-        new Collision(this, manager);
+		//Create and begin the Logic and Paint Threads
+		Thread logic = new Thread(new Logic(this, manager));
+		Thread paint = new Thread(new Paint(this, manager));
 
-        //Add the Listeners for Keyboard and Mouse Input
-        addKeyListener(new Keyboard());
-        Mouse m = new Mouse();
-        addMouseListener(m);
-        addMouseMotionListener(m);
-        setVisible(true);
-    }
-    
-    private void loadIconImage(String path)
-    {//Try and Load the Image from the bin images
-        try
-        {
-            imgIcon = ImageIO.read(new File(path));
-        }
-        catch(IOException e)
-        {
-            System.out.println("Unable to load Icon Image!");
-        }
-    }
-    private void loadTitleImage(String path)
-    {//Try to Load the Image from the bin Images
-        try
-        {
-            System.out.println(path);
-            imgTitle = ImageIO.read(new File(path));
-        }
-        catch(IOException e)
-        {
-            System.out.println("Unable to load Title Image!");
-        }
-    }
-    public Content getManager()
-    {
-        return manager;
-    }
-    // Private inner class because no other classes should determine termination.
+		logic.start();
+		paint.start();
 
-    private class Exit extends WindowAdapter
-    {
-        @Override
-        public void windowClosed(WindowEvent eIn)
-        {
-            // Do exiting logic.
-            System.out.println("Exiting.");
-            System.exit(0); // Exit successfully.
-        }
-    }
+		//Add collision detection to the frame and content manager
+		new Collision(this, manager);
+
+		//Add the Listeners for Keyboard and Mouse Input
+		addKeyListener(new Keyboard());
+		Mouse m = new Mouse();
+		addMouseListener(m);
+		addMouseMotionListener(m);
+		setVisible(true);
+	}
+	private void loadIconImage(String path)
+	{//Try and Load the Image from the bin images
+		try
+		{
+			imgIcon = ImageIO.read(new File(path));
+		}
+		catch(IOException e)
+		{
+			System.out.println("Unable to load Icon Image!");
+		}
+	}
+	private void loadTitleImage(String path)
+	{//Try to Load the Image from the bin Images
+		try
+		{
+			System.out.println(path);
+			imgTitle = ImageIO.read(new File(path));
+		}
+		catch(IOException e)
+		{
+			System.out.println("Unable to load Title Image!");
+		}
+	}
+	public Content getManager()
+	{
+		return manager;
+	}
+	// Private inner class because no other classes should determine termination.
+
+	private class Exit extends WindowAdapter
+	{
+		@Override
+		public void windowClosed(WindowEvent eIn)
+		{
+			// Do exiting logic.
+			System.out.println("Exiting.");
+			System.exit(0); // Exit successfully.
+		}
+	}
 }
