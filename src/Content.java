@@ -257,21 +257,19 @@ public class Content extends JPanel
             g.setColor(new Color(255, 255, 255, 51)); //Lets make a box that is 20% opaque!
             //g.setColor(Color.black); //I was going to do this, but I really like the random color that it makes it haha
             g.fillRect(0, 0, getWidth(), getHeight());//Lets make it the size of the window!
-            g.setColor(Color.WHITE);
-            drawCenteredString(g, "GAME PAUSED", getWidth() / 2, 15); //Let the Player know the game is Paused
-            drawCenteredString(g, "Press 'P' to Resume Game", getWidth() / 2, 30); //And how they Can Return to it!
-
-            int i = 1;
-            Font tempFont = g.getFont();
-            g.setFont(g.getFont().deriveFont(Font.BOLD));
-            g.drawString("Power Ups:", 10, 50);
-            g.setFont(tempFont);
-            for(PowerUp.Type t : Player.powerUps)
-            {
-                g.drawString(t.toString(), 30, 25 * (i++) + 50);
-            }
-
-            Map.defaultMap.draw(g, 250, 100, 300, 300);
+			g.setColor(Color.WHITE);
+            drawCenteredString(g, "GAME PAUSED", getWidth()/2, 15); //Let the Player know the game is Paused
+            drawCenteredString(g, "Press 'P' to Resume Game", getWidth()/2, 30); //And how they Can Return to it!
+			
+			int i = 1;
+			Font tempFont = g.getFont();
+			g.setFont(g.getFont().deriveFont(Font.BOLD));
+			g.drawString("Power Ups:", 10, 50);
+			g.setFont(tempFont);
+			for(PowerUp.Type t : Player.powerUps)
+				g.drawString(t.toString(), 30, 25*(i++) + 50);
+			
+			Map.defaultMap.draw(g, getWidth()/4, getHeight()/4, getWidth()/2, getHeight()/2);
         }
     }
     public static void drawCenteredString(Graphics2D g, String s, int x, int y)

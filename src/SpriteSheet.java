@@ -32,8 +32,8 @@ public enum SpriteSheet
 {
     PLAYER("player"),
 	BULLET("bullet"),
-	POWERUP("powerUps");
-	
+	POWERUP("powerUps"),
+	HOPPER("hopper");
 	
     private BufferedImage[][] frames;
     private int[][] anchorsX;
@@ -73,7 +73,7 @@ public enum SpriteSheet
     {
         return frames[animationNum].length;
     }
-    public int numAnimations(int animationNum)
+    public int numAnimations()
     {
         return frames.length;
     }
