@@ -13,6 +13,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 	@JsonSubTypes.Type(value = Target.class, name = "Target"),
 	@JsonSubTypes.Type(value = Hopper.class, name = "Hopper"),
 	@JsonSubTypes.Type(value = Pacer.class, name = "Pacer"),
+	@JsonSubTypes.Type(value = Floater.class, name = "Floater"),
 	@JsonSubTypes.Type(value = BreakableWall.class, name = "BreakableWall")
 })
 /**

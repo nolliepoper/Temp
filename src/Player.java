@@ -49,14 +49,12 @@ public class Player extends Entity
 	public void kill()
 	{
 		alive = false;
-		System.out.println("Player killed.");
 	}
 	public void revive()
 	{
 		dx = 0;
 		dy = 0;
 		alive = true;
-		System.out.println("Player revived.");
 	}
 	public boolean isAlive()
 	{

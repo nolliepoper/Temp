@@ -20,6 +20,7 @@ public class Bullet extends Entity
 		list.add("Target");
 		list.add("Hopper");
 		list.add("Pacer");
+		list.add("Floater");
 		list.add("BreakableWall");
 		list.add("Platform");
 	}
