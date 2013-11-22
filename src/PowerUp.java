@@ -55,7 +55,7 @@ public class PowerUp extends Entity
 	
 	public static enum Type
 	{
-		WIDERLIGHT("Wider Flashlight Beam", 0), 
+		WIDERLIGHT("Stronger Flashlight Beam", 0), 
 		DOUBLEJUMP("Double Jump", 1),
 		FASTERRELOAD("Faster Reload", 2);
 		

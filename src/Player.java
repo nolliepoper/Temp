@@ -66,17 +66,25 @@ public class Player extends Entity
 		legs.draw(gIn, getCenter());
 		arm.draw(gIn, shoulder);
 		
-		//lighting stuff
+		//circle lighting stuff
 		float[] distribution = {0.0f, 0.4f, 1f};
 		Color[] colors = {Color.WHITE, new Color(0, 0, 0, 128), new Color(0, 0, 0, 0)};
-		RadialGradientPaint grad = new RadialGradientPaint(getCenter().toPoint(), LIGHTRADIUS, distribution, colors);
-		Content.darkness.setPaint(grad);
-		Content.darkness.fillOval(getCenter().x - LIGHTRADIUS, getCenter().y - LIGHTRADIUS, 2*LIGHTRADIUS, 2*LIGHTRADIUS);
 		
+		int tempRadius = LIGHTRADIUS;
+		if(powerUps.contains(PowerUp.Type.WIDERLIGHT))
+				tempRadius += 50;
+		RadialGradientPaint grad = new RadialGradientPaint(getCenter().toPoint(), tempRadius, distribution, colors);
+		Content.darkness.setPaint(grad);
+		Content.darkness.fillOval(getCenter().x - tempRadius, getCenter().y - tempRadius, 2*tempRadius, 2*tempRadius);
+		
+		//flashlight beam
 		float LightDist = Math.min((float)mouseDistance + 100f, 400);
 		int angle = Math.min(18000/(int)LightDist - 30, 90);
 		if(powerUps.contains(PowerUp.Type.WIDERLIGHT))
-			angle+=30;
+		{
+			LightDist += 50;
+			angle += 15;
+		}
         grad = new RadialGradientPaint(getCenter().toPoint(), LightDist, distribution, colors);
         Content.darkness.setPaint(grad);
         Content.darkness.fillArc(shoulder.x - (int)LightDist, shoulder.y - (int)LightDist, 2*(int)LightDist, 2*(int)LightDist,
