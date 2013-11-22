@@ -24,7 +24,7 @@ public abstract class Entity
     //Default constructor for the parser
     public Entity()
     {
-        center = null;
+        center = new Vector(0,0);
         dest = null;
         width = 0;
         height = 0;
@@ -48,26 +48,28 @@ public abstract class Entity
     //Takes a vector (the center of the rectangle), width, and height
     public Entity(Vector vIn, int wIn, int hIn)
     {
-        center = vIn;
+        center = new Vector(0,0);
+		this.setCenter(vIn);
         dest = new Vector(vIn.x, vIn.y);
         list = new ArrayList<>();
         width = wIn;
         height = hIn;
     }
     //Setters for all independant variables
-    public void setCenter(Vector cIn)
+    final public void setCenter(Vector cIn)
     {
-        center = cIn;
+        center.x = cIn.x;
+		center.y = cIn.y;
     }
-    public void setDest(Vector dIn)
+    final public void setDest(Vector dIn)
     {
         dest = dIn;
     }
-    public void setWidth(int wIn)
+    final public void setWidth(int wIn)
     {
         width = (wIn % 2 == 0) ? wIn : wIn + 1;
     }
-    public void setHeight(int hIn)
+    final public void setHeight(int hIn)
     {
         height = (hIn % 2 == 0) ? hIn : hIn + 1;
     }

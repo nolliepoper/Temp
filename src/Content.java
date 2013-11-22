@@ -20,6 +20,8 @@ public class Content extends JPanel
     private Manager<Enemy> enemyMng;
     public static Manager<Bullet> bulletMng;
     public static Manager<PowerUp> powerUpsMng;
+	
+	private Player playChar;
     //private final Manager target;
     private boolean run;
     private Room currRoom;
@@ -28,11 +30,12 @@ public class Content extends JPanel
     private Graphics2D bloodOverlayG;
     private int bloodOverlay = 0;
     private BufferedImage blood;
-    //This is where the player will spawn in the current room
-    Vector currSpawn = null;
+	
+	Vector currSpawn;
+    
     // Constructor
     public Content(Frame fIn)
-    {
+    {		
         frame = fIn;
         list = new CopyOnWriteArrayList<>();
         run = true;
@@ -50,7 +53,6 @@ public class Content extends JPanel
         enemyMng = new Manager(frame, this);
         add(enemyMng);
         enemyMng.addAll(currRoom.getEnemies());
-        enemyMng.add(new Pacer(new Vector(200, 400), 20, 50));
 
         //Create all of the powerups
         powerUpsMng = new Manager(frame, this);
@@ -66,7 +68,9 @@ public class Content extends JPanel
         //Create the player and their spawn point
         currSpawn = currRoom.getWestSpawn();
         add(new Manager<Player>(frame, this));
-        getLast().add(new Player(currSpawn));
+		playChar = new Player(new Vector (0, 0));
+		playChar.setCenter(currSpawn);
+        getLast().add(playChar);
 
         setBloodImage();
     }
@@ -133,9 +137,39 @@ public class Content extends JPanel
             }
         }
 
-        //Move to the next room
-
-        Vector currPos = getType("Player").get(0).getCenter();
+		System.out.println("(" + currSpawn.x + ", " + currSpawn.y + ")");
+		
+        //Move to the next room if necessary
+		moveRoom();
+		System.out.println("(" + currSpawn.x + ", " + currSpawn.y + ")");
+		//Respawn the player and reload the room if the character died
+		if(!((Player)getType("Player").get(0)).isAlive())
+			reloadRoom();
+        System.out.println("(" + currSpawn.x + ", " + currSpawn.y + ")");
+    }
+	
+	public void reloadRoom()
+	{
+		//Load the room. This adds overhead, but it either adds it here
+		// or has to clone a lot of objects
+		currRoom.loadRoom();
+		pltfrmMng.drop();
+		bulletMng.drop();
+		enemyMng.drop();
+		powerUpsMng.drop();
+		pltfrmMng.addAll(currRoom.getPlatforms());
+		enemyMng.addAll(currRoom.getEnemies());
+		powerUpsMng.addAll(currRoom.getPowerUps());
+		//System.out.println("(" + currSpawn.x + ", " + currSpawn.y + ")");
+		getType("Player").get(0).setCenter(currSpawn);
+		//System.out.println("(" + getType("Player").get(0).getCenter().x + ", " + getType("Player").get(0).getCenter().y + ")");
+		((Player)getType("Player").get(0)).revive();
+		
+	}
+	
+	public void moveRoom()
+	{
+		Vector currPos = getType("Player").get(0).getCenter();
 
         boolean isMove = false;
 
@@ -143,7 +177,7 @@ public class Content extends JPanel
         if(currPos.y < 0)
         {
             //Read the data about the room
-            currRoom.loadRoom(currRoom.getNorth());
+            currRoom.setRoomName(currRoom.getNorth());
             Map.defaultMap.Update(0, -1, currRoom);
             currSpawn = currRoom.getSouthSpawn();
             isMove = true;
@@ -152,7 +186,7 @@ public class Content extends JPanel
         else if(currPos.y > frame.getHeight())
         {
             //Read the data about the room
-            currRoom.loadRoom(currRoom.getSouth());
+            currRoom.setRoomName(currRoom.getSouth());
             Map.defaultMap.Update(0, 1, currRoom);
             currSpawn = currRoom.getNorthSpawn();
             isMove = true;
@@ -161,7 +195,7 @@ public class Content extends JPanel
         else if(currPos.x > frame.getWidth())
         {
             //Read the data about the room
-            currRoom.loadRoom(currRoom.getEast());
+            currRoom.setRoomName(currRoom.getEast());
             Map.defaultMap.Update(1, 0, currRoom);
             currSpawn = currRoom.getWestSpawn();
             isMove = true;
@@ -170,7 +204,7 @@ public class Content extends JPanel
         else if(currPos.x < 0)
         {
             //Read the data about the room
-            currRoom.loadRoom(currRoom.getWest());
+            currRoom.setRoomName(currRoom.getWest());
             Map.defaultMap.Update(-1, 0, currRoom);
             currSpawn = currRoom.getEastSpawn();
             isMove = true;
@@ -180,27 +214,10 @@ public class Content extends JPanel
         //the managers
         if(isMove)
         {
-            pltfrmMng.drop();
-            bulletMng.drop();
-            enemyMng.drop();
-            powerUpsMng.drop();
-            pltfrmMng.addAll(currRoom.getPlatforms());
-            enemyMng.addAll(currRoom.getEnemies());
-            powerUpsMng.addAll(currRoom.getPowerUps());
-            getType("Player").get(0).setCenter(currSpawn);
-
-            //Add only the powerups that have not been ollected to the list
-			/*ArrayList<PowerUp> newPowerUps = currRoom.getPowerUps();
-             Player tmpPlayer = (Player)getType("Player").get(0);
-             for(PowerUp powUp : newPowerUps)
-             {
-             if(tmpPlayer.hasPower(powUp))
-             {
-             newPowerUps.remove(powUp);
-             }
-             }*/
+            reloadRoom();
         }
-    }
+	}
+	
     public void setBloodOverlay()
     {
         setBloodImage();

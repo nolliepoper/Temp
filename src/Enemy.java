@@ -11,7 +11,8 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 @JsonSubTypes(
 {
     @JsonSubTypes.Type(value = Target.class, name = "Target"),
-    @JsonSubTypes.Type(value = Hopper.class, name = "Hopper")
+    @JsonSubTypes.Type(value = Hopper.class, name = "Hopper"),
+	@JsonSubTypes.Type(value = Pacer.class, name = "Pacer")
 })
 /**
  *
@@ -59,7 +60,8 @@ public abstract class Enemy extends Entity
     {
         return alive;
     }
-    @Override
+
+	@Override
     public abstract void logic();
     @Override
     public abstract void paint(Graphics2D gIn);

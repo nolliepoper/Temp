@@ -20,22 +20,24 @@ public class Room
     private String LVL_PATH = "bin/roomFiles/";
     private String IMG_PATH = "bin/images/";
     private Frame roomFrame;
+	private String roomName;
     private RoomData roomInfo;
     private Vector spawn;
     // Constructor
     public Room(String name, Frame frame)
     {
         roomFrame = frame;
-        loadRoom(name);
+        setRoomName(name);
+		loadRoom();
         //spawn = roomInfo.getDefaultSpawn();
     }
-    public boolean loadRoom(String name)
+    public boolean loadRoom()
     {
         //String prevRoom = roomInfo.getRoomName();
         ObjectMapper mapper = new ObjectMapper();
         try
         {
-            roomInfo = mapper.readValue(new File(LVL_PATH + name), RoomData.class);
+            roomInfo = mapper.readValue(new File(LVL_PATH + roomName), RoomData.class);
         }
         catch(JsonGenerationException e)
         {
@@ -60,6 +62,12 @@ public class Room
 
         return true;
     }
+	
+	public void setRoomName(String name)
+	{
+		roomName = name;
+	}
+	
     public ArrayList<Platform> getPlatforms()
     {
         return roomInfo.getPlatforms();
@@ -128,10 +136,6 @@ public class Room
     }
     public void paint(Graphics2D gIn)
     {
-
         gIn.drawImage(roomInfo.getBackground(), 0, 0, roomFrame.getWidth(), roomFrame.getHeight(), roomFrame);
-
-        /*for(Platform p : roomInfo.getPlatforms())
-         p.paint(gIn);*/
     }
 }

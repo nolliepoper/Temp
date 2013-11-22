@@ -8,6 +8,18 @@ public class Vector
     public Vector()
     {
     }
+	public Vector(int xIn, int yIn)
+    {
+        x = xIn;
+        y = yIn;
+    }
+	
+	//Copy constructor
+	public Vector(Vector v)
+	{
+		x = v.x;
+		y = v.y;
+	}
     public void setX(int xIn)
     {
         x = xIn;
@@ -16,11 +28,7 @@ public class Vector
     {
         y = yIn;
     }
-    public Vector(int xIn, int yIn)
-    {
-        x = xIn;
-        y = yIn;
-    }
+    
     public Vector sub(Vector vIn)
     {
         return new Vector(x - vIn.x, y - vIn.y);

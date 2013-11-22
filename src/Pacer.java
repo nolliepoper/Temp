@@ -10,6 +10,19 @@ public class Pacer extends Enemy
     double dirX;
     int minX, maxX;
     // Constructor.
+	public Pacer()
+    {
+        super(new Vector(0,0), 20, 50);
+        color = Color.GRAY;
+        int c = 2; // Absolute value of horizontal velocity.
+        dirX = dx = 2 * c * ((int)(Math.random() * 2)) - c; // Random to be negative or positive
+        prev = null;
+        minX = Integer.MIN_VALUE;
+        maxX = Integer.MAX_VALUE;
+        list.add("Player");
+        list.add("Hopper");
+        list.add("Platform");
+    }
     public Pacer(Vector vIn, int wIn, int hIn)
     {
         super(vIn, wIn, hIn);

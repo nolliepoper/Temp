@@ -52,6 +52,12 @@ public class Player extends Entity
         alive = false;
         System.out.println("Player killed.");
     }
+	
+	public void revive()
+	{
+		alive = true;
+		System.out.println("Player revived.");
+	}
     public boolean isAlive()
     {
         return alive;

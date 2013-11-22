@@ -20,6 +20,7 @@ public class FloaterNo1 extends Entity{
     private int health; //How many hits before the poor guy dies
     private static Player player; //To get the players location
     // Constructor
+	public FloaterNo1() {}
     public FloaterNo1(Vector vIn, int wIn, int hIn, Manager mIn, Player pIn)
     {
         super(vIn, wIn, hIn);
@@ -47,7 +48,7 @@ public class FloaterNo1 extends Entity{
     public String getName()
     {
         return name;
-    }
+    }	
     @Override
     public void logic()
     {
