@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
@@ -14,8 +13,8 @@ public class Hopper extends Enemy
     // Constructor.
 	public Hopper()
     {
-        super(new Vector(0, 0), 50, 50);
-        color = Color.GREEN;
+        super(new Vector(0, 0), 33, 33);
+		sprite = new Sprite(SpriteSheet.HOPPER, 0);
         int c = 3; // Absolute value of horizontal velocity.
         dirX = dx = 2 * c * ((int)(Math.random() * 2)) - c; // Random to be negative or positive.
         wait = tick = 100;
@@ -48,6 +47,9 @@ public class Hopper extends Enemy
         }
         if(jump)
         {
+			sprite.animation = 1;
+			if(sprite.frame < sprite.spriteSheet.numFrames(sprite.animation))
+				sprite.frame += 0.5;
             if(!collide)
             {
                 dx = dirX;
@@ -83,8 +85,10 @@ public class Hopper extends Enemy
         else
         {
             tick--;
+			sprite.animation = 0;
+			sprite.frame += 0.25;
             if(tick <= 0)
-            {
+            { 
                 // Jump.
                 dy -= 8;
                 jump = true;
@@ -92,6 +96,8 @@ public class Hopper extends Enemy
                 tick = wait;
             }
         }
+		
+		sprite.xScale = dirX/Math.abs(dirX);
     }
     @Override
     public void paint(Graphics2D gIn)
@@ -101,9 +107,7 @@ public class Hopper extends Enemy
         {
 			return;
 		}
-        gIn.setColor(color);
-		gIn.fillOval(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
-
+		sprite.draw(gIn, getCenter());
     }
     @Override
     public void dispose()

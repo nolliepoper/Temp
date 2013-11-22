@@ -13,11 +13,7 @@ public class PowerUp extends Entity
 	//Default constructor using placeholder values
 	public PowerUp()
 	{
-		super(new Vector(0, 0), 16, 16);
-		getCenter().y = getCenter().y - getHeight()/2;
-		this.type = Type.DOUBLEJUMP;
-		sprite = new Sprite(SpriteSheet.POWERUP, type.aniNum);
-		sprite.frame = 0;
+		this(new Vector(0, 0), Type.DOUBLEJUMP);
 	}
 	
 	public PowerUp(Vector vIn, Type type) {
@@ -37,7 +33,10 @@ public class PowerUp extends Entity
 	
 	@Override
 	public void logic() 
-	{}
+	{
+		if(Player.powerUps.contains(type))
+			Content.powerUpsMng.remove(this);
+	}
 
 	@Override
 	public void paint(Graphics2D gIn) {

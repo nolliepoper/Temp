@@ -73,7 +73,7 @@ public enum SpriteSheet
     {
         return frames[animationNum].length;
     }
-    public int numAnimations(int animationNum)
+    public int numAnimations()
     {
         return frames.length;
     }

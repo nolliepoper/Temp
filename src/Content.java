@@ -268,7 +268,7 @@ public class Content extends JPanel
 			for(PowerUp.Type t : Player.powerUps)
 				g.drawString(t.toString(), 30, 25*(i++) + 50);
 			
-			Map.defaultMap.draw(g, 250, 100, 300, 300);
+			Map.defaultMap.draw(g, getWidth()/4, getHeight()/4, getWidth()/2, getHeight()/2);
         }
     }
 	
