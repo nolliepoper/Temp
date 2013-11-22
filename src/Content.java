@@ -242,9 +242,10 @@ public class Content extends JPanel
     {
         super.paint(gIn);
         Graphics2D g = (Graphics2D)gIn;
-        AffineTransform trans = new AffineTransform();
+        //AffineTransform trans = new AffineTransform();
         //trans.scale(0.5, 0.5);
-        g.transform(trans);
+        //g.transform(trans);
+		//g.scale(0.5, 0.5);
 
         BufferedImage temp = new BufferedImage(800, 800, BufferedImage.TYPE_4BYTE_ABGR);
         darkness = temp.createGraphics();
