@@ -3,7 +3,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.awt.Graphics2D;
 import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
@@ -12,7 +11,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 @JsonSubTypes(
 {
     @JsonSubTypes.Type(value = Target.class, name = "Target"),
-	@JsonSubTypes.Type(value = Hopper.class, name = "Hopper")
+    @JsonSubTypes.Type(value = Hopper.class, name = "Hopper")
 })
 /**
  *
@@ -53,28 +52,17 @@ public abstract class Enemy extends Entity
     public void kill()
     {
         alive = false;
+        getCenter().x = -1000; // Move off screen.
+        getCenter().y = -1000;
     }
     public boolean isAlive()
     {
         return alive;
     }
-    
     @Override
-    public void logic()
-    {
-        System.out.println("CALLING LOGIC IN ENEMY\n");
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public abstract void logic();
     @Override
-    public void paint(Graphics2D gIn)
-    {
-        System.out.println("CALLING PAINT IN ENEMY!!\n");
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public abstract void paint(Graphics2D gIn);
     @Override
-    public void dispose()
-    {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    public abstract void dispose();
 }

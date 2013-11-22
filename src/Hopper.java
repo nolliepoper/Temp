@@ -10,9 +10,8 @@ public class Hopper extends Enemy
     private Color color;
     private int tick, wait;
     private boolean jump, collide;
-    
     // Constructor.
-	public Hopper()
+    public Hopper()
     {
         super(new Vector(0, 0), 50, 50);
         color = Color.GREEN;
@@ -21,7 +20,7 @@ public class Hopper extends Enemy
         wait = tick = 100;
         collide = false;
         jump = collide = true;
-        
+
         list.add("Player");
         list.add("Platform");
     }
@@ -34,14 +33,14 @@ public class Hopper extends Enemy
         wait = tick = 100;
         collide = false;
         jump = collide = true;
-        
+
         list.add("Player");
         list.add("Platform");
     }
     @Override
     public void logic()
     {
-		//Do nothing if it is dead
+        //Do nothing if it is dead
         if(!isAlive())
         {
             return;
@@ -57,27 +56,44 @@ public class Hopper extends Enemy
             {
                 dy = 12;
             }
-            
+
             boolean down = false;
             if(dy > 0)
             {
                 down = true;
             }
-            
+
             getDest().x = getCenter().x + (int)dx;
             getDest().y = getCenter().y + (int)dy;
-            
+
             Entity tmpX = Collision.moveX(this);
             Entity tmpY = Collision.moveY(this);
-            
+
             if(tmpX != null)
             {
-                dirX *= -1;
-                collide = true;
+                if(tmpX.toString().equals("Player"))
+                {
+                    Player tmp = (Player)tmpX;
+                    System.out.println("Player killed.");
+                    tmp.kill();
+                }
+                else
+                {
+                    dirX *= -1;
+                    collide = true;
+                }
             }
             if(down && tmpY != null)
             {
-                jump = false;
+                if(tmpY.toString().equals("Player"))
+                {
+                    Player tmp = (Player)tmpY;
+                    tmp.kill();
+                }
+                else
+                {
+                    jump = false;
+                }
             }
         }
         else
@@ -96,14 +112,13 @@ public class Hopper extends Enemy
     @Override
     public void paint(Graphics2D gIn)
     {
-		//Do nothing if it is dead
+        //Do nothing if it is dead
         if(!isAlive())
         {
-			return;
-		}
+            return;
+        }
         gIn.setColor(color);
-		gIn.fillOval(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
-
+        gIn.fillOval(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
     }
     @Override
     public void dispose()

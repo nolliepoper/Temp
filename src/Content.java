@@ -16,10 +16,10 @@ public class Content extends JPanel
 {
     private final Frame frame;
     private CopyOnWriteArrayList<Manager> list;
-    private Manager pltfrmMng;
-	private Manager enemyMng;
-    public static Manager bulletMng;
-    public static Manager powerUpsMng;
+    private Manager<Platform> pltfrmMng;
+    private Manager<Enemy> enemyMng;
+    public static Manager<Bullet> bulletMng;
+    public static Manager<PowerUp> powerUpsMng;
     //private final Manager target;
     private boolean run;
     private Room currRoom;
@@ -28,9 +28,8 @@ public class Content extends JPanel
     private Graphics2D bloodOverlayG;
     private int bloodOverlay = 0;
     private BufferedImage blood;
-	//This is where the player will spawn in the current room
+    //This is where the player will spawn in the current room
     Vector currSpawn = null;
-	
     // Constructor
     public Content(Frame fIn)
     {
@@ -39,31 +38,32 @@ public class Content extends JPanel
         run = true;
 
         setBackground(Color.WHITE);
-		currRoom = new Room("start.json", frame);
+        currRoom = new Room("start.json", frame);
         //currRoom.getData();
 
-		//Create the platforms in the starting room
+        //Create the platforms in the starting room
         pltfrmMng = new Manager(frame, this);
         add(pltfrmMng);
-		pltfrmMng.addAll(currRoom.getPlatforms());
+        pltfrmMng.addAll(currRoom.getPlatforms());
 
-		//Spawn all of the enemies
-		enemyMng = new Manager(frame, this);
+        //Spawn all of the enemies
+        enemyMng = new Manager(frame, this);
         add(enemyMng);
-		enemyMng.addAll(currRoom.getEnemies());
+        enemyMng.addAll(currRoom.getEnemies());
+        enemyMng.add(new Pacer(new Vector(200, 400), 20, 50));
 
-		//Create all of the powerups
-		powerUpsMng = new Manager(frame, this);
+        //Create all of the powerups
+        powerUpsMng = new Manager(frame, this);
         add(powerUpsMng);
-		powerUpsMng.addAll(currRoom.getPowerUps());
-		
+        powerUpsMng.addAll(currRoom.getPowerUps());
+
         bulletMng = new Manager(frame, this);
         add(bulletMng);
-
-		//Create the map
-		Map.defaultMap = new Map(currRoom);
         
-		//Create the player and their spawn point
+        //Create the map
+        Map.defaultMap = new Map(currRoom);
+
+        //Create the player and their spawn point
         currSpawn = currRoom.getWestSpawn();
         add(new Manager<Player>(frame, this));
         getLast().add(new Player(currSpawn));
@@ -144,7 +144,7 @@ public class Content extends JPanel
         {
             //Read the data about the room
             currRoom.loadRoom(currRoom.getNorth());
-			Map.defaultMap.Update(0, -1, currRoom);
+            Map.defaultMap.Update(0, -1, currRoom);
             currSpawn = currRoom.getSouthSpawn();
             isMove = true;
         }
@@ -153,7 +153,7 @@ public class Content extends JPanel
         {
             //Read the data about the room
             currRoom.loadRoom(currRoom.getSouth());
-			Map.defaultMap.Update(0, 1, currRoom);
+            Map.defaultMap.Update(0, 1, currRoom);
             currSpawn = currRoom.getNorthSpawn();
             isMove = true;
         }
@@ -162,7 +162,7 @@ public class Content extends JPanel
         {
             //Read the data about the room
             currRoom.loadRoom(currRoom.getEast());
-			Map.defaultMap.Update(1, 0, currRoom);
+            Map.defaultMap.Update(1, 0, currRoom);
             currSpawn = currRoom.getWestSpawn();
             isMove = true;
         }
@@ -171,7 +171,7 @@ public class Content extends JPanel
         {
             //Read the data about the room
             currRoom.loadRoom(currRoom.getWest());
-			Map.defaultMap.Update(-1, 0, currRoom);
+            Map.defaultMap.Update(-1, 0, currRoom);
             currSpawn = currRoom.getEastSpawn();
             isMove = true;
         }
@@ -183,22 +183,22 @@ public class Content extends JPanel
             pltfrmMng.drop();
             bulletMng.drop();
             enemyMng.drop();
-			powerUpsMng.drop();
+            powerUpsMng.drop();
             pltfrmMng.addAll(currRoom.getPlatforms());
             enemyMng.addAll(currRoom.getEnemies());
-			powerUpsMng.addAll(currRoom.getPowerUps());
-			getType("Player").get(0).setCenter(currSpawn);
-            
-			//Add only the powerups that have not been ollected to the list
+            powerUpsMng.addAll(currRoom.getPowerUps());
+            getType("Player").get(0).setCenter(currSpawn);
+
+            //Add only the powerups that have not been ollected to the list
 			/*ArrayList<PowerUp> newPowerUps = currRoom.getPowerUps();
-			Player tmpPlayer = (Player)getType("Player").get(0);
-			for(PowerUp powUp : newPowerUps)
-			{
-				if(tmpPlayer.hasPower(powUp))
-				{
-					newPowerUps.remove(powUp);
-				}
-			}*/
+             Player tmpPlayer = (Player)getType("Player").get(0);
+             for(PowerUp powUp : newPowerUps)
+             {
+             if(tmpPlayer.hasPower(powUp))
+             {
+             newPowerUps.remove(powUp);
+             }
+             }*/
         }
     }
     public void setBloodOverlay()
@@ -251,30 +251,32 @@ public class Content extends JPanel
                 bloodOverlay--;
             }
         }
-        else{ //If the game is "Paused"
+        else
+        { //If the game is "Paused"
             //This is used to Gray out the background When Pause is Selected
             g.setColor(new Color(255, 255, 255, 51)); //Lets make a box that is 20% opaque!
             //g.setColor(Color.black); //I was going to do this, but I really like the random color that it makes it haha
             g.fillRect(0, 0, getWidth(), getHeight());//Lets make it the size of the window!
-			g.setColor(Color.WHITE);
-            drawCenteredString(g, "GAME PAUSED", getWidth()/2, 15); //Let the Player know the game is Paused
-            drawCenteredString(g, "Press 'P' to Resume Game", getWidth()/2, 30); //And how they Can Return to it!
-			
-			int i = 1;
-			Font tempFont = g.getFont();
-			g.setFont(g.getFont().deriveFont(Font.BOLD));
-			g.drawString("Power Ups:", 10, 50);
-			g.setFont(tempFont);
-			for(PowerUp.Type t : Player.powerUps)
-				g.drawString(t.toString(), 30, 25*(i++) + 50);
-			
-			Map.defaultMap.draw(g, 250, 100, 300, 300);
+            g.setColor(Color.WHITE);
+            drawCenteredString(g, "GAME PAUSED", getWidth() / 2, 15); //Let the Player know the game is Paused
+            drawCenteredString(g, "Press 'P' to Resume Game", getWidth() / 2, 30); //And how they Can Return to it!
+
+            int i = 1;
+            Font tempFont = g.getFont();
+            g.setFont(g.getFont().deriveFont(Font.BOLD));
+            g.drawString("Power Ups:", 10, 50);
+            g.setFont(tempFont);
+            for(PowerUp.Type t : Player.powerUps)
+            {
+                g.drawString(t.toString(), 30, 25 * (i++) + 50);
+            }
+
+            Map.defaultMap.draw(g, 250, 100, 300, 300);
         }
     }
-	
-	public static void drawCenteredString(Graphics2D g, String s, int x, int y)
-	{
-		int centerX = (int)g.getFontMetrics().getStringBounds(s, g).getWidth()/2;
-		g.drawString(s, x - centerX, y);
-	}
+    public static void drawCenteredString(Graphics2D g, String s, int x, int y)
+    {
+        int centerX = (int)g.getFontMetrics().getStringBounds(s, g).getWidth() / 2;
+        g.drawString(s, x - centerX, y);
+    }
 }

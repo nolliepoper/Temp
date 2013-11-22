@@ -12,34 +12,36 @@ public class Bullet extends Entity
     public Bullet(Vector pos, double angle)
     {
         super(pos, 12, 12);
-		sprite = new Sprite(SpriteSheet.BULLET, 0);
-		sprite.rotation = angle;
+        sprite = new Sprite(SpriteSheet.BULLET, 0);
+        sprite.rotation = angle;
         dx = speed * Math.cos(angle);
         dy = speed * Math.sin(angle);
         list.add("Target");
-		list.add("Platform");
+        list.add("Hopper");
+        list.add("Pacer");
+        list.add("Platform");
     }
     @Override
     public void logic()
     {
         getDest().x = getCenter().x + (int)dx;
         getDest().y = getCenter().y + (int)dy;
-		
-		sprite.frame += 1;
+
+        sprite.frame += 1;
 
         Entity o1 = Collision.moveX(this);
         Entity o2 = Collision.moveY(this);
 
         if((o1 != null || o2 != null) || (getCenter().x > Frame.WIDTH || getCenter().x < 0 || getCenter().y > Frame.HEIGHT || getCenter().y < 0))
         {
-            if(o1 != null && (o1.getClass().getName()+"").equals("Target"))
+            if(o1 != null && o1.getClass().getSuperclass().getName().equals("Enemy"))
             {
-                Target tmp = (Target)o1;
+                Enemy tmp = (Enemy)o1;
                 tmp.damage();
             }
-            else if(o2 != null && (o2.getClass().getName()+"").equals("Target"))
+            else if(o2 != null && o2.getClass().getSuperclass().getName().equals("Enemy"))
             {
-                Target tmp = (Target)o2;
+                Enemy tmp = (Enemy)o2;
                 tmp.damage();
             }
             Content.bulletMng.remove(this);
@@ -48,7 +50,7 @@ public class Bullet extends Entity
     @Override
     public void paint(Graphics2D gIn)
     {
-		sprite.draw(gIn, getCenter());
+        sprite.draw(gIn, getCenter());
     }
     @Override
     public void dispose()
