@@ -132,6 +132,7 @@ public class Collision
     public static Entity moveY(Entity eIn)
     {
         Entity o = collisionY(eIn);
+		
         if(o == null)
         {
             eIn.getCenter().y = eIn.getDest().y;
@@ -143,7 +144,7 @@ public class Collision
         }
         else
         {
-            eIn.getCenter().y = o.getCenter().y + (eIn.getHeight() + o.getHeight()) / 2;
+		    eIn.getCenter().y = o.getCenter().y + (eIn.getHeight() + o.getHeight()) / 2;
             eIn.dy = 0;
         }
         return o;

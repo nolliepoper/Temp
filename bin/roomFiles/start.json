@@ -3,7 +3,7 @@
   "background" : "greyRoom.png",
   "tiled" : false,
   "exits" : { "adjRooms" : ["north.json", "east.json", "south.json"], "northPos": 200, "eastPos" : 100, "southPos": 500, "westPos" : 0},
-  "spawns" : [{"x" : 400, "y" : 50}, {"x" : 750, "y" : 300}, {"x" : 550, "y" : 400}, {"x" : 50, "y" : 300}],
+  "spawns" : [{"x" : 400, "y" : 50}, {"x" : 750, "y" : 300}, {"x" : 550, "y" : 400}, {"x" : 50, "y" : 200}],
   "platforms" : [ 
 	{"center" : {"x" : 200, "y" : 100}, "width" : 50, "height" : 42},
 	{"center" : {"x" : 50, "y" : 200}, "width" : 200, "height" : 25},
@@ -16,7 +16,8 @@
   ],
   "enemies" : [
 		{"type" : "Target", "center" : {"x" : 300, "y" : 200}},
-		{"type" : "Pacer", "center" : {"x" : 200, "y" : 400}}
+		{"type" : "Pacer", "center" : {"x" : 200, "y" : 400}},
+		{"type" : "BreakableWall", "side" : 0, "position" : 200}
 	],
   "powerups" : [{"type" : "DOUBLEJUMP", "center" : {"x" : 100, "y" : 500}}]
 }

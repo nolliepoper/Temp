@@ -61,6 +61,13 @@ public abstract class Entity
         center.x = cIn.x;
 		center.y = cIn.y;
     }
+	
+	final public void setCenter(int xIn, int yIn)
+	{
+		center.x = xIn;
+		center.y = yIn;
+	}
+	
     final public void setDest(Vector dIn)
     {
         dest = dIn;

@@ -137,15 +137,11 @@ public class Content extends JPanel
             }
         }
 
-		System.out.println("(" + currSpawn.x + ", " + currSpawn.y + ")");
-		
         //Move to the next room if necessary
 		moveRoom();
-		System.out.println("(" + currSpawn.x + ", " + currSpawn.y + ")");
 		//Respawn the player and reload the room if the character died
 		if(!((Player)getType("Player").get(0)).isAlive())
 			reloadRoom();
-        System.out.println("(" + currSpawn.x + ", " + currSpawn.y + ")");
     }
 	
 	public void reloadRoom()

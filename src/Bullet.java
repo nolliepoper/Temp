@@ -19,6 +19,7 @@ public class Bullet extends Entity
         list.add("Target");
         list.add("Hopper");
         list.add("Pacer");
+		list.add("BreakableWall");
         list.add("Platform");
     }
     @Override
@@ -36,13 +37,11 @@ public class Bullet extends Entity
         {
             if(o1 instanceof Enemy)
             {
-                Enemy tmp = (Enemy)o1;
-                tmp.damage();
+                ((Enemy)o1).damage();
             }
             else if(o2 instanceof Enemy)
             {
-                Enemy tmp = (Enemy)o2;
-                tmp.damage();
+                ((Enemy)o2).damage();
             }
             Content.bulletMng.remove(this);
         }

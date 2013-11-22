@@ -70,7 +70,7 @@ public class Walls
             walls.add(new Platform(
                     new Vector(windowW - 15, avg(ePos + DOOR_WIDTH / 2, windowH)),
                     20, windowH - ePos - DOOR_WIDTH / 2));
-        }
+        } 
         else
         {
             walls.add(new Platform(new Vector(windowW - 15, windowH / 2), 20, windowH));

@@ -31,7 +31,9 @@ public class Player extends Entity
         super(vIn, WIDTH, HEIGHT);
         list.add("Hopper");
         list.add("Pacer");
-        list.add("Platform");
+		list.add("BreakableWall");
+		list.add("Platform");
+		
         SpriteSheet sprites = SpriteSheet.PLAYER;
         sprite = new Sprite(sprites, 0);
         legs = new Sprite(sprites, 2);
@@ -55,6 +57,8 @@ public class Player extends Entity
 	
 	public void revive()
 	{
+		dx = 0;
+		dy = 0;
 		alive = true;
 		System.out.println("Player revived.");
 	}
@@ -74,7 +78,7 @@ public class Player extends Entity
         //Collision.moveY(this);//we already have a movey somewhere else
         xMoved = getCenter().x - xMoved;
 
-        annimate(xMoved);
+        animate(xMoved);
     }
     @Override
     public void paint(Graphics2D gIn)
@@ -178,7 +182,7 @@ public class Player extends Entity
 
         Entity o = Collision.moveY(this);
 
-        if(down && dy == 0 && o instanceof Platform)
+        if(down && dy == 0 && (o instanceof Platform || o instanceof BreakableWall))
         {
             singleJump = true;
         }
@@ -186,6 +190,7 @@ public class Player extends Entity
         list.add("PowerUp");//This is kind of a work around for Zach's weird way of collision checking
         Entity o1 = Collision.collisionX(this);
         Entity o2 = Collision.collisionY(this);
+		
         if(o1 instanceof PowerUp)
         {
             powerUps.add(((PowerUp)o1).type);
@@ -196,13 +201,13 @@ public class Player extends Entity
             powerUps.add(((PowerUp)o2).type);
             Content.powerUpsMng.remove(((PowerUp)o2));
         }
-        else if(o1 != null && o1.getClass().getSuperclass().getName().equals("Enemy") || o2 != null && o2.getClass().getSuperclass().getName().equals("Enemy"))
+		else if(o1 != null && o1.getClass().getSuperclass().getName().equals("Enemy") || o2 != null && o2.getClass().getSuperclass().getName().equals("Enemy"))
         {
             kill();
         }
         list.remove("PowerUp");//without this, the player will collide with power ups in the same way he collides with walls
     }
-    public void annimate(double xMoved)
+    public void animate(double xMoved)
     {
         shoulder.x = getCenter().x + shoulderPos.x;
         shoulder.y = getCenter().y + shoulderPos.y;
