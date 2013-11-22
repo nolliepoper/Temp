@@ -174,44 +174,44 @@ public class Content extends JPanel
         {
             //Read the data about the room
             currRoom.setRoomName(currRoom.getNorth());
+            reloadRoom();
             Map.defaultMap.Update(0, -1, currRoom);
             currSpawn = currRoom.getSouthSpawn();
-            isMove = true;
+            //isMove = true;
         }
         //Go south?
         else if(currPos.y > frame.getHeight())
         {
             //Read the data about the room
             currRoom.setRoomName(currRoom.getSouth());
+            reloadRoom();
             Map.defaultMap.Update(0, 1, currRoom);
             currSpawn = currRoom.getNorthSpawn();
-            isMove = true;
+            //isMove = true;
         }
         //Go east?
         else if(currPos.x > frame.getWidth())
         {
             //Read the data about the room
             currRoom.setRoomName(currRoom.getEast());
-            Map.defaultMap.Update(1, 0, currRoom);
+            reloadRoom();
+			Map.defaultMap.Update(1, 0, currRoom);
             currSpawn = currRoom.getWestSpawn();
-            isMove = true;
+            //isMove = true;
         }
         //Go west?
         else if(currPos.x < 0)
         {
             //Read the data about the room
             currRoom.setRoomName(currRoom.getWest());
-            Map.defaultMap.Update(-1, 0, currRoom);
+            reloadRoom();
+			Map.defaultMap.Update(-1, 0, currRoom);
             currSpawn = currRoom.getEastSpawn();
-            isMove = true;
+            //isMove = true;
         }
 
         //If the player is actually moving to a new room, recreate 
         //the managers
-        if(isMove)
-        {
-            reloadRoom();
-        }
 	}
 	
     public void setBloodOverlay()
