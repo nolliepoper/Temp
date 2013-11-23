@@ -44,10 +44,7 @@ public class RoomData
 	{
 		roomName = name;
 	}
-	public String getRoomName()
-	{
-		return roomName;
-	}
+
 	public void setBackground(String backName)
 	{
 		try
@@ -89,49 +86,13 @@ public class RoomData
 	{
 		return spawnPoints;
 	}
-	/*public void setPlatforms()
-	 {
-	 System.out.println("Hello?");
-	 ObjectMapper mapper = new ObjectMapper();
-	 TypeFactory typeFactory = TypeFactory.defaultInstance();
-	 try {
-	 platforms = mapper.readValue(new File(roomName), typeFactory.constructCollectionType(List.class, Platform.class));
-	 } catch (JsonParseException ex) {
-	 Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
-	 } catch (JsonMappingException ex) {
-	 Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
-	 } catch (IOException ex) {
-	 Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
-	 }
-	 platforms.addAll(exits.buildExits(800, 600));
-	 System.out.println(platforms.get(2).getHeight());
-	 }*/
+	
 	public ArrayList<Platform> getPlatforms()
 	{
 		platforms.addAll(exits.buildExits(800, 600));
 		return platforms;
 	}
-	/*public void setEnemies()
-	 {
-	 ObjectMapper mapper = new ObjectMapper();
-	 TypeFactory typeFactory = TypeFactory.defaultInstance();
-	 try
-	 {
-	 platforms = mapper.readValue(new File(roomName), typeFactory.constructCollectionType(List.class, Platform.class));
-	 }
-	 catch(JsonParseException ex)
-	 {
-	 Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
-	 }
-	 catch(JsonMappingException ex)
-	 {
-	 Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
-	 }
-	 catch(IOException ex)
-	 {
-	 Logger.getLogger(RoomData.class.getName()).log(Level.SEVERE, null, ex);
-	 }
-	 }*/
+	
 	public ArrayList<Enemy> getEnemies()
 	{
 		return enemies;

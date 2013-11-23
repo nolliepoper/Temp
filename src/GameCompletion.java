@@ -11,7 +11,7 @@ import javax.swing.*;
 public class GameCompletion extends JPanel
 {
 	//So I know what to draw to
-	private JFrame parent;
+	private Frame parent;
 	//The image to display at the top of the screen
 	private BufferedImage titleImg;
 	//Displayed at the bottom of the screen as a "highscore" indicator
@@ -19,14 +19,14 @@ public class GameCompletion extends JPanel
 	//Used to hold all of the things that the credits will play!
 	private int index = 0; //Used to move through the Credits ArrayList
 	private ArrayList<String> credits = new ArrayList<String>();
-	private Point p1 = new Point(200, 540);
+	private Point p1 = new Point(100, 540);
 	private String s1;
-	private Point p2 = new Point(200, 690);
+	private Point p2 = new Point(100, 690);
 	private String s2;
-	private Point p3 = new Point(200, 840);
+	private Point p3 = new Point(100, 840);
 	private String s3;
 	private boolean creditsDone = false;
-	public GameCompletion(JFrame fIn, int ctIn)
+	public GameCompletion(Frame fIn, int ctIn)
 	{
 		parent = fIn;
 		initCredits();
@@ -53,7 +53,8 @@ public class GameCompletion extends JPanel
 		//System.out.println(p1.y + " " + p2.y + " " + p3.y);
 		Graphics2D g2 = (Graphics2D)gIn; //Draw Whatever Needs to Be Drawn!
 		g2.drawImage(titleImg, null, 0, 0); //Draw the title of the Game
-
+		g2.setFont(new Font("TimesRoman", Font.BOLD, 20));
+		
 		if(creditsDone == false)
 		{ //As long as there are still credits to go
 			if(p1.y <= 150)
@@ -91,7 +92,8 @@ public class GameCompletion extends JPanel
 		Util.sleep(100); //Sleep
 		if(creditsDone)
 		{
-			parent = new Frame(); //Display the mainmenu with everything reset. 
+			parent.restart(); //Display the mainmenu with everything reset. 
+			parent.remove(this);
 		}
 	}
 	private void initCredits()
@@ -101,7 +103,7 @@ public class GameCompletion extends JPanel
 		credits.add("Credits");
 		credits.add("GAME DEVELOPERS");
 		credits.add("Blake Tattoli: Librarian/Client interaction lead (Prophet of the End)");
-		credits.add("Branden Kroske: Project Manager (Lord and master of all he surveys & High Inquisitor)");
+		credits.add("Branden Kroske: Project Manager (Lord and master of all he surveys)");
 		credits.add("Daniel Siebert: Gui/Blood artist (Master of Carnage)");
 		credits.add("John Bell: Graphics/lighting engineer (Lord of Darkness)");
 		credits.add("Zachary Easey: Framework Engineer (Voodoo Priest of Code)");
