@@ -42,21 +42,24 @@ public enum SpriteSheet
 	PLAYER("player"),
 	BULLET("bullet"),
 	POWERUP("powerUps"),
-	HOPPER("hopper");
-	private BufferedImage[][] frames;
-	private int[][] anchorsX;
-	private int[][] anchorsY;
-	private SpriteSheet(String imageName)
-	{
-		try
-		{
-			BufferedImage spriteSheet = ImageIO.read(new File("bin\\sprites\\" + imageName + ".png"));
-			Scanner spriteInfo = new Scanner(new File("bin\\sprites\\" + imageName + ".spr"));
-			frames = new BufferedImage[spriteInfo.nextInt()][];
-			anchorsX = new int[frames.length][];
-			anchorsY = new int[frames.length][];
-			int width = spriteInfo.nextInt();
-			int height = spriteInfo.nextInt();
+	HOPPER("hopper"),
+	PACER("crawler"),
+	FLY("mutantFly");
+	
+    private BufferedImage[][] frames;
+    private int[][] anchorsX;
+    private int[][] anchorsY;
+    private SpriteSheet(String imageName)
+    {
+        try
+        {
+            BufferedImage spriteSheet = ImageIO.read(new File("bin\\sprites\\" + imageName + ".png"));
+            Scanner spriteInfo = new Scanner(new File("bin\\sprites\\" + imageName + ".spr"));
+            frames = new BufferedImage[spriteInfo.nextInt()][];
+            anchorsX = new int[frames.length][];
+            anchorsY = new int[frames.length][];
+            int width = spriteInfo.nextInt();
+            int height = spriteInfo.nextInt();
 
 			for(int i = 0; i < frames.length; i++)
 			{

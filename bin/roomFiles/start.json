@@ -15,8 +15,9 @@
   ],
   "enemies" : [
 		{"type" : "Target", "center" : {"x" : 300, "y" : 200}},
-		{"type" : "Pacer", "center" : {"x" : 200, "y" : 400}},
+		{"type" : "Pacer", "center" : {"x" : 400, "y" : 400}},
+		{"type" : "Floater", "center" : {"x" : 700, "y" : 300}},
 		{"type" : "BreakableWall", "side" : 0, "position" : 200}
 	],
-  "powerups" : [{"type" : "DOUBLEJUMP", "center" : {"x" : 100, "y" : 500}}]
+  "powerups" : [{"type" : "DOUBLEJUMP", "center" : {"x" : 300, "y" : 500}}]
 }

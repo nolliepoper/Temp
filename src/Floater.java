@@ -4,12 +4,11 @@ import javax.swing.*;
 
 public class Floater extends Enemy
 {
-	private Color color;
 	// Constructor.
 	public Floater()
 	{
 		super(new Vector(300, 300), 20, 20);
-		color = Color.CYAN;
+		sprite = new Sprite(SpriteSheet.FLY, 0);
 		list.add("Player");
 	}
 	private Vector getLoc()
@@ -45,6 +44,10 @@ public class Floater extends Enemy
 			Player tmp = (Player)tmpY;
 			tmp.kill();
 		}
+		
+		if(dx != 0)
+			sprite.xScale = dx/Math.abs(dx);
+		sprite.frame += 1;
 	}
 	@Override
 	public void paint(Graphics2D gIn)
@@ -53,8 +56,7 @@ public class Floater extends Enemy
 		{
 			return;
 		}
-		gIn.setColor(color);
-		gIn.fillOval(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
+		sprite.draw(gIn, getCenter());
 	}
 	@Override
 	public void dispose()
