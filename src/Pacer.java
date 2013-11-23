@@ -44,8 +44,8 @@ public class Pacer extends Enemy
             {
                 return;
             }
-            minX = prev.getCenter().x - prev.getWidth()/2;
-            maxX = prev.getCenter().x + prev.getWidth()/2;
+            minX = prev.getCenter().x - prev.getWidth()/2 + getWidth()/2;
+            maxX = prev.getCenter().x + prev.getWidth()/2 - getWidth()/2;
         }
         
         int destX = getCenter().x + (int)dx;
