@@ -147,6 +147,16 @@ public class Content extends JPanel
 	}
 	public void reloadRoom()
 	{
+		System.out.println("RoomName: " + currRoom.getRoomName());
+		if(currRoom.getRoomName().equals("end.json"))
+		{
+			System.out.println("Game Over!\n\n");
+			remove(this);
+			new GameCompletion(frame, 42);
+			return;
+		}
+		System.out.println("Not the end.\n");
+		
 		//Load the room. This adds overhead, but it either adds it here
 		// or has to clone a lot of objects
 		currRoom.loadRoom();

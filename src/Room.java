@@ -122,6 +122,10 @@ public class Room
 		System.out.println(roomInfo.isBackTiled);
 		System.out.println(roomInfo.getExits().getAdjRoom(0));
 	}
+	public String getRoomName()
+	{
+		return roomName;
+	}
 	public void paint(Graphics2D gIn)
 	{
 		gIn.drawImage(roomInfo.getBackground(), 0, 0, roomFrame.getWidth(), roomFrame.getHeight(), roomFrame);

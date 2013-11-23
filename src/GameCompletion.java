@@ -101,7 +101,7 @@ public class GameCompletion extends JPanel
 		credits.add("Credits");
 		credits.add("GAME DEVELOPERS");
 		credits.add("Blake Tattoli: Librarian/Client interaction lead (Prophet of the End)");
-		credits.add("Branden Kroske: Project Manager (Lord and master of all he surveys & High Inquisitor)");
+		credits.add("Branden Kroske: Project Manager (Lord and master of all he surveys)");
 		credits.add("Daniel Siebert: Gui/Blood artist (Master of Carnage)");
 		credits.add("John Bell: Graphics/lighting engineer (Lord of Darkness)");
 		credits.add("Zachary Easey: Framework Engineer (Voodoo Priest of Code)");
