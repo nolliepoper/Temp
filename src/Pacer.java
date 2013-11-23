@@ -12,16 +12,8 @@ public class Pacer extends Enemy
     // Constructor.
 	public Pacer()
     {
-        super(new Vector(0,0), 20, 50);
-        color = Color.GRAY;
-        int c = 2; // Absolute value of horizontal velocity.
-        dirX = dx = 2 * c * ((int)(Math.random() * 2)) - c; // Random to be negative or positive
-        prev = null;
-        minX = Integer.MIN_VALUE;
-        maxX = Integer.MAX_VALUE;
-        list.add("Player");
-        list.add("Hopper");
-        list.add("Platform");
+        this(new Vector(0,0), 32, 18);
+		sprite = new Sprite(SpriteSheet.PACER, 0);
     }
     public Pacer(Vector vIn, int wIn, int hIn)
     {
@@ -81,6 +73,9 @@ public class Pacer extends Enemy
             }
             dx = dirX;
         }
+		
+		sprite.xScale = dirX/Math.abs(dirX);
+		sprite.frame += 0.2;
     }
     @Override
     public void paint(Graphics2D gIn)
@@ -90,8 +85,7 @@ public class Pacer extends Enemy
         {
             return;
         }
-        gIn.setColor(color);
-        gIn.fillRect(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
+		sprite.draw(gIn, getCenter());
     }
     @Override
     public void dispose()

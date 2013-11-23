@@ -33,7 +33,8 @@ public enum SpriteSheet
     PLAYER("player"),
 	BULLET("bullet"),
 	POWERUP("powerUps"),
-	HOPPER("hopper");
+	HOPPER("hopper"),
+	PACER("crawler");
 	
     private BufferedImage[][] frames;
     private int[][] anchorsX;
