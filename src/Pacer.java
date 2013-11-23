@@ -5,7 +5,6 @@ import javax.swing.*;
 public class Pacer extends Enemy
 {
 	public static final double GRAVITY = 0.75;
-	private Color color;
 	Entity prev;
 	double dirX;
 	int minX, maxX;
@@ -18,7 +17,6 @@ public class Pacer extends Enemy
     public Pacer(Vector vIn, int wIn, int hIn)
     {
         super(vIn, wIn, hIn);
-        color = Color.GRAY;
         int c = 2; // Absolute value of horizontal velocity.
         dirX = dx = 2 * c * ((int)(Math.random() * 2)) - c; // Random to be negative or positive
         prev = null;

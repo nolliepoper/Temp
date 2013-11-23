@@ -43,7 +43,8 @@ public enum SpriteSheet
 	BULLET("bullet"),
 	POWERUP("powerUps"),
 	HOPPER("hopper"),
-	PACER("crawler");
+	PACER("crawler"),
+	FLY("mutantFly");
 	
     private BufferedImage[][] frames;
     private int[][] anchorsX;
