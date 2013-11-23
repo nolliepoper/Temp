@@ -23,8 +23,11 @@ public class Player extends Entity
 	public static final int HEIGHT = 36;
 	public static final double GRAVITY = 0.75;
 	public static final int LIGHTRADIUS = 100;
+	public static final int DISTTOGUN =	18;
+	public static final double ANGLETOGUN = 0.216;
 	private static final Vector shoulderPos = SpriteSheet.PLAYER.getAnchor(1, 0).sub(SpriteSheet.PLAYER.getAnchor(0, 0));
 	private boolean alive;
+	
 	// Constructor
 	public Player(Vector vIn)
 	{
@@ -139,7 +142,9 @@ public class Player extends Entity
 			if(reload <= (autoFire ? 0 : -1))
 			{
 				reload = powerUps.contains(PowerUp.Type.FASTERRELOAD) ? 10 : 30;
-				Content.bulletMng.add(new Bullet(new Vector(shoulder.x, shoulder.y), arm.rotation));
+				double angle = arm.rotation + arm.yScale*ANGLETOGUN;
+				Vector v = new Vector(shoulder.x + (int)(DISTTOGUN * Math.cos(angle)), shoulder.y + (int)(DISTTOGUN * Math.sin(angle)));
+				Content.bulletMng.add(new Bullet(v, arm.rotation));
 			}
 		}
 		else
