@@ -38,24 +38,25 @@ public class Content extends JPanel
 		list = new CopyOnWriteArrayList<>();
 		run = true;
 
+		//Create the room
 		setBackground(Color.WHITE);
 		currRoom = new Room("start.json", frame);
+		//Create the player and their spawn point
+		currSpawn = currRoom.getWestSpawn();
+		
 		//currRoom.getData();
 
 		//Create the platforms in the starting room
 		pltfrmMng = new Manager(frame, this);
 		add(pltfrmMng);
-		pltfrmMng.addAll(currRoom.getPlatforms());
 
 		//Spawn all of the enemies
 		enemyMng = new Manager(frame, this);
 		add(enemyMng);
-		enemyMng.addAll(currRoom.getEnemies());
 
 		//Create all of the powerups
 		powerUpsMng = new Manager(frame, this);
 		add(powerUpsMng);
-		powerUpsMng.addAll(currRoom.getPowerUps());
 
 		bulletMng = new Manager(frame, this);
 		add(bulletMng);
@@ -63,15 +64,13 @@ public class Content extends JPanel
 		//Create the map
 		Map.defaultMap = new Map(currRoom);
 
-		//Create the player and their spawn point
-		currSpawn = currRoom.getWestSpawn();
-
 		playerManager = new Manager<>(frame, this);
 		add(playerManager);
 		playChar = new Player(new Vector(0, 0));
-		playChar.setCenter(currSpawn);
 		playerManager.add(playChar);
-
+		
+		//Get the room configured
+		reloadRoom();
 		setBloodImage();
 	}
 	public void add(Manager mIn)
