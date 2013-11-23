@@ -16,30 +16,30 @@ import java.util.ArrayList;
  */
 public class Platform extends Entity
 {
-    public String art;
-    // Constructor
-    public Platform()
-    {
-    }
-    public Platform(Vector center, int width, int height)
-    {
-        super(center, width, height);
-    }
-    @Override
-    public void logic()
-    {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    @Override
-    public void paint(Graphics2D gIn)
-    {
-        gIn.setColor(Color.WHITE);
-        gIn.fillRect(getCenter().x - getWidth() / 2,
-        getCenter().y - getHeight() / 2, getWidth(), getHeight());
-    }
-    @Override
-    public void dispose()
-    {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	public String art;
+	// Constructor
+	public Platform()
+	{
+	}
+	public Platform(Vector center, int width, int height)
+	{
+		super(center, width, height);
+	}
+	@Override
+	public void logic()
+	{
+		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+	@Override
+	public void paint(Graphics2D gIn)
+	{
+		gIn.setColor(Color.WHITE);
+		gIn.fillRect(getCenter().x - getWidth() / 2,
+				getCenter().y - getHeight() / 2, getWidth(), getHeight());
+	}
+	@Override
+	public void dispose()
+	{
+		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
 }

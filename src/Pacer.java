@@ -4,12 +4,12 @@ import javax.swing.*;
 
 public class Pacer extends Enemy
 {
-    public static final double GRAVITY = 0.75;
-    private Color color;
-    Entity prev;
-    double dirX;
-    int minX, maxX;
-    // Constructor.
+	public static final double GRAVITY = 0.75;
+	private Color color;
+	Entity prev;
+	double dirX;
+	int minX, maxX;
+	// Constructor.
 	public Pacer()
     {
         this(new Vector(0,0), 32, 18);
