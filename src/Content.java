@@ -162,7 +162,6 @@ public class Content extends JPanel
 		pltfrmMng.addAll(currRoom.getPlatforms());
 		enemyMng.addAll(currRoom.getEnemies());
 		powerUpsMng.addAll(currRoom.getPowerUps());
-		//System.out.println("(" + currSpawn.x + ", " + currSpawn.y + ")");
 		getType("Player").get(0).setCenter(currSpawn);
 		//System.out.println("(" + getType("Player").get(0).getCenter().x + ", " + getType("Player").get(0).getCenter().y + ")");
 		((Player)getType("Player").get(0)).revive();
@@ -179,8 +178,9 @@ public class Content extends JPanel
 		{
 			//Read the data about the room
 			currRoom.setRoomName(currRoom.getNorth());
-			currSpawn = currRoom.getSouthSpawn();
 			reloadRoom();
+			currSpawn = currRoom.getSouthSpawn();
+			getType("Player").get(0).setCenter(currSpawn);
 			Map.defaultMap.Update(0, -1, currRoom);
 		}
 		//Go south?
@@ -188,8 +188,9 @@ public class Content extends JPanel
 		{
 			//Read the data about the room
 			currRoom.setRoomName(currRoom.getSouth());
-			currSpawn = currRoom.getNorthSpawn();
 			reloadRoom();
+			currSpawn = currRoom.getNorthSpawn();
+			getType("Player").get(0).setCenter(currSpawn);
 			Map.defaultMap.Update(0, 1, currRoom);
 		}
 		//Go east?
@@ -197,8 +198,9 @@ public class Content extends JPanel
 		{
 			//Read the data about the room
 			currRoom.setRoomName(currRoom.getEast());
-			currSpawn = currRoom.getWestSpawn();
 			reloadRoom();
+			currSpawn = currRoom.getWestSpawn();
+			getType("Player").get(0).setCenter(currSpawn);
 			Map.defaultMap.Update(1, 0, currRoom);
 		}
 		//Go west?
@@ -206,8 +208,9 @@ public class Content extends JPanel
 		{
 			//Read the data about the room
 			currRoom.setRoomName(currRoom.getWest());
-			currSpawn = currRoom.getEastSpawn();
 			reloadRoom();
+			currSpawn = currRoom.getEastSpawn();
+			getType("Player").get(0).setCenter(currSpawn);
 			Map.defaultMap.Update(-1, 0, currRoom);
 		}
 	}

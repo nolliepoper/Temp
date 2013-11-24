@@ -1,0 +1,21 @@
+{
+  "background" : "greyRoom.png",
+  "exits" : { "adjRooms" : ["north.json", "east.json", "south.json", "end.json"], "northPos": 200, "eastPos" : 100, "southPos": 500, "westPos" : 200},
+  "spawns" : [{"x" : 400, "y" : 50}, {"x" : 750, "y" : 300}, {"x" : 550, "y" : 400}, {"x" : 50, "y" : 200}],
+  "platforms" : [ 
+	{"center" : {"x" : 200, "y" : 100}, "width" : 50, "height" : 42},
+	{"center" : {"x" : 50, "y" : 200}, "width" : 200, "height" : 25},
+	{"center" : {"x" : 100, "y" : 300}, "width" : 200, "height" : 25},
+	{"center" : {"x" : 600, "y" : 400}, "width" : 200, "height" : 80},
+	{"center" : {"x" : 400, "y" : 440}, "width" : 200, "height" : 10},
+	{"center" : {"x" : 790, "y" : 450}, "width" : 50, "height" : 300},
+	{"center" : {"x" : 150, "y" : 500}, "width" : 80, "height" : 100},
+	{"center" : {"x" : 200, "y" : 450}, "width" : 50, "height" : 50}
+  ],
+  "enemies" : [
+		{"type" : "Pacer", "center" : {"x" : 400, "y" : 400}},
+		{"type" : "Floater", "center" : {"x" : 700, "y" : 300}},
+		{"type" : "BreakableWall", "side" : 0, "position" : 200}
+	],
+  "powerups" : [{"type" : "DOUBLEJUMP", "center" : {"x" : 300, "y" : 500}}]
+}
