@@ -54,6 +54,8 @@ public class Collision
 	{
 		for(String s : eIn.list)
 		{
+			if(manager == null)
+				break;
 			Manager m = manager.getType(s);
 			if(m != null)
 			{
@@ -72,6 +74,8 @@ public class Collision
 	{
 		for(String s : eIn.list)
 		{
+			if(manager == null)
+				break;
 			Manager m = manager.getType(s);
 			if(m != null)
 			{

@@ -27,8 +27,8 @@ public class Bullet extends Entity
 	@Override
 	public void logic()
 	{
-		getDest().x = getCenter().x + (int)dx;
-		getDest().y = getCenter().y + (int)dy;
+		getDest().x = getCenter().x + dx;
+		getDest().y = getCenter().y + dy;
 
 		sprite.frame += 1;
 

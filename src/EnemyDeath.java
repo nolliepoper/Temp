@@ -30,7 +30,8 @@ public class EnemyDeath extends Entity
 	public void paint(Graphics2D gIn) {
 		gIn.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER).derive((float)alpha));
 		
-		sprite.draw(gIn, getCenter());
+		if(sprite != null)
+			sprite.draw(gIn, getCenter());
 		
 		gIn.setComposite(AlphaComposite.SrcOver);
 	}
