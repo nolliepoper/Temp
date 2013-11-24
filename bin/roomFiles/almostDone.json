@@ -1,0 +1,17 @@
+{
+  "background" : "pipes.png",
+  "exits" : { "adjRooms" : [null, "end.json", null, "goingForRapidFire.json"], "eastPos": 300,"westPos": 300},
+  "spawns" : [{"x" : 50, "y" : 300}, {"x" : 50, "y" : 300}, {"x" : 50, "y" : 300}, {"x" : 50, "y" : 300}],
+  "platforms" : [ 
+	{"center" : {"x" : 400, "y" : 500}, "width" : 800, "height" : 350},
+	{"center" : {"x" : 400, "y" : 100}, "width" : 800, "height" : 350}
+  ],
+  "enemies" : [
+	{"type" : "Pacer", "center" : {"x" : 500, "y" : 300}},
+	{"type" : "Pacer", "center" : {"x" : 550, "y" : 300}},
+	{"type" : "Pacer", "center" : {"x" : 498, "y" : 300}},
+	{"type" : "Pacer", "center" : {"x" : 512, "y" : 300}}
+		
+  ],
+  "powerups" : []
+}
