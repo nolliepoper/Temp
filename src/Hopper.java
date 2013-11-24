@@ -13,6 +13,7 @@ public class Hopper extends Enemy
 	public Hopper()
 	{
 		this(new Vector(0, 0), 22, 20);
+		setHp(3);
 		sprite = new Sprite(SpriteSheet.HOPPER, 0);
 		int c = 3; // Absolute value of horizontal velocity.
 		dirX = dx = 2 * c * ((int)(Math.random() * 2)) - c; // Random to be negative or positive.

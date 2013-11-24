@@ -28,7 +28,7 @@ public class EnemyDeath extends Entity
 
 	@Override
 	public void paint(Graphics2D gIn) {
-		gIn.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER).derive((float)alpha));;
+		gIn.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER).derive((float)alpha));
 		
 		sprite.draw(gIn, getCenter());
 		

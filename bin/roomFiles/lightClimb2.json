@@ -1,0 +1,31 @@
+{
+  "background" : "overrunbyplants.png",
+  "exits" : { "adjRooms" : ["lightLock.json", null, "lightClimb1.json", null], "northPos": 400,"southPos": 700},
+  "spawns" : [{"x" : 400, "y" : 25}, {"x" : 0, "y" : 0}, {"x" : 625, "y" : 530}, {"x" : 50, "y" : 300}],
+  "platforms" : [ 
+	{"center" : {"x" : 400, "y" : 500}, "width" : 700, "height" : 20},
+	{"center" : {"x" : 400, "y" : 420}, "width" : 600, "height" : 20},
+	{"center" : {"x" : 400, "y" : 340}, "width" : 500, "height" : 20},
+	{"center" : {"x" : 400, "y" : 260}, "width" : 400, "height" : 20},
+	{"center" : {"x" : 400, "y" : 180}, "width" : 300, "height" : 20},
+	{"center" : {"x" : 400, "y" : 100}, "width" : 200, "height" : 20},
+	{"center" : {"x" : 400, "y" : 75}, "width" : 100, "height" : 25}
+  ],
+  "enemies" : [ 
+		{"type" : "Hopper", "center" : {"x" : 450, "y" : 470}},
+		{"type" : "Hopper", "center" : {"x" : 350, "y" : 470}},
+		
+		{"type" : "Hopper", "center" : {"x" : 450, "y" : 390}},
+		{"type" : "Hopper", "center" : {"x" : 350, "y" : 390}},
+		
+		{"type" : "Hopper", "center" : {"x" : 450, "y" : 310}},
+		{"type" : "Hopper", "center" : {"x" : 350, "y" : 310}},
+		
+		{"type" : "Hopper", "center" : {"x" : 450, "y" : 230}},
+		{"type" : "Hopper", "center" : {"x" : 350, "y" : 230}},
+		
+		{"type" : "Hopper", "center" : {"x" : 450, "y" : 150}},
+		{"type" : "Hopper", "center" : {"x" : 350, "y" : 150}}
+  ],
+  "powerups" : [ ]
+}
