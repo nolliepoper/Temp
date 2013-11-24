@@ -96,7 +96,7 @@ public enum SpriteSheet
 		trans.rotate(rotation, centerX, centerY);
 		trans.scale(xScale, yScale);
 
-		gIn.drawImage(frames[animationNum][frameNum], new AffineTransformOp(trans, AffineTransformOp.TYPE_NEAREST_NEIGHBOR), point.x - centerX, point.y - centerY);
+		gIn.drawImage(frames[animationNum][frameNum], new AffineTransformOp(trans, AffineTransformOp.TYPE_NEAREST_NEIGHBOR), (int)point.x - centerX, (int)point.y - centerY);
 	}
 	public void drawFrame(Graphics2D gIn, Vector point, int animationNum, int frameNum)
 	{
@@ -105,5 +105,13 @@ public enum SpriteSheet
 	public Vector getAnchor(int animationNum, int frameNum)
 	{
 		return new Vector(anchorsX[animationNum][frameNum], anchorsY[animationNum][frameNum]);
+	}
+	public int getWidth()
+	{
+		return frames[0][0].getWidth();
+	}
+	public int getHeight()
+	{
+		return frames[0][0].getWidth();
 	}
 }

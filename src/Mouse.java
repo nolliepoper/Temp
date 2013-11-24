@@ -73,10 +73,10 @@ public class Mouse implements MouseListener, MouseMotionListener
 	}
 	public static int X()//Just to make because typing Mouse.point.x gets annoying after a while
 	{
-		return point.x;
+		return (int)point.x;
 	}
 	public static int Y()
 	{
-		return point.y;
+		return (int)point.y;
 	}
 }

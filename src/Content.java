@@ -241,7 +241,7 @@ public class Content extends JPanel
 		//g.transform(trans);
 		//g.scale(0.5, 0.5);
 
-		BufferedImage temp = new BufferedImage(800, 800, BufferedImage.TYPE_4BYTE_ABGR);
+		BufferedImage temp = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
 		darkness = temp.createGraphics();
 		darkness.setColor(Color.BLACK);
 		darkness.fillRect(0, 0, frame.getWidth(), frame.getHeight());

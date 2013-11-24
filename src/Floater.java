@@ -1,15 +1,16 @@
-
 import java.awt.*;
 import javax.swing.*;
 
 public class Floater extends Enemy
 {
+	public static double SPEED = 3.0;
 	// Constructor.
 	public Floater()
 	{
 		super(new Vector(300, 300), 20, 20);
 		sprite = new Sprite(SpriteSheet.FLY, 0);
 		list.add("Player");
+		setHp(1);
 	}
 	private Vector getLoc()
 	{
@@ -24,12 +25,28 @@ public class Floater extends Enemy
 		}
 
 		Vector dis = getLoc().sub(getCenter());
-		double mag = dis.mag();
-		dx = (2.0 * dis.x) / mag;
-		dy = (2.0 * dis.y) / mag;
+		//if(dis.mag() < 300)
+		{
+			dx += 0.2 * Math.cos(dis.angle());
+			dy += 0.2 * Math.sin(dis.angle());
+		}
+		//else
+		{
+			//dx += 0.02 * Math.cos(Math.atan2(dy, dx) + 0.174);
+			//dy += 0.02 * Math.sin(Math.atan2(dy, dx) + 0.174);
+		}
+		//dx += 0.1 * ((dis.x > 0)? 1: -1);
+		//dy += 0.1 * ((dis.y > 0)? 1: -1);
+		
+		
+		if(Math.hypot(dx, dy) > SPEED)
+		{
+			dx = SPEED * dx/Math.hypot(dy, dx);
+			dy = SPEED * dy/Math.hypot(dy, dx);
+		}
 
-		getDest().x = getCenter().x + (int)dx;
-		getDest().y = getCenter().y + (int)dy;
+		getDest().x = getCenter().x + dx;
+		getDest().y = getCenter().y + dy;
 
 		Entity tmpX = Collision.moveX(this);
 		Entity tmpY = Collision.moveY(this);
@@ -48,15 +65,6 @@ public class Floater extends Enemy
 		if(dx != 0)
 			sprite.xScale = dx/Math.abs(dx);
 		sprite.frame += 1;
-	}
-	@Override
-	public void paint(Graphics2D gIn)
-	{
-		if(!isAlive())
-		{
-			return;
-		}
-		sprite.draw(gIn, getCenter());
 	}
 	@Override
 	public void dispose()

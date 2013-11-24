@@ -28,5 +28,6 @@ public class Sprite
 		frame = ((frame % spriteSheet.numFrames(animation)) + spriteSheet.numFrames(animation)) % spriteSheet.numFrames(animation);
 		int subimage = (int)frame;
 		spriteSheet.drawFrame(gIn, point, animation, subimage, rotation, xScale, yScale);
+		
 	}
 }

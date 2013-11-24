@@ -7,7 +7,6 @@ public class Hopper extends Enemy
 {
 	public static final double GRAVITY = 0.75;
 	double dirX;
-	private Color color;
 	private int tick, wait;
 	private boolean jump, collide;
 	// Constructor.
@@ -27,7 +26,6 @@ public class Hopper extends Enemy
 	public Hopper(Vector vIn, int wIn, int hIn)
 	{
 		super(vIn, wIn, hIn);
-		color = Color.GREEN;
 		int c = 3; // Absolute value of horizontal velocity.
 		dirX = dx = 2 * c * ((int)(Math.random() * 2)) - c; // Random to be negative or positive.
 		wait = tick = 100;
@@ -117,16 +115,6 @@ public class Hopper extends Enemy
 		}
 
 		sprite.xScale = dirX / Math.abs(dirX);
-	}
-	@Override
-	public void paint(Graphics2D gIn)
-	{
-		//Do nothing if it is dead
-		if(!isAlive())
-		{
-			return;
-		}
-		sprite.draw(gIn, getCenter());
 	}
 	@Override
 	public void dispose()

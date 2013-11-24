@@ -1,12 +1,16 @@
-
 import java.awt.*;
 
 public class Vector
 {
-	int x, y;
+	double x, y;
 	// Constructor
 	public Vector()
 	{
+	}
+	public Vector(double xIn, double yIn)
+	{
+		x = xIn;
+		y = yIn;
 	}
 	public Vector(int xIn, int yIn)
 	{
@@ -35,13 +39,19 @@ public class Vector
 	{
 		return new Vector(x - vIn.x, y - vIn.y);
 	}
-	public int dot(Vector vIn)
+	public double dot(Vector vIn)
 	{
 		return x * vIn.x + y * vIn.y;
 	}
-	public int cross(Vector vIn)
+	public double cross(Vector vIn)
 	{
 		return x * vIn.y - vIn.x * y;
+	}
+	
+	
+	public double angle()
+	{
+		return Math.atan2(y, x);
 	}
 	public double angle(Vector vIn)
 	{
@@ -72,7 +82,7 @@ public class Vector
 	}
 	public Point toPoint()
 	{
-		return new Point(x, y);
+		return new Point((int)x, (int)y);
 	}
 	@Override
 	public String toString()

@@ -42,16 +42,16 @@ public class Pacer extends Enemy
             {
                 return;
             }
-            minX = prev.getCenter().x - prev.getWidth()/2 + getWidth()/2;
-            maxX = prev.getCenter().x + prev.getWidth()/2 - getWidth()/2;
+            minX = (int)prev.getCenter().x - prev.getWidth()/2 + getWidth()/2;
+            maxX = (int)prev.getCenter().x + prev.getWidth()/2 - getWidth()/2;
         }
         
-        int destX = getCenter().x + (int)dx;
+        int destX = (int)getCenter().x + (int)dx;
         if(destX + getWidth()/2 < minX || destX - getWidth()/2 > maxX)
         {
             dirX *= -1;
             dx = dirX;
-            destX = getCenter().x + (int)dx;
+            destX = (int)getCenter().x + (int)dx;
         }
         
         getDest().x = destX;        
@@ -74,16 +74,6 @@ public class Pacer extends Enemy
 		
 		sprite.xScale = dirX/Math.abs(dirX);
 		sprite.frame += 0.2;
-    }
-    @Override
-    public void paint(Graphics2D gIn)
-    {
-        //Do nothing if it is dead
-        if(!isAlive())
-        {
-            return;
-        }
-		sprite.draw(gIn, getCenter());
     }
     @Override
     public void dispose()
