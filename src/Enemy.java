@@ -30,8 +30,7 @@ public abstract class Enemy extends Entity
 	//How many hits before the poor guy dies
 	private int health;
 	private boolean alive;
-	private boolean damaged = false;
-	private BufferedImage image = new BufferedImage(Content.WIDTH, Content.HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
+	private int damaged = 0;
 	// Constructor.
 	Enemy()
 	{
@@ -52,7 +51,7 @@ public abstract class Enemy extends Entity
 	public void damage()
 	{
 		health--;
-		damaged = true;
+		damaged = 3;
 		if(health <= 0)
 		{
 			kill();
@@ -61,6 +60,7 @@ public abstract class Enemy extends Entity
 	public void kill()
 	{
 		alive = false;
+		Content.nmeDeathMng.add(new EnemyDeath(getCenter(), sprite));
 		getCenter().x = -1000; // Move off screen.
 		getCenter().y = -1000;
 	}
@@ -80,11 +80,11 @@ public abstract class Enemy extends Entity
 		BufferedImage image = new BufferedImage(Frame.WIDTH, Frame.HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();
 		sprite.draw(g2d, getCenter());
-		if(damaged)
+		if(damaged > 0)
 		{
 			g2d.setComposite(AlphaComposite.SrcIn);
 			g2d.fillRect(0, 0, Frame.WIDTH, Frame.HEIGHT);
-			damaged = false;
+			damaged--;
 		}
 		gIn.drawImage(image, 0, 0 , null);
 		//sprite.draw(gIn, getCenter());

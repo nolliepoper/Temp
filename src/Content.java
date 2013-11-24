@@ -19,6 +19,7 @@ public class Content extends JPanel
 	private Manager<Platform> pltfrmMng;
 	private Manager<Enemy> enemyMng;
 	public static Manager<Bullet> bulletMng;
+	public static Manager<EnemyDeath> nmeDeathMng;
 	public static Manager<PowerUp> powerUpsMng;
 	public static Manager<Player> playerManager;
 	private Player playChar;
@@ -60,6 +61,9 @@ public class Content extends JPanel
 
 		bulletMng = new Manager(frame, this);
 		add(bulletMng);
+		
+		nmeDeathMng = new Manager(frame, this);
+		add(nmeDeathMng);
 
 		//Create the map
 		Map.defaultMap = new Map(currRoom);
@@ -157,6 +161,7 @@ public class Content extends JPanel
 		currRoom.loadRoom();
 		pltfrmMng.drop();
 		bulletMng.drop();
+		nmeDeathMng.drop();
 		enemyMng.drop();
 		powerUpsMng.drop();
 		pltfrmMng.addAll(currRoom.getPlatforms());
