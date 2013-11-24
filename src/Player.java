@@ -52,6 +52,7 @@ public class Player extends Entity
 	public void kill()
 	{
 		alive = false;
+		Content.setBloodOverlay();
 	}
 	public void revive()
 	{

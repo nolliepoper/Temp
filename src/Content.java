@@ -29,8 +29,8 @@ public class Content extends JPanel
 	public static Graphics2D darkness;
 	private boolean setOpaque = false;
 	private Graphics2D bloodOverlayG;
-	private int bloodOverlay = 0;
-	private BufferedImage blood;
+	private static float bloodOverlay = 0;
+	static private BufferedImage blood;
 	Vector currSpawn;
 	// Constructor
 	public Content(Frame fIn)
@@ -216,18 +216,18 @@ public class Content extends JPanel
 			Map.defaultMap.Update(-1, 0, currRoom);
 		}
 	}
-	public void setBloodOverlay()
+	public static void setBloodOverlay()
 	{
 		setBloodImage();
-		bloodOverlay = 25;
+		bloodOverlay = 1;
 	}
-	private void setBloodImage()
+	private static void setBloodImage()
 	{
-		Random rand = new Random();
-		String path = new String("bin\\images\\splatter\\Splatter" + new String(Integer.toString((rand.nextInt() % 5 + 1))) + ".png");
+		String path = new String("bin\\images\\splatter\\Splatter" + Integer.toString((int)(Math.random() * 5) + 1) + ".png");
 		try
 		{
 			blood = ImageIO.read(new File(path));
+			System.out.println("loaded: " + path);
 		}
 		catch(IOException e)
 		{
@@ -262,9 +262,10 @@ public class Content extends JPanel
 			if(bloodOverlay > 0)
 			{
 				bloodOverlayG = blood.createGraphics();
-				bloodOverlayG.fillRect(0, 0, frame.getWidth(), frame.getHeight());
-				g.drawImage(blood, null, 0, 0);
-				bloodOverlay--;
+				g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER).derive(bloodOverlay));
+				g.drawImage(blood, 0, 0, getWidth(), getHeight(), frame);
+				bloodOverlay -= 0.05;
+				g.setComposite(AlphaComposite.SrcOver);
 			}
 		}
 		else

@@ -79,15 +79,14 @@ public abstract class Enemy extends Entity
 		}
 		BufferedImage image = new BufferedImage(Frame.WIDTH, Frame.HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics2D g2d = image.createGraphics();
-		sprite.draw(g2d, getCenter());
-		if(damaged > 0)
+		sprite.draw(g2d, getCenter());//draw sprite
+		if(damaged > 0)//enemies should flash white when hit
 		{
 			g2d.setComposite(AlphaComposite.SrcIn);
 			g2d.fillRect(0, 0, Frame.WIDTH, Frame.HEIGHT);
 			damaged--;
 		}
 		gIn.drawImage(image, 0, 0 , null);
-		//sprite.draw(gIn, getCenter());
 		
 	}
 	@Override
