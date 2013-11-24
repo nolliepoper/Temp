@@ -92,8 +92,11 @@ public class GameCompletion extends JPanel
 		Util.sleep(100); //Sleep
 		if(creditsDone)
 		{
-			parent.restart(); //Display the mainmenu with everything reset. 
-			parent.remove(this);
+			//parent.restart(); //Display the mainmenu with everything reset. 
+			//parent.remove(this);
+			g2.setFont(new Font("TimesRoman", Font.BOLD, 80));
+			g2.drawString("Thanks for", 100, 250);
+			g2.drawString("Playing!", 120, 400);
 		}
 	}
 	private void initCredits()

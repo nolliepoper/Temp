@@ -52,7 +52,7 @@ public class Frame extends JFrame
 	
 	public void restart()
 	{
-		mainMenu = new MainMenu(this, imgTitle);
+		//mainMenu = new MainMenu(this, imgTitle);
 		add(mainMenu);
 
 		manager = new Content(this);
