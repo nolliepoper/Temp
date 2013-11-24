@@ -3,14 +3,14 @@ import javax.swing.*;
 
 public class Floater extends Enemy
 {
-	public static double SPEED = 3.0;
+	public static double SPEED = 2.5;
 	// Constructor.
 	public Floater()
 	{
 		super(new Vector(300, 300), 20, 20);
 		sprite = new Sprite(SpriteSheet.FLY, 0);
 		list.add("Player");
-		setHp(1);
+		setHp(3);
 	}
 	private Vector getLoc()
 	{
@@ -25,15 +25,19 @@ public class Floater extends Enemy
 		}
 
 		Vector dis = getLoc().sub(getCenter());
-		//if(dis.mag() < 300)
+		if(dis.mag() < 250)//chase if close
 		{
-			dx += 0.2 * Math.cos(dis.angle());
-			dy += 0.2 * Math.sin(dis.angle());
+			dx += 0.2 * dis.x/dis.mag();
+			dy += 0.2 * dis.y/dis.mag();
+			sprite.animation = 1;
 		}
-		//else
+		else
 		{
-			//dx += 0.02 * Math.cos(Math.atan2(dy, dx) + 0.174);
-			//dy += 0.02 * Math.sin(Math.atan2(dy, dx) + 0.174);
+			if(Math.hypot(dx, dy) == 0)
+				dx = 0.2;
+			dx += 0.2 * -dy/Math.hypot(dx, dy);
+			dy += 0.2 * dx/Math.hypot(dx, dy);
+			sprite.animation = 0;
 		}
 		//dx += 0.1 * ((dis.x > 0)? 1: -1);
 		//dy += 0.1 * ((dis.y > 0)? 1: -1);

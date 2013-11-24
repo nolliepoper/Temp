@@ -87,7 +87,6 @@ public abstract class Enemy extends Entity
 			damaged--;
 		}
 		gIn.drawImage(image, 0, 0 , null);
-		
 	}
 	@Override
 	public abstract void dispose();
