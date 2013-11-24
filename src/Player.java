@@ -52,6 +52,7 @@ public class Player extends Entity
 	public void kill()
 	{
 		alive = false;
+		Content.setBloodOverlay();
 	}
 	public void revive()
 	{
@@ -95,7 +96,7 @@ public class Player extends Entity
 		};
 		RadialGradientPaint grad = new RadialGradientPaint(getCenter().toPoint(), LIGHTRADIUS, distribution, colors);
 		Content.darkness.setPaint(grad);
-		Content.darkness.fillOval(getCenter().x - LIGHTRADIUS, getCenter().y - LIGHTRADIUS, 2 * LIGHTRADIUS, 2 * LIGHTRADIUS);
+		Content.darkness.fillOval((int)getCenter().x - LIGHTRADIUS, (int)getCenter().y - LIGHTRADIUS, 2 * LIGHTRADIUS, 2 * LIGHTRADIUS);
 
 		float LightDist = Math.min((float)mouseDistance + 100f, 400);
 		int angle = Math.min(18000 / (int)LightDist - 30, 90);
@@ -105,7 +106,7 @@ public class Player extends Entity
 		}
 		grad = new RadialGradientPaint(getCenter().toPoint(), LightDist, distribution, colors);
 		Content.darkness.setPaint(grad);
-		Content.darkness.fillArc(shoulder.x - (int)LightDist, shoulder.y - (int)LightDist, 2 * (int)LightDist, 2 * (int)LightDist,
+		Content.darkness.fillArc((int)shoulder.x - (int)LightDist, (int)shoulder.y - (int)LightDist, 2 * (int)LightDist, 2 * (int)LightDist,
 				-(int)Math.toDegrees(arm.rotation) - angle / 2, angle);
 	}
 	public void move()

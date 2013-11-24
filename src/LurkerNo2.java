@@ -72,7 +72,7 @@ public class LurkerNo2 extends Entity
 	public void paint(Graphics2D gIn)
 	{
 		gIn.setColor(color);
-		gIn.fillOval(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
+		gIn.fillOval((int)getCenter().x - getWidth() / 2, (int)getCenter().y - getHeight() / 2, getWidth(), getHeight());
 	}
 	@Override
 	public void dispose()

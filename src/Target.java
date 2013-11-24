@@ -47,7 +47,7 @@ public class Target extends Enemy
 		{
 
 			gIn.setColor(color);
-			gIn.fillOval(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
+			gIn.fillOval((int)getCenter().x - getWidth() / 2, (int)getCenter().y - getHeight() / 2, getWidth(), getHeight());
 		}
 	}
 	@Override

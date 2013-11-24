@@ -3,7 +3,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
@@ -27,6 +30,7 @@ public abstract class Enemy extends Entity
 	//How many hits before the poor guy dies
 	private int health;
 	private boolean alive;
+	private int damaged = 0;
 	// Constructor.
 	Enemy()
 	{
@@ -47,6 +51,7 @@ public abstract class Enemy extends Entity
 	public void damage()
 	{
 		health--;
+		damaged = 3;
 		if(health <= 0)
 		{
 			kill();
@@ -55,6 +60,7 @@ public abstract class Enemy extends Entity
 	public void kill()
 	{
 		alive = false;
+		Content.nmeDeathMng.add(new EnemyDeath(getCenter(), sprite));
 		getCenter().x = -1000; // Move off screen.
 		getCenter().y = -1000;
 	}
@@ -65,7 +71,24 @@ public abstract class Enemy extends Entity
 	@Override
 	public abstract void logic();
 	@Override
-	public abstract void paint(Graphics2D gIn);
+	public void paint(Graphics2D gIn)
+	{
+		if(!isAlive())
+		{
+			return;
+		}
+		BufferedImage image = new BufferedImage(Frame.WIDTH, Frame.HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
+		Graphics2D g2d = image.createGraphics();
+		sprite.draw(g2d, getCenter());//draw sprite
+		if(damaged > 0)//enemies should flash white when hit
+		{
+			g2d.setComposite(AlphaComposite.SrcIn);
+			g2d.fillRect(0, 0, Frame.WIDTH, Frame.HEIGHT);
+			damaged--;
+		}
+		gIn.drawImage(image, 0, 0 , null);
+		
+	}
 	@Override
 	public abstract void dispose();
 }

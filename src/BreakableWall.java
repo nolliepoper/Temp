@@ -60,8 +60,8 @@ public class BreakableWall extends Enemy
 	public void paint(Graphics2D gIn)
 	{
 		gIn.setColor(Color.WHITE);
-		gIn.fillRect(getCenter().x - getWidth() / 2,
-				getCenter().y - getHeight() / 2, getWidth(), getHeight());
+		gIn.fillRect((int)getCenter().x - getWidth() / 2,
+				(int)getCenter().y - getHeight() / 2, getWidth(), getHeight());
 	}
 	@Override
 	public void dispose()

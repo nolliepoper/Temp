@@ -42,8 +42,8 @@ public abstract class Entity
 		dest = new Vector(vIn.x, vIn.y);
 		//size = sIn;
 		list = new ArrayList<>();
-		width = sIn.x - vIn.x;
-		height = sIn.x - vIn.x;
+		width = (int)sIn.x - (int)vIn.x;
+		height = (int)sIn.x - (int)vIn.x;
 	}
 	//Takes a vector (the center of the rectangle), width, and height
 	public Entity(Vector vIn, int wIn, int hIn)

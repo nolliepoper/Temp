@@ -53,7 +53,7 @@ public class PowerUp extends Entity
 		};
 		RadialGradientPaint grad = new RadialGradientPaint(getCenter().toPoint(), LIGHTRADIUS, distribution, colors);
 		Content.darkness.setPaint(grad);
-		Content.darkness.fillOval(getCenter().x - 800, getCenter().y - 800, 1600, 1600);
+		Content.darkness.fillOval((int)getCenter().x - 800, (int)getCenter().y - 800, 1600, 1600);
 	}
 	@Override
 	public void dispose()

@@ -66,8 +66,8 @@ public class FloaterNo1 extends Entity
 			dx = -prex; //If a collision is found, or he has reached the end of his patrol in one direction.
 			dy = -prey;
 		}
-		diffx = player.getCenter().x - getCenter().x;
-		diffy = player.getCenter().y - getCenter().y;
+		diffx = (int)player.getCenter().x - (int)getCenter().x;
+		diffy = (int)player.getCenter().y - (int)getCenter().y;
 		if(diffx > 0)
 		{
 			dx = 3; //Go Right!
@@ -97,7 +97,7 @@ public class FloaterNo1 extends Entity
 	public void paint(Graphics2D gIn)
 	{
 		gIn.setColor(color);
-		gIn.fillOval(getCenter().x - getWidth() / 2, getCenter().y - getHeight() / 2, getWidth(), getHeight());
+		gIn.fillOval((int)getCenter().x - getWidth() / 2, (int)getCenter().y - getHeight() / 2, getWidth(), getHeight());
 	}
 	@Override
 	public void dispose()
