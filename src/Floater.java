@@ -39,8 +39,6 @@ public class Floater extends Enemy
 			dy += 0.2 * dx/Math.hypot(dx, dy);
 			sprite.animation = 0;
 		}
-		//dx += 0.1 * ((dis.x > 0)? 1: -1);
-		//dy += 0.1 * ((dis.y > 0)? 1: -1);
 		
 		
 		if(Math.hypot(dx, dy) > SPEED)
