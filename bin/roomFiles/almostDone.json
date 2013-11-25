@@ -1,5 +1,5 @@
 {
-  "background" : "pipes.png",
+  "background" : "pipesRoom.png",
   "exits" : { "adjRooms" : [null, "end.json", null, "goingForRapidFire.json"], "eastPos": 300,"westPos": 300},
   "spawns" : [{"x" : 50, "y" : 300}, {"x" : 50, "y" : 300}, {"x" : 50, "y" : 300}, {"x" : 50, "y" : 300}],
   "platforms" : [ 
