@@ -106,10 +106,10 @@ public class Hopper extends Enemy
 			sprite.frame += 0.25;
 			Vector dis = getCenter().sub(getLoc());
 			dirX = (dis.x < 0)? Math.abs(dirX): -Math.abs(dirX);
-			if(tick <= 0 && dis.mag() < 300)
+			if(tick <= 0 && (dis.mag() < 300 || (health < 5 && !Frame.easyMode) || (health < 3 && Frame.easyMode)))
 			{
 				// Jump.
-				dy = -10;
+				dy = -11;
 				jump = true;
 				collide = false;
 				tick = wait;

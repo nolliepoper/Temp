@@ -281,6 +281,8 @@ public class Content extends JPanel
 			g.setColor(Color.WHITE);
 			drawCenteredString(g, "GAME PAUSED", getWidth() / 2, 15); //Let the Player know the game is Paused
 			drawCenteredString(g, "Press 'P' to Resume Game", getWidth() / 2, 30); //And how they Can Return to it!
+			if(Frame.easyMode)
+				drawCenteredString(g, "Easy Mode Active", getWidth() / 2, 50); //Tell the player if they are a wimp.
 
 			int i = 1;
 			Font tempFont = g.getFont();

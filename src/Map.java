@@ -62,7 +62,7 @@ public class Map
 		Graphics2D tempG = myLoc.createGraphics();
 		int alpha = (int)Math.abs(System.currentTimeMillis() % 1000 - 500);
 		tempG.setColor(new Color(255, 255, 255, (alpha * 255) / 1000));
-		tempG.fillRect(x + currentRoom.x * roomWidth, y + currentRoom.y * roomHeight, roomWidth, roomHeight);
+		tempG.fillRect(currentRoom.x * roomWidth, currentRoom.y * roomHeight, roomWidth, roomHeight);
 		
 		if(image.getWidth() <= width && image.getHeight() <= height)//draw map normaly
 		{
