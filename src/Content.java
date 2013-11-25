@@ -40,7 +40,7 @@ public class Content extends JPanel
 		run = true;
 
 		//Create the room
-		setBackground(Color.WHITE);
+		setBackground(Color.BLACK);
 		currRoom = new Room("start.json", frame);
 		//Create the player and their spawn point
 		currSpawn = currRoom.getWestSpawn();
@@ -205,6 +205,7 @@ public class Content extends JPanel
 			currRoom.setRoomName(currRoom.getEast());
 			reloadRoom();
 			currSpawn = currRoom.getWestSpawn();
+			//System.out.println("(" + currSpawn.x + ", " + currSpawn.y + ")");
 			getType("Player").get(0).setCenter(currSpawn);
 			Map.defaultMap.Update(1, 0, currRoom);
 		}

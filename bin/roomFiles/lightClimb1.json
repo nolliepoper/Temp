@@ -1,0 +1,15 @@
+{
+  "background" : "pinkishRoom.png",
+  "exits" : { "adjRooms" : ["lightClimb2.json", null, null, "lightBoost.json"], "northPos": 750,"westPos": 300},
+  "spawns" : [{"x" : 750, "y" : 25}, {"x" : 0, "y" : 0}, {"x" : 550, "y" : 400}, {"x" : 50, "y" : 300}],
+  "platforms" : [ 
+	{"center" : {"x" : 400, "y" : 500}, "width" : 800, "height" : 300},
+	{"center" : {"x" : 450, "y" : 325}, "width" : 700, "height" : 90},
+	{"center" : {"x" : 550, "y" : 260}, "width" : 700, "height" : 80},
+	{"center" : {"x" : 650, "y" : 180}, "width" : 700, "height" : 80},
+	{"center" : {"x" : 700, "y" : 100}, "width" : 700, "height" : 80}
+	
+  ],
+  "enemies" : [ ],
+  "powerups" : [ ]
+}
