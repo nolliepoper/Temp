@@ -1,0 +1,23 @@
+{
+  "background" : "overrunByPlants.png",
+  "exits" : { "adjRooms" : ["West1.json", null, null, null], "northPos" : 400},
+  "spawns" : [{"x" : 400, "y" : 0}, null, null, null],
+  "platforms" : [ 
+	{"center" : {"x" : 400, "y" : 100}, "width" : 400, "height" : 50},
+	{"center" : {"x" : 100, "y" : 200}, "width" : 250, "height" : 20},
+	{"center" : {"x" : 700, "y" : 200}, "width" : 250, "height" : 20},
+	{"center" : {"x" : 100, "y" : 300}, "width" : 250, "height" : 20},
+	{"center" : {"x" : 700, "y" : 300}, "width" : 250, "height" : 20},
+	{"center" : {"x" : 100, "y" : 500}, "width" : 350, "height" : 200},
+	{"center" : {"x" : 650, "y" : 500}, "width" : 350, "height" : 200}
+  ],
+  "enemies" : [
+		{"type" : "Hopper", "center" : {"x" : 100, "y" : 150}},
+		{"type" : "Hopper", "center" : {"x" : 700, "y" : 150}},
+		{"type" : "Pacer", "center" : {"x" : 100, "y" : 250}},
+		{"type" : "Pacer", "center" : {"x" : 600, "y" : 250}},
+		{"type" : "Hopper", "center" : {"x" : 150, "y" : 350}},
+		{"type" : "Hopper", "center" : {"x" : 650, "y" : 350}}
+  ],
+  "powerups" : [{"type" : "DOUBLEJUMP", "center" : {"x" : 400, "y" : 500}}]
+}

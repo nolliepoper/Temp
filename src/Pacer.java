@@ -23,7 +23,6 @@ public class Pacer extends Enemy
         minX = Integer.MIN_VALUE;
         maxX = Integer.MAX_VALUE;
         list.add("Player");
-        list.add("Hopper");
         list.add("Platform");
     }
     @Override

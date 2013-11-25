@@ -10,11 +10,8 @@ public class Floater extends Enemy
 		super(new Vector(300, 300), 20, 20);
 		sprite = new Sprite(SpriteSheet.FLY, 0);
 		list.add("Player");
+		dx = SPEED;
 		setHp(3);
-	}
-	private Vector getLoc()
-	{
-		return Content.playerManager.get(0).getCenter();
 	}
 	@Override
 	public void logic()
@@ -25,7 +22,7 @@ public class Floater extends Enemy
 		}
 
 		Vector dis = getLoc().sub(getCenter());
-		if(dis.mag() < 250)//chase if close
+		if(dis.mag() < 200)//chase if close
 		{
 			dx += 0.2 * dis.x/dis.mag();
 			dy += 0.2 * dis.y/dis.mag();
@@ -39,6 +36,8 @@ public class Floater extends Enemy
 			dy += 0.2 * dx/Math.hypot(dx, dy);
 			sprite.animation = 0;
 		}
+		//dx += 0.1 * ((dis.x > 0)? 1: -1);
+		//dy += 0.1 * ((dis.y > 0)? 1: -1);
 		
 		
 		if(Math.hypot(dx, dy) > SPEED)

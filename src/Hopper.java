@@ -27,7 +27,7 @@ public class Hopper extends Enemy
 	{
 		super(vIn, wIn, hIn);
 		int c = 3; // Absolute value of horizontal velocity.
-		dirX = dx = 2 * c * ((int)(Math.random() * 2)) - c; // Random to be negative or positive.
+		dirX = dx = 2.5 * c * ((int)(Math.random() * 2)) - c; // Random to be negative or positive.
 		wait = tick = 100;
 		collide = false;
 		jump = collide = true;
@@ -104,10 +104,12 @@ public class Hopper extends Enemy
 			tick--;
 			sprite.animation = 0;
 			sprite.frame += 0.25;
-			if(tick <= 0)
+			Vector dis = getCenter().sub(getLoc());
+			dirX = (dis.x < 0)? Math.abs(dirX): -Math.abs(dirX);
+			if(tick <= 0 && dis.mag() < 300)
 			{
 				// Jump.
-				dy -= 8;
+				dy = -10;
 				jump = true;
 				collide = false;
 				tick = wait;

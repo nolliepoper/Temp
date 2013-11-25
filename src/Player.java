@@ -1,11 +1,7 @@
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
 import java.util.HashSet;
-import java.util.Locale;
-import javax.swing.*;
 
 public class Player extends Entity
 {
@@ -135,6 +131,9 @@ public class Player extends Entity
 				doubleJump = false;
 			}
 		}
+		if(Keyboard.isPressed(KeyEvent.VK_J) && Keyboard.isPressed(KeyEvent.VK_M) 
+				&& Mouse.X()> 780 && Mouse.Y()> 580) //Cheat code for debug purposes
+			powerUps.add(PowerUp.Type.DOUBLEJUMP);
 	}
 	public void shoot()
 	{

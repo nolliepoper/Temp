@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 import java.awt.AlphaComposite;
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.awt.event.KeyEvent;
 import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
@@ -73,6 +73,9 @@ public abstract class Enemy extends Entity
 	@Override
 	public void paint(Graphics2D gIn)
 	{
+		if(Keyboard.isPressed(KeyEvent.VK_J) && Keyboard.isPressed(KeyEvent.VK_M) 
+				&& Mouse.X()> 780 && Mouse.Y()> 580) //Cheat code for debug purposes
+				damage();//technically should happen in logic thread, but it's a cheat code so who cares
 		if(!isAlive())
 		{
 			return;
@@ -87,7 +90,13 @@ public abstract class Enemy extends Entity
 			damaged--;
 		}
 		gIn.drawImage(image, 0, 0 , null);
+		//Content.darkness.fillOval((int)getCenter().x - 100, (int)getCenter().y - 100, 200, 200);
 	}
 	@Override
 	public abstract void dispose();
+	
+	protected Vector getLoc()
+	{
+		return Content.playerManager.get(0).getCenter();
+	}
 }

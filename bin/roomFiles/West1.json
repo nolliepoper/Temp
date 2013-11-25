@@ -1,0 +1,24 @@
+{
+  "background" : "overrunByPlants.png",
+  "exits" : { "adjRooms" : [null, "start.json", "DJumpRoom.json", null], "eastPos" : 200, "southPos" : 400},
+  "spawns" : [null, {"x" : 790, "y" : 230}, {"x" : 340, "y" : 500}, null],
+  "platforms" : [ 
+	{"center" : {"x" : 750, "y" : 260}, "width" : 50, "height" : 20},
+	{"center" : {"x" : 650, "y" : 260}, "width" : 50, "height" : 20},
+	{"center" : {"x" : 500, "y" : 260}, "width" : 50, "height" : 20},
+	{"center" : {"x" : 300, "y" : 260}, "width" : 50, "height" : 20},
+	{"center" : {"x" : 150, "y" : 260}, "width" : 50, "height" : 20},
+	{"center" : {"x" : 50, "y" : 260}, "width" : 50, "height" : 20},
+	
+	{"center" : {"x" : 400, "y" : 350}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 450, "y" : 450}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 350, "y" : 450}, "width" : 50, "height" : 50}
+  ],
+  "enemies" : [
+		{"type" : "Pacer", "center" : {"x" : 100, "y" : 500}},
+		{"type" : "Pacer", "center" : {"x" : 600, "y" : 500}},
+		{"type" : "Pacer", "center" : {"x" : 700, "y" : 500}},
+		{"type" : "Floater", "center" : {"x" : 400, "y" : 200}}
+  ],
+  "powerups" : []
+}
