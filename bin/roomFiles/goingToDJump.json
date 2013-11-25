@@ -18,10 +18,10 @@
 	{"center" : {"x" : 675, "y" : 350}, "width" : 50, "height" : 50}
   ],
   "enemies" : [
-		{"type" : "Floater", "center" : {"x" : 225, "y" : 100}},
-		{"type" : "Floater", "center" : {"x" : 575, "y" : 100}},
-		{"type" : "Floater", "center" : {"x" : 225, "y" : 300}},
-		{"type" : "Floater", "center" : {"x" : 575, "y" : 300}}
+		{"type" : "Floater", "center" : {"x" : 200, "y" : 100}},
+		{"type" : "Floater", "center" : {"x" : 600, "y" : 100}},
+		{"type" : "Floater", "center" : {"x" : 200, "y" : 300}},
+		{"type" : "Floater", "center" : {"x" : 600, "y" : 300}}
   ],
   "powerups" : []
 }
