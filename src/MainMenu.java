@@ -39,7 +39,6 @@ public class MainMenu extends JPanel
 		{
 			options[i] = false;
 		}
-
 		//Set up the MainMenu, MainMenu is displayed by default.
 		initMainMenu();
 		initOptionsMenu();
@@ -210,10 +209,10 @@ public class MainMenu extends JPanel
 			{
 				options[1] = !options[1];
 				setLabelColor(2);
-
+				parent.sound.toggle();
 				if(options[1])
 				{
-					JOptionPane.showMessageDialog(null, "Any music you are hearing isn't coming from here, so I can't turn it off");
+					//JOptionPane.showMessageDialog(null, "Any music you are hearing isn't coming from here, so I can't turn it off");
 				}
 			}
 			@Override
