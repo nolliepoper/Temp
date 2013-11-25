@@ -25,24 +25,24 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
  */
 public abstract class Enemy extends Entity
 {
-	//This should be where the sprite sheet is attached
-	private String sprites;
 	//How many hits before the poor guy dies
-	private int health;
+	protected int health;
 	private boolean alive;
 	private int damaged = 0;
 	// Constructor.
 	Enemy()
 	{
-		super(new Vector(50, 50), 50, 50);
+		this(new Vector(50, 50), 50, 50);
 		alive = true;
-		health = 5;
 	}
 	public Enemy(Vector vIn, int wIn, int hIn)
 	{
 		super(vIn, wIn, hIn);
 		alive = true;
-		health = 5;
+		if(Frame.easyMode)
+			health = 3;
+		else
+			health = 5;
 	}
 	public void setHp(int hp)
 	{

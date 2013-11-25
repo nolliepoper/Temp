@@ -131,6 +131,13 @@ public class Content extends JPanel
 				setOpaque = !setOpaque;
 			}
 		}
+		
+		//Mute the music
+		if(Keyboard.isOnce(KeyEvent.VK_M))
+		{
+			Keyboard.useOnce(KeyEvent.VK_M);
+			frame.sound.toggle();
+		}
 		//Update everything if the game is not paused
 		if(run)
 		{
@@ -281,6 +288,9 @@ public class Content extends JPanel
 			g.setColor(Color.WHITE);
 			drawCenteredString(g, "GAME PAUSED", getWidth() / 2, 15); //Let the Player know the game is Paused
 			drawCenteredString(g, "Press 'P' to Resume Game", getWidth() / 2, 30); //And how they Can Return to it!
+			drawCenteredString(g, "Press 'M' to Toggle the Music", getWidth() / 2, 45); //Explain how to mute music.
+			if(Frame.easyMode)
+				drawCenteredString(g, "Easy Mode Active", getWidth() / 2, HEIGHT - 50); //Tell the player if they are a wimp.
 
 			int i = 1;
 			Font tempFont = g.getFont();

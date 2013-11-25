@@ -58,20 +58,40 @@ public class Map
 		//double ratio = image.getWidth()/image.getHeight();
 		int xOffset = width / 2 - image.getWidth() / 2;
 		int yOffset = height / 2 - image.getHeight() / 2;
+		BufferedImage myLoc = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
+		Graphics2D tempG = myLoc.createGraphics();
+		int alpha = (int)Math.abs(System.currentTimeMillis() % 1000 - 500);
+		tempG.setColor(new Color(255, 255, 255, (alpha * 255) / 1000));
+		tempG.fillRect(currentRoom.x * roomWidth, currentRoom.y * roomHeight, roomWidth, roomHeight);
+		
+		if(image.getWidth() <= width && image.getHeight() <= height)//draw map normaly
+		{
+			g.drawImage(image, null, x + xOffset, y + yOffset);
+			g.drawImage(myLoc, null, x + xOffset, y + yOffset);
+		}
+		else if(image.getWidth() > width && (width * image.getHeight())/ image.getWidth() <= height)//shrink map 
+		{
+			xOffset = 0;
+			yOffset = (height - (width * image.getHeight())/ image.getWidth())/2;
+			g.drawImage(image, x + xOffset, y + yOffset, width, (width * image.getHeight())/ image.getWidth(), null);
+			g.drawImage(myLoc, x + xOffset, y + yOffset, width, (width * image.getHeight())/ image.getWidth(), null);
+		}
+		else//shrink map 
+		{
+			xOffset = (width - (height * image.getWidth())/ image.getHeight())/2;
+			
+			if(image.getHeight() > height)
+				yOffset = 0;
+			else
+				yOffset = (height - (width * image.getHeight())/ image.getWidth())/2;
+			
+			g.drawImage(image, x + xOffset, y + yOffset, (height * image.getWidth())/ image.getHeight(), height, null);
+			g.drawImage(myLoc, x + xOffset, y + yOffset, (height * image.getWidth())/ image.getHeight(), height, null);
+		}
+		
+		
 		g.setColor(Color.WHITE);
 		g.drawRect(x, y, width, height);
-		g.drawImage(image, null, x + xOffset, y + yOffset);
-
-		int alpha = (int)Math.abs(System.currentTimeMillis() % 1000 - 500);
-		g.setColor(new Color(255, 255, 255, (alpha * 255) / 1000));
-		g.fillRect(x + xOffset + currentRoom.x * roomWidth, y + yOffset + currentRoom.y * roomHeight, roomWidth, roomHeight);
-	}
-	public void drawMinimap(Graphics2D g, int x, int y, int width, int height, int showRoomsX, int showRoomsY)
-	{
-		//int left = Math(roomWidth*(currentRoom.x - showRoomsX/2), 0);
-		//BufferedImage minimap = new BufferedImage((2*showRoomsX + 1) * roomWidth, (2*showRoomsY + 1) * roomHeight, BufferedImage.TYPE_3BYTE_BGR);
-		//BufferedImage tempImage = image.getSubimage(, , 
-		//showRoomsX * roomWidth, showRoomsY * roomHeight);
 	}
 	private void resize()
 	{

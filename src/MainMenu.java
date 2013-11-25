@@ -21,6 +21,7 @@ public class MainMenu extends JPanel
 	Boolean[] options = new Boolean[3];
 	//The Game Title Image
 	BufferedImage imgTitle;
+	
 	// Constructor
 	public MainMenu(Frame fIn, BufferedImage iIn)
 	{
@@ -181,7 +182,13 @@ public class MainMenu extends JPanel
 
 				if(options[0])
 				{
-					JOptionPane.showMessageDialog(null, "You wimp! Just for that, I'm doubling the amount of enemies. How do you like them apples?");
+					Frame.easyMode = true;
+					JOptionPane.showMessageDialog(null, "Enemies now have less health");
+				}
+				else
+				{
+					Frame.easyMode = false;
+					JOptionPane.showMessageDialog(null, "Enemies now have more health");
 				}
 			}
 			@Override
@@ -243,6 +250,7 @@ public class MainMenu extends JPanel
 				if(options[2])
 				{
 					JOptionPane.showMessageDialog(null, "Ok, I'm erasing all of the files saved on your computer, please wait...");
+					JOptionPane.showMessageDialog(null, "Nah, I'm just kidding.");
 				}
 
 			}

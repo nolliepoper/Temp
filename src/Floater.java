@@ -11,7 +11,10 @@ public class Floater extends Enemy
 		sprite = new Sprite(SpriteSheet.FLY, 0);
 		list.add("Player");
 		dx = SPEED;
-		setHp(3);
+		if(Frame.easyMode)
+			setHp(1);
+		else
+			setHp(3);
 	}
 	@Override
 	public void logic()
@@ -22,7 +25,7 @@ public class Floater extends Enemy
 		}
 
 		Vector dis = getLoc().sub(getCenter());
-		if(dis.mag() < 200)//chase if close
+		if(dis.mag() < 200 || (health < 3 && !Frame.easyMode))//chase if close
 		{
 			dx += 0.2 * dis.x/dis.mag();
 			dy += 0.2 * dis.y/dis.mag();

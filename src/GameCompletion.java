@@ -110,9 +110,9 @@ public class GameCompletion extends JPanel
 		credits.add("Daniel Siebert: Gui/Blood artist (Master of Carnage)");
 		credits.add("John Bell: Graphics/lighting engineer (Lord of Darkness)");
 		credits.add("Zachary Easey: Framework Engineer (Voodoo Priest of Code)");
-		credits.add("WORKS CITED");
-		credits.add("Metroid Fusion: Character Sprites");
-		credits.add("");
+		credits.add("Special thanks");
+		credits.add("To Nintendo for sprites from Metrod: Fusion and Zero Mission");
+		credits.add("To DeceasedSuperiorTechnician (Hear more from him at NoSoapRadio.us)");
 		credits.add("");
 		credits.add("");
 		s1 = credits.get(index);
