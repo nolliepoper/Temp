@@ -11,18 +11,21 @@ public class Main
 		System.out.println("New Game Begin");
 		System.out.println("Main begin");
 		long startTime;
-		
-		try {
+
+		try
+		{
 			Frame frame = new Frame();
 			startTime = System.currentTimeMillis();
 			frame.gameComplete.acquire();
 			//End the game after calculating how long the player took to 
 			//finish it.
-			frame.endGame((System.currentTimeMillis() - startTime)/1000);
-		} catch (InterruptedException ex) {
+			frame.endGame((System.currentTimeMillis() - startTime) / 1000);
+		}
+		catch(InterruptedException ex)
+		{
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
+
 		System.out.println("Main end");
 	}
 }

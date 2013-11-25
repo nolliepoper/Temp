@@ -1,0 +1,18 @@
+{
+	"background" : "squigglyRoom.png",
+	"exits" : { "adjRooms" : ["gunTE.json", null, "gunBE.json", null], "northPos" : 770, "southPos": 20},
+	"spawns" : [{"x" : 750, "y" : 50}, {"x" : 0, "y" : 0}, {"x" : 85, "y" : 530}, {"x" : 0, "y" : 0}],
+	"platforms" :
+	[
+		{"center" : {"x" : 250, "y" : 420}, "width" : 40, "height" : 40},
+		{"center" : {"x" : 400, "y" : 320}, "width" : 40, "height" : 40},
+		{"center" : {"x" : 550, "y" : 220}, "width" : 40, "height" : 40},
+		{"center" : {"x" : 700, "y" : 120}, "width" : 40, "height" : 40}
+	],
+	"enemies" :
+	[
+		{"type" : "Floater", "center" : {"x" : 300, "y" : 200}},
+		{"type" : "Floater", "center" : {"x" : 450, "y" : 100}}
+	],
+	"powerups" : []
+}

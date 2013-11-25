@@ -1,0 +1,38 @@
+{
+	"background" : "greyRoom.png",
+	"exits" : { "adjRooms" : ["gunTW.json", null, "gunBW.json", null], "northPos" : 770, "southPos" : 770},
+	"spawns" : [{"x" : 750, "y" : 50}, {"x" : 0, "y" : 0}, {"x" : 750, "y" : 550}, {"x" : 0, "y" : 0}],
+	"platforms" :
+	[
+		{"center" : {"x" : 710, "y" : 300}, "width" : 40, "height" : 600},
+		{"center" : {"x" : 200, "y" : 300}, "width" : 500, "height" : 600},
+		{"center" : {"x" : 450, "y" : 50}, "width" : 500, "height" : 300},
+		{"center" : {"x" : 450, "y" : 500}, "width" : 500, "height" : 300}
+	],
+	"enemies" :
+	[
+		{"type" : "Floater", "center" : {"x" : 500, "y" : 175}},
+		{"type" : "Floater", "center" : {"x" : 525, "y" : 175}},
+		{"type" : "Floater", "center" : {"x" : 550, "y" : 175}},
+		{"type" : "Floater", "center" : {"x" : 575, "y" : 175}},
+		{"type" : "Floater", "center" : {"x" : 500, "y" : 200}},
+		{"type" : "Floater", "center" : {"x" : 525, "y" : 200}},
+		{"type" : "Floater", "center" : {"x" : 550, "y" : 200}},
+		{"type" : "Floater", "center" : {"x" : 575, "y" : 200}},
+		{"type" : "Floater", "center" : {"x" : 500, "y" : 225}},
+		{"type" : "Floater", "center" : {"x" : 525, "y" : 225}},
+		{"type" : "Floater", "center" : {"x" : 550, "y" : 225}},
+		{"type" : "Floater", "center" : {"x" : 575, "y" : 225}},
+		
+		{"type" : "Pacer", "center" : {"x" : 500, "y" : 250}},
+		{"type" : "Pacer", "center" : {"x" : 550, "y" : 250}},
+		{"type" : "Pacer", "center" : {"x" : 600, "y" : 250}},
+		{"type" : "Pacer", "center" : {"x" : 650, "y" : 250}},
+		
+		{"type" : "Hopper", "center" : {"x" : 525, "y" : 250}},
+		{"type" : "Hopper", "center" : {"x" : 575, "y" : 250}},
+		{"type" : "Hopper", "center" : {"x" : 625, "y" : 250}},
+		{"type" : "Hopper", "center" : {"x" : 675, "y" : 250}}
+	],
+	"powerups" : []
+}

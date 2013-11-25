@@ -1,0 +1,41 @@
+{
+	"background" : "generatorRoom.png",
+	"exits" : { "adjRooms" : [null, null, "gunME.json", "gunTW.json"], "southPos": 770, "westPos" : 50},
+	"spawns" : [{"x" : 0, "y" : 0}, {"x" : 0, "y" : 0}, {"x" : 710, "y" : 530}, {"x" : 710, "y" : 530}],
+	"platforms" :
+	[
+		{"center" : {"x" : 900, "y" : 450}, "width" : 500, "height" : 50},
+		{"center" : {"x" : 850, "y" : 400}, "width" : 500, "height" : 50},
+		{"center" : {"x" : 800, "y" : 350}, "width" : 500, "height" : 50},
+		{"center" : {"x" : 750, "y" : 300}, "width" : 500, "height" : 50},
+		{"center" : {"x" : 700, "y" : 250}, "width" : 500, "height" : 50},
+		{"center" : {"x" : 750, "y" : 200}, "width" : 500, "height" : 50},
+		{"center" : {"x" : 800, "y" : 150}, "width" : 500, "height" : 50},
+		{"center" : {"x" : 850, "y" : 100}, "width" : 500, "height" : 50},
+		{"center" : {"x" : 900, "y" : 50}, "width" : 500, "height" : 100},
+		{"center" : {"x" : 950, "y" : 0}, "width" : 500, "height" : 50},
+		
+		{"center" : {"x" : 300, "y" : 530}, "width" : 600, "height" : 50},
+		{"center" : {"x" : 250, "y" : 480}, "width" : 600, "height" : 50},
+		{"center" : {"x" : 200, "y" : 430}, "width" : 600, "height" : 50},
+		{"center" : {"x" : 150, "y" : 380}, "width" : 600, "height" : 50},
+		{"center" : {"x" : 100, "y" : 330}, "width" : 600, "height" : 50},
+		{"center" : {"x" : 50, "y" : 280}, "width" : 600, "height" : 50},
+		{"center" : {"x" :0, "y" : 230}, "width" : 600, "height" : 50},
+		{"center" : {"x" : -50, "y" : 180}, "width" : 600, "height" : 50},
+		{"center" : {"x" : -100, "y" : 130}, "width" : 600, "height" : 50},
+		{"center" : {"x" : -150, "y" : 90}, "width" : 600, "height" : 48}
+	],
+	"enemies" :
+	[
+		{"type" : "BreakableWall", "side" : 3, "position" : 50},
+		{"type" : "Floater", "center" : {"x" : 550, "y" : 0}},
+		
+		{"type" : "Hopper", "center" : {"x" : 40, "y" : 55}},
+		{"type" : "Hopper", "center" : {"x" : 55, "y" : 55}},
+		{"type" : "Hopper", "center" : {"x" : 70, "y" : 55}},
+		{"type" : "Hopper", "center" : {"x" : 85, "y" : 55}},
+		{"type" : "Hopper", "center" : {"x" : 100, "y" : 55}}
+	],
+	"powerups" : [{"type" : "FASTERRELOAD", "center" : {"x" : 40, "y" : 45}}]
+}

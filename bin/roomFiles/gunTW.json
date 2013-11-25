@@ -1,0 +1,11 @@
+{
+	"background" : "greyRoom.png",
+	"exits" : { "adjRooms" : [null, "gunTE.json", "gunMW.json", null], "eastPos" : 10, "southPos" : 770},
+	"spawns" : [{"x" : 0, "y" : 0}, {"x" : 750, "y" : 50}, {"x" : 750, "y" : 550}, {"x" : 0, "y" : 0}],
+	"platforms" :
+	[
+		{"center" : {"x" : 480, "y" : 300}, "width" : 500, "height" : 600}
+	],
+	"enemies" : [],
+	"powerups" : []
+}

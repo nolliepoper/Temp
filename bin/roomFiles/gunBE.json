@@ -1,0 +1,21 @@
+{
+	"background" : "greyRoom.png",
+	"exits" : { "adjRooms" : ["gunME.json", null, "goingForRapidFire.json", "gunBW.json"], "northPos" : 20, "southPos": 770, "westPos" : 550},
+	"spawns" : [{"x" : 40, "y" : 40}, {"x" : 0, "y" : 0}, {"x" : 710, "y" : 530}, {"x" : 10, "y" : 530}],
+	"platforms" :
+	[
+		{"center" : {"x" : 545, "y" : 490}, "width" : 280, "height" : 40},
+		{"center" : {"x" : 145, "y" : 390}, "width" : 280, "height" : 40},
+		{"center" : {"x" : 175, "y" : 310}, "width" : 220, "height" : 40},
+		{"center" : {"x" : 595, "y" : 210}, "width" : 380, "height" : 40},
+		{"center" : {"x" : 545, "y" : 130}, "width" : 280, "height" : 40},
+		{"center" : {"x" : 145, "y" : 130}, "width" : 280, "height" : 40}
+	],
+	"enemies" :
+	[
+		{"type" : "Pacer", "center" : {"x" : 550, "y" : 450}},
+		{"type" : "Pacer", "center" : {"x" : 200, "y" : 250}},
+		{"type" : "Pacer", "center" : {"x" : 550, "y" : 50}}
+	],
+	"powerups" : []
+}
