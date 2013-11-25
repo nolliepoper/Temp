@@ -23,6 +23,7 @@ public class Frame extends JFrame
 	BufferedImage imgIcon;
 	BufferedImage imgTitle;
 	//To play music loop
+	public Sound sound;
 	// Constructor
 	public Frame()
 	{
@@ -44,12 +45,13 @@ public class Frame extends JFrame
 		manager = new Content(this);
 
 		//Sets up the Audio!
-		String musicDest = "bin\\sounds\\mainMenu\\DST-Surreal.wav";
+		sound = new Sound("bin\\sounds\\mainMenu\\DST_Surreal.wav");
+		//String musicDest = "bin\\sounds\\mainMenu\\DST-Surreal.wav";
 		//We can implement this later
 
 		setVisible(true);
+		sound.start();
 	}
-	
 	public void restart()
 	{
 		//mainMenu = new MainMenu(this, imgTitle);
@@ -61,7 +63,6 @@ public class Frame extends JFrame
 		String musicDest = "bin\\sounds\\mainMenu\\DST-Surreal.wav";
 		//We can implement this later
 	}
-	
 	public void beginGame()
 	{
 		remove(mainMenu);
@@ -76,7 +77,7 @@ public class Frame extends JFrame
 
 		//Add collision detection to the frame and content manager
 		new Collision(this, manager);
-		
+
 		//Add the Listeners for Keyboard and Mouse Input
 		addKeyListener(new Keyboard());
 		Mouse m = new Mouse();
@@ -84,16 +85,14 @@ public class Frame extends JFrame
 		addMouseMotionListener(m);
 		setVisible(true);
 	}
-	
 	public void endGame(long playtime)
 	{
-		manager.remove(manager);		
-        //below is used to test the credits menu
-        remove(manager);
-        add(new GameCompletion(this, (int)playtime));
+		manager.remove(manager);
+		//below is used to test the credits menu
+		remove(manager);
+		add(new GameCompletion(this, (int)playtime));
 		setVisible(true);
 	}
-	
 	private void loadIconImage(String path)
 	{//Try and Load the Image from the bin images
 		try
