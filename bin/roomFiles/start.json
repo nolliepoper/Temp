@@ -17,5 +17,5 @@
 		{"type" : "Hopper", "center" : { "x" : 450, "y" : 60}},
 		{"type" : "BreakableWall", "side" : 2, "position" : 500}
 	],
-  "powerups" : [{"type" : "DOUBLEJUMP", "center" : {"x" : 100, "y" : 300}}]
+  "powerups" : []
 }
