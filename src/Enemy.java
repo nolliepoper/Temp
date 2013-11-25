@@ -32,18 +32,17 @@ public abstract class Enemy extends Entity
 	// Constructor.
 	Enemy()
 	{
-		super(new Vector(50, 50), 50, 50);
+		this(new Vector(50, 50), 50, 50);
 		alive = true;
-		if(Frame.easyMode)
-			health = 3;
-		else
-			health = 5;
 	}
 	public Enemy(Vector vIn, int wIn, int hIn)
 	{
 		super(vIn, wIn, hIn);
 		alive = true;
-		health = 5;
+		if(Frame.easyMode)
+			health = 3;
+		else
+			health = 5;
 	}
 	public void setHp(int hp)
 	{
