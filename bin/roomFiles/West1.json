@@ -1,6 +1,6 @@
 {
-  "background" : "overrunByPlants.png",
-  "exits" : { "adjRooms" : [null, "start.json", "DJumpRoom.json", null], "eastPos" : 200, "southPos" : 400},
+  "background" : "greenishRoom.png",
+  "exits" : { "adjRooms" : [null, "start.json", "goingToDJump.json", null], "eastPos" : 200, "southPos" : 400},
   "spawns" : [null, {"x" : 790, "y" : 230}, {"x" : 340, "y" : 500}, null],
   "platforms" : [ 
 	{"center" : {"x" : 750, "y" : 260}, "width" : 50, "height" : 20},

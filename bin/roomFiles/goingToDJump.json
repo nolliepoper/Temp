@@ -1,0 +1,27 @@
+{
+  "background" : "overrunByPlants.png",
+  "exits" : { "adjRooms" : ["West1.json", null, "DJumpRoom.json", null], "northPos" : 400, "southPos" : 400},
+  "spawns" : [{"x" : 400, "y" : 0}, null, {"x" : 340, "y" : 500}, null],
+  "platforms" : [ 
+	{"center" : {"x" : 300, "y" : 150}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 200, "y" : 250}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 100, "y" : 150}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 300, "y" : 350}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 200, "y" : 450}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 100, "y" : 350}, "width" : 50, "height" : 50},
+	
+	{"center" : {"x" : 500, "y" : 150}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 600, "y" : 250}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 700, "y" : 150}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 500, "y" : 350}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 600, "y" : 450}, "width" : 50, "height" : 50},
+	{"center" : {"x" : 700, "y" : 350}, "width" : 50, "height" : 50}
+  ],
+  "enemies" : [
+		{"type" : "Floater", "center" : {"x" : 200, "y" : 100}},
+		{"type" : "Floater", "center" : {"x" : 600, "y" : 100}},
+		{"type" : "Floater", "center" : {"x" : 200, "y" : 300}},
+		{"type" : "Floater", "center" : {"x" : 600, "y" : 300}}
+  ],
+  "powerups" : []
+}
