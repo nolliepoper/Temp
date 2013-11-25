@@ -24,6 +24,8 @@ public class Frame extends JFrame
 	BufferedImage imgTitle;
 	//To play music loop
 	public Sound sound;
+	
+	public static boolean easyMode = false;
 	// Constructor
 	public Frame()
 	{

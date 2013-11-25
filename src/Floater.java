@@ -11,7 +11,10 @@ public class Floater extends Enemy
 		sprite = new Sprite(SpriteSheet.FLY, 0);
 		list.add("Player");
 		dx = SPEED;
-		setHp(3);
+		if(Frame.easyMode)
+			setHp(1);
+		else
+			setHp(3);
 	}
 	@Override
 	public void logic()
